@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rebeka\\Source\\Repos\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj": {}
+    "C:\\Sources\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rebeka\\Source\\Repos\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj": {
+    "C:\\Sources\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rebeka\\Source\\Repos\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj",
+        "projectUniqueName": "C:\\Sources\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj",
         "projectName": "FarFromFreedom.Renderer",
-        "projectPath": "C:\\Users\\Rebeka\\Source\\Repos\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj",
-        "packagesPath": "C:\\Users\\Rebeka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rebeka\\Source\\Repos\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\obj\\",
+        "projectPath": "C:\\Sources\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\FarFromFreedom.Renderer.csproj",
+        "packagesPath": "C:\\Users\\DobiászMartin\\.nuget\\packages\\",
+        "outputPath": "C:\\Sources\\GUI_20212202_HU3BPF\\GUI_20212202_HU3BPF_AMKWH0_B74N6O\\FarFromFreedom.Renderer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Rebeka\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\DobiászMartin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
