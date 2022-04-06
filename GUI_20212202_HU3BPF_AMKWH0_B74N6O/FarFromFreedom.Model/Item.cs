@@ -1,8 +1,8 @@
 ﻿namespace FarFromFreedom.Model
 {
-    public class Items
+    public class Item
     {
-        public Items(string name, string description, double health, double power, double speed, int coin)
+        public Item(string name, string description, double health, double power, double speed, int coin)
         {
             this.name = name;
             this.description = description;
