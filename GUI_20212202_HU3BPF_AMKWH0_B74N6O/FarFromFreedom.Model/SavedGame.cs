@@ -9,5 +9,7 @@ namespace FarFromFreedom.Model
         public int Score { get; set; }
 
         public DateTime date { get; set;}
+
+        public int MapLevel { get; set; }
     }
 }
