@@ -14,16 +14,18 @@ namespace FarFromFreedom.Repository
         public IGameModel LoadGame(string filename)
         {
             IGameModel gameModel;
+
             using (StreamReader r = new StreamReader($"{filename}.json"))
             {
                 string json = r.ReadToEnd();
+
                 gameModel = JsonConvert.DeserializeObject<IGameModel>(json, new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.None,
                     MissingMemberHandling = MissingMemberHandling.Ignore,
                 });
-                r.Close();
             }
+
             return gameModel;
         }
 
