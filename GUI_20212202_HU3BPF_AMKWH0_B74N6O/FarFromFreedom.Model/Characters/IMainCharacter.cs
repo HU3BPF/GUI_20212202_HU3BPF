@@ -8,18 +8,17 @@
         string Name { get; }
         double Power { get; }
         double Speed { get; }
-        double Coin { get; }
+        int Coin { get; }
 
-        void CurrentHealthDown(double currentHealth);
         void CurrentHealthUp(double currentHealth);
-        void HealthDown(double health);
+        void CurrentHealthDown(double currentHealth);
         void HealthUp(double health);
-        void PowerDown(double power);
+        void HealthDown(double health);
         void PowerUp(double power);
-        void SpeedDown(double speed);
+        void PowerDown(double power);
         void SpeedUp(double speed);
-
-        void CoinUp(int speed);
-        void CoinDown(int speed);
+        void SpeedDown(double speed);
+        void CoinUp(int coin);
+        void CoinDown(int coin);
     }
 }
