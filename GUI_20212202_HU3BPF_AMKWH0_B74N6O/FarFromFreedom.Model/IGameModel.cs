@@ -8,6 +8,5 @@ namespace FarFromFreedom.Model
         MainCharacter Character { get; }
         List<Enemy> Enemies { get; set; }
         List<IItem> Items { get; set; }
-        SavedGame SavedGame { get; set; }
     }
 }
