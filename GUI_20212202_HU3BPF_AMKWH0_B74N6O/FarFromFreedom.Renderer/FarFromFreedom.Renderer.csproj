@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FarFromFreedom.Logic\FarFromFreedom.Logic.csproj" />
-    <ProjectReference Include="..\FarFromFreedom.Repository\FarFromFreedom.Repository.csproj" />
+    <ProjectReference Include="..\FarFromFreedom.Model\FarFromFreedom.Model.csproj" />
   </ItemGroup>
 
 </Project>

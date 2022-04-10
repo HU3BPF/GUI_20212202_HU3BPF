@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FarFromFreedom.Model\FarFromFreedom.Model.csproj" />
+    <ProjectReference Include="..\FarFromFreedom.Renderer\FarFromFreedom.Renderer.csproj" />
+  </ItemGroup>
+
 </Project>
