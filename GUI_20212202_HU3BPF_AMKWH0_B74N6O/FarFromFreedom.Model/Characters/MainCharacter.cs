@@ -1,8 +1,11 @@
-﻿namespace FarFromFreedom.Model.Characters
+﻿using System.Windows;
+using System.Windows.Media;
+
+namespace FarFromFreedom.Model.Characters
 {
-    public class MainCharacter : IMainCharacter
+    public class MainCharacter : GameItem, IMainCharacter
     {
-        public MainCharacter(string name, string description, double health, double currentHealth, double power, double speed, int coin)
+        public MainCharacter(string name, string description, double health, double currentHealth, double power, Vector speed, int coin, Geometry area)
         {
             this.name = name;
             this.description = description;
@@ -11,6 +14,7 @@
             this.power = power;
             this.speed = speed;
             this.coin = coin;
+            this.area = area;
         }
 
         private string name;
@@ -18,8 +22,9 @@
         private double health;
         private double currentHealth;
         private double power;
-        private double speed;
+        private Vector speed;
         private int coin;
+        private Geometry area;
 
         public string Name => name;
 
@@ -29,11 +34,13 @@
 
         public double Power => power;
 
-        public double Speed => speed;
+        public Vector Speed => speed;
 
         public double CurrentHealth => currentHealth;
 
         public int Coin => coin;
+
+        public override Geometry Area => area;
 
         public void PowerUp(double power)
         {
@@ -55,12 +62,12 @@
             this.health -= health;
         }
 
-        public void SpeedUp(double speed)
+        public void SpeedUp(Vector speed)
         {
             this.speed += speed;
         }
 
-        public void SpeedDown(double speed)
+        public void SpeedDown(Vector speed)
         {
             this.speed -= speed;
         }

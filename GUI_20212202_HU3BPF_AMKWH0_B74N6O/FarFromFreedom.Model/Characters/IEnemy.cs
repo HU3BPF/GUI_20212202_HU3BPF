@@ -1,4 +1,6 @@
-﻿namespace FarFromFreedom.Model.Characters
+﻿using System.Windows;
+
+namespace FarFromFreedom.Model.Characters
 {
     internal interface IEnemy
     {
@@ -7,7 +9,7 @@
         double Health { get; }
         string Name { get; }
         double Power { get; }
-        double Speed { get; }
+        Vector Speed { get; }
 
         void CurrentHealthDown(double currentHealth);
         void CurrentHealthUp(double currentHealth);
@@ -15,7 +17,7 @@
         void HealthUp(double health);
         void PowerDown(double power);
         void PowerUp(double power);
-        void SpeedDown(double speed);
-        void SpeedUp(double speed);
+        void SpeedDown(Vector speed);
+        void SpeedUp(Vector speed);
     }
 }

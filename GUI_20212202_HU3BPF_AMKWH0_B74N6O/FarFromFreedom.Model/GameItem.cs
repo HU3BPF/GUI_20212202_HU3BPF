@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace FarFromFreedom
+namespace FarFromFreedom.Model
 {
     public abstract class GameItem
     {
