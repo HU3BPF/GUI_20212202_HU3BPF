@@ -6,6 +6,136 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\enemies\level1\hippoEnemy.gif" />
+    <None Remove="Images\enemies\level1\pandaEnemy.gif" />
+    <None Remove="Images\enemies\level1\penguinEnemy.gif" />
+    <None Remove="Images\enemies\level1\pigEnemy.gif" />
+    <None Remove="Images\enemies\level1\PugEnemy.gif" />
+    <None Remove="Images\enemies\level2\batEnemy.gif" />
+    <None Remove="Images\enemies\level2\clamFlowerEnemy.gif" />
+    <None Remove="Images\enemies\level2\cutSwordEnemy.gif" />
+    <None Remove="Images\enemies\level2\eatingCactusEnemy.gif" />
+    <None Remove="Images\enemies\level2\flyingEnemy.gif" />
+    <None Remove="Images\enemies\level2\furryEnemy.gif" />
+    <None Remove="Images\enemies\level2\lemonEnemy.gif" />
+    <None Remove="Images\enemies\level2\threeEyesEnemy.gif" />
+    <None Remove="Images\enemies\level2\walkingSnailEnemy.gif" />
+    <None Remove="Images\enemies\level3\zombieAttackAEnemy.gif" />
+    <None Remove="Images\enemies\level3\zombieAttackBEnemy.gif" />
+    <None Remove="Images\enemies\level3\zombieRunBEnemy.gif" />
+    <None Remove="Images\enemies\level3\zombieWalkCrippleEnemy.gif" />
+    <None Remove="Images\enemies\level3\zombiGiphyEnemy.gif" />
+    <None Remove="Images\items\bag.png" />
+    <None Remove="Images\items\bomb.png" />
+    <None Remove="Images\items\bottle.png" />
+    <None Remove="Images\items\bottle2.png" />
+    <None Remove="Images\items\coin.png" />
+    <None Remove="Images\items\heart.png" />
+    <None Remove="Images\items\heart2.png" />
+    <None Remove="Images\items\money.png" />
+    <None Remove="Images\items\shield.png" />
+    <None Remove="Images\items\star.png" />
+    <None Remove="Images\items\tears.png" />
+    <None Remove="Images\items\time.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\enemies\level1\hippoEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level1\pandaEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level1\penguinEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level1\pigEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level1\PugEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\batEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\clamFlowerEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\cutSwordEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\eatingCactusEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\flyingEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\furryEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\lemonEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\threeEyesEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level2\walkingSnailEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level3\zombieAttackAEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level3\zombieAttackBEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level3\zombieRunBEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level3\zombieWalkCrippleEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemies\level3\zombiGiphyEnemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\bag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\bomb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\bottle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\bottle2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\coin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\heart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\heart2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\money.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\shield.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\star.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\tears.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\items\time.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FarFromFreedom.Model\FarFromFreedom.Model.csproj" />
   </ItemGroup>
 
