@@ -5,16 +5,14 @@ namespace FarFromFreedom.Model.Characters
 {
     public class MainCharacter : GameItem, IMainCharacter
     {
-        public MainCharacter(string name, string description, double health, double currentHealth, double power, Vector speed, int coin, Geometry area)
+        public MainCharacter(string name, string description, double health, double currentHealth, double power, Vector speed, int coin, Rect area) : base(area, speed)
         {
             this.name = name;
             this.description = description;
             this.health = health;
             this.currentHealth = currentHealth;
             this.power = power;
-            this.speed = speed;
             this.coin = coin;
-            this.area = area;
         }
 
         private string name;
@@ -22,9 +20,7 @@ namespace FarFromFreedom.Model.Characters
         private double health;
         private double currentHealth;
         private double power;
-        private Vector speed;
         private int coin;
-        private Geometry area;
 
         public string Name => name;
 
@@ -34,13 +30,10 @@ namespace FarFromFreedom.Model.Characters
 
         public double Power => power;
 
-        public Vector Speed => speed;
-
         public double CurrentHealth => currentHealth;
 
         public int Coin => coin;
 
-        public override Geometry Area => area;
 
         public void PowerUp(double power)
         {
@@ -60,16 +53,6 @@ namespace FarFromFreedom.Model.Characters
         public void HealthDown(double health)
         {
             this.health -= health;
-        }
-
-        public void SpeedUp(Vector speed)
-        {
-            this.speed += speed;
-        }
-
-        public void SpeedDown(Vector speed)
-        {
-            this.speed -= speed;
         }
 
         public void CurrentHealthUp(double currentHealth)

@@ -5,10 +5,7 @@ namespace FarFromFreedom.Model
 {
     internal class GameModel : IGameModel
     {
-        public GameModel(MainCharacter character)
-        {
-            Character = character;
-        }
+        public GameModel(MainCharacter character) => Character = character;
 
         public MainCharacter Character {get;}
 
