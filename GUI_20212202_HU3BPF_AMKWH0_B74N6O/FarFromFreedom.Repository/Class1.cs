@@ -1,6 +1,6 @@
 using System;
 
-namespace FarFromFreedom.Renderer
+namespace FarFromFreedom.Repository
 {
     public class Class1
     {
