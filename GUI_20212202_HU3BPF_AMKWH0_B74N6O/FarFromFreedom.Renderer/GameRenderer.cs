@@ -35,24 +35,24 @@ namespace FarFromFreedom.Renderer
         private Brush zombieAttackBEnemyBursh { get => GetBrushes(Path.Combine("Images", "enemies", "level3", "zombieAttackBEnemy.gif")); }
         private Brush zombieAttackAEnemyBrush { get => GetBrushes(Path.Combine("Images", "enemies", "level3", "zombieAttackAEnemy.gif")); }
 
-        private Drawing GetPigEnemy() => GetDrawing(this.pigEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetHippoEnemy() => GetDrawing(this.hippoEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetPandaEnemy() => GetDrawing(this.pandaEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetPenguinEnemy() => GetDrawing(this.penguinEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetWalkingSnailEnemy() => GetDrawing(this.walkingSnailEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetEatingCactusEnemy() => GetDrawing(this.eatingCactusEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetClamFlowerEnemy() => GetDrawing(this.clamFlowerEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetThreeEyesEnemy() => GetDrawing(this.threeEyesEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetFurryEnemy() => GetDrawing(this.furryEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetCutSwordEnemy() => GetDrawing(this.cutSwordEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetBatEnemy() => GetDrawing(this.batEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetLemonEnemy() => GetDrawing(this.lemonEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetFlyingEnemyBursh() => GetDrawing(this.flyingEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetZombiGiphyEnemy() => GetDrawing(this.zombiGiphyEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetZombieWalkCrippleEnemyBursh() => GetDrawing(this.zombieWalkCrippleEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetZombieRunBEnemy() => GetDrawing(this.zombieRunBEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetZombieAttackBEnemy() => GetDrawing(this.zombieAttackBEnemyBursh, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
-        private Drawing GetZombieAttackAEnemy() => GetDrawing(this.zombieAttackAEnemyBrush, new RectangleGeometry(model.Enemies[1].Area.GetRenderBounds(new Pen())));
+        private Drawing GetPigEnemy() => GetDrawing(this.pigEnemyBursh, model.Enemies[1].Area);
+        private Drawing GetHippoEnemy() => GetDrawing(this.hippoEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetPandaEnemy() => GetDrawing(this.pandaEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetPenguinEnemy() => GetDrawing(this.penguinEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetWalkingSnailEnemy() => GetDrawing(this.walkingSnailEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetEatingCactusEnemy() => GetDrawing(this.eatingCactusEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetClamFlowerEnemy() => GetDrawing(this.clamFlowerEnemyBursh,  model.Enemies[0].Area); 
+        private Drawing GetThreeEyesEnemy() => GetDrawing(this.threeEyesEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetFurryEnemy() => GetDrawing(this.furryEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetCutSwordEnemy() => GetDrawing(this.cutSwordEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetBatEnemy() => GetDrawing(this.batEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetLemonEnemy() => GetDrawing(this.lemonEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetFlyingEnemyBursh() => GetDrawing(this.flyingEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetZombiGiphyEnemy() => GetDrawing(this.zombiGiphyEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetZombieWalkCrippleEnemyBursh() => GetDrawing(this.zombieWalkCrippleEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetZombieRunBEnemy() => GetDrawing(this.zombieRunBEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetZombieAttackBEnemy() => GetDrawing(this.zombieAttackBEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetZombieAttackAEnemy() => GetDrawing(this.zombieAttackAEnemyBrush, model.Enemies[0].Area);
 
         private Drawing GetDrawing(Brush brush, RectangleGeometry rectangleGeometry)
         {
