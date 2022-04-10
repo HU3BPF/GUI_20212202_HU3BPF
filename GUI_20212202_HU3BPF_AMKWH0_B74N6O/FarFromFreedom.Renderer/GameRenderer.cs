@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System;
+using System.Windows.Media.Animation;
 
 namespace FarFromFreedom.Renderer
 {
@@ -12,6 +13,17 @@ namespace FarFromFreedom.Renderer
         public GameRenderer(IGameModel model)
         {
             this.model = model;
+        }
+
+        public Drawing BuildDrawing()
+        {
+            DrawingGroup drawingGroup = new DrawingGroup();
+            drawingGroup.Children.Add(this.GetPigEnemy());
+            drawingGroup.Children.Add(this.GetHippoEnemy());
+            drawingGroup.Children.Add(this.GetPandaEnemy());
+            drawingGroup.Children.Add(this.GetPandaEnemy());
+
+            return drawingGroup;
         }
 
         private IGameModel model;
@@ -37,7 +49,7 @@ namespace FarFromFreedom.Renderer
 
         private Drawing GetPigEnemy() => GetDrawing(this.pigEnemyBursh, model.Enemies[1].Area);
         private Drawing GetHippoEnemy() => GetDrawing(this.hippoEnemyBursh, model.Enemies[0].Area);
-        private Drawing GetPandaEnemy() => GetDrawing(this.pandaEnemyBursh, model.Enemies[0].Area);
+        private Drawing GetPandaEnemy() => GetDrawing(this.pandaEnemyBursh, model.Enemies[2].Area);
         private Drawing GetPenguinEnemy() => GetDrawing(this.penguinEnemyBursh, model.Enemies[0].Area);
         private Drawing GetWalkingSnailEnemy() => GetDrawing(this.walkingSnailEnemyBursh, model.Enemies[0].Area);
         private Drawing GetEatingCactusEnemy() => GetDrawing(this.eatingCactusEnemyBursh, model.Enemies[0].Area);
