@@ -9,6 +9,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MenuImages\bg.png" />
+    <None Remove="MenuImages\continue.png" />
+    <None Remove="MenuImages\exit game.png" />
+    <None Remove="MenuImages\new game.png" />
+    <None Remove="MenuImages\options.png" />
+    <None Remove="MenuImages\Stats.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MenuImages\bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MenuImages\continue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MenuImages\exit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MenuImages\new game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MenuImages\options.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MenuImages\Stats.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pages\FFF_Menu.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
