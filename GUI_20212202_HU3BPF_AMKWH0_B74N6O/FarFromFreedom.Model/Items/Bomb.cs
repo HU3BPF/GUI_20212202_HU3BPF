@@ -3,16 +3,18 @@ using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Items
 {
-    public class Coin : IItem
+    public class Bomb : IItem
     {
-        public Coin(Rect area)
+        public Bomb(Rect area)
         {
             this.area = area;
         }
 
-        public string Name => "Coin";
-        public string Description => "Coin";
-        public int Value => 1;
+        public string Name => "Bomb";
+
+        public string Description => "Booommm";
+
+        public int Damage => 3;
 
         public RectangleGeometry Area => new RectangleGeometry(area);
 

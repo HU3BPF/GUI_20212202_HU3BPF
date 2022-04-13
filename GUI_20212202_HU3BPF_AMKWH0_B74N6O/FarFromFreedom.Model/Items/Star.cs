@@ -1,21 +1,26 @@
-﻿namespace FarFromFreedom.Model.Items
+﻿using System.Windows;
+using System.Windows.Media;
+
+namespace FarFromFreedom.Model.Items
 {
     public class Star : IItem
     {
-        public Star(string name, string description, double power)
+        public Star(Rect area)
         {
-            this.name = name;
-            this.description = description;
-            this.power = power;
+            this.area = area;
         }
 
-        private string name;
-        private string description;
-        private double power;
+        public string Name => "Star";
+        public string Description => "Super Power";
+        public double Power => 2;
 
+        public RectangleGeometry Area => new RectangleGeometry(area);
 
-        public string Name => name;
-        public string Description => description;
-        public double Power => power;
+        private Rect area;
+
+        public void setArea(Rect area)
+        {
+            this.area = area;
+        }
     }
 }

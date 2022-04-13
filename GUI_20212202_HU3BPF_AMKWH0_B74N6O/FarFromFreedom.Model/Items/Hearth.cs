@@ -1,21 +1,26 @@
-﻿namespace FarFromFreedom.Model.Items
+﻿using System.Windows;
+using System.Windows.Media;
+
+namespace FarFromFreedom.Model.Items
 {
     public class Hearth : IItem
     {
-        public Hearth(string name, string description, double health)
+        public Hearth(Rect area)
         {
-            this.name = name;
-            this.description = description;
-            this.health = health;
+            this.area = area;
         }
 
-        private string name;
-        private string description;
-        private double health;
+        public string Name => "Heart";
+        public string Description => "Add health";
+        public double Health => 1;
 
+        public RectangleGeometry Area => new RectangleGeometry(area);
 
-        public string Name => name;
-        public string Description => description;
-        public double Health => health;
+        private Rect area;
+
+        public void setArea(Rect area)
+        {
+            this.area = area;
+        }
     }
 }
