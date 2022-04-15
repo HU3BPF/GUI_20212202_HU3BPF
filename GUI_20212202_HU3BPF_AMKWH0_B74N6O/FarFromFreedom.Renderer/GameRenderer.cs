@@ -12,18 +12,21 @@ namespace FarFromFreedom.Renderer
     public class GameRenderer : FrameworkElement
     {
         private Dictionary<string, Brush> GameBrushes;
-        DrawingGroup drawingGroup;
+        private MainCharacterRender mainCharacter;
         private IGameModel model;
+        private int counter;
         public GameRenderer(IGameModel model)
         {
+            mainCharacter = new MainCharacterRender();
             this.model = model;
             GameBrushes = BurshRenderer.Init();
-            drawingGroup = new DrawingGroup();
+            counter = 0;
         }
 
         public DrawingGroup BuildDrawing()
         {
-
+            DrawingGroup drawingGroup = new DrawingGroup();
+            counter++;
             foreach (var item in model.Enemies)
             {
                 Brush itemBrush = GameBrushes.GetValueOrDefault(item.Name);
@@ -41,12 +44,14 @@ namespace FarFromFreedom.Renderer
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
                 }
             }
-
+            if (counter > 5)
+            {
+                counter = 0;
+            }
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
 
             return drawingGroup;
         }
-
-
 
 
         private Drawing GetDrawing(Brush brush, RectangleGeometry rectangleGeometry)

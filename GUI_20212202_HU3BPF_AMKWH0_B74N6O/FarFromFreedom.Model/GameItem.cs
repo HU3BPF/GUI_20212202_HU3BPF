@@ -11,7 +11,7 @@ namespace FarFromFreedom.Model
 
         private Rect area;
 
-        private Vector speed = new Vector(1,1);
+        private Vector speed = new Vector(4,4);
 
         public GameItem(Rect area, Vector speed)
         {
@@ -34,13 +34,13 @@ namespace FarFromFreedom.Model
 
         public void MoveDown()
         {
-            area.Y -= 1 * speed.Y;
+            area.Y += 1 * speed.Y;
             Area.Rect = area;
         }
 
         public void MoveUp()
         {
-            area.Y += 1 * speed.Y;
+            area.Y -= 1 * speed.Y;
             Area.Rect = area;
         }
 

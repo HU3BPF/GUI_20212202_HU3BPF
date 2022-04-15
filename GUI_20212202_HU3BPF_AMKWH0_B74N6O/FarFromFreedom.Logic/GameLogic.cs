@@ -3,13 +3,23 @@ using FarFromFreedom.Model.Characters;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FarFromFreedom.Logic
 {
-    public class GameLogic : IGameLogic
+    public class GameLogic 
     {
-        public IGameModel gameModel;
+        private IGameModel gameModel;
 
+        public GameLogic(IGameModel gameModel)
+        {
+            this.gameModel = gameModel;
+        }
+
+        public GameLogic()
+        {
+
+        }
         public void EnemyMove(MainCharacter character)
         {
 
@@ -90,9 +100,24 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public void PLayerMove(MainCharacter player)
+        public void PLayerMove(Key key)
         {
-            throw new NotImplementedException();
+            if (key == Key.W)
+            {
+                gameModel.Character.MoveUp();
+            }
+            else if (key == Key.A)
+            {
+                gameModel.Character.MoveLeft();
+            }
+            else if (key == Key.D)
+            {
+                gameModel.Character.MoveRight();
+            }
+            else if (key == Key.S)
+            {
+                gameModel.Character.MoveDown();
+            }
         }
 
         public void PlayerShoot(MainCharacter PlayerShoot)

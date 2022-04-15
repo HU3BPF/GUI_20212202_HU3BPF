@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Dobby\dobbyback1.png" />
+    <None Remove="Images\Dobby\dobbyback2.png" />
+    <None Remove="Images\Dobby\dobbyback3.png" />
+    <None Remove="Images\Dobby\dobbyback4.png" />
+    <None Remove="Images\Dobby\dobbyback5.png" />
+    <None Remove="Images\Dobby\dobbyback6.png" />
     <None Remove="Images\enemies\level1\hippoEnemy.gif" />
     <None Remove="Images\enemies\level1\pandaEnemy.gif" />
     <None Remove="Images\enemies\level1\penguinEnemy.gif" />
@@ -40,6 +46,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\Dobby\dobbyback1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyback2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyback3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyback4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyback5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyback6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\enemies\level1\hippoEnemy.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
