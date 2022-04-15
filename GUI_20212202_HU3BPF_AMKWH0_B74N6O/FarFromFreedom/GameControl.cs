@@ -8,9 +8,9 @@ namespace FarFromFreedom
 {
     public class GameControl : FrameworkElement
     {
-        private IGameModel gameModel;
-        private GameLogic gameLogic;
-        private GameRenderer renderer;
+        private IGameModel gameModel = new GameModel();
+        private GameLogic gameLogic = new GameLogic();
+        private GameRenderer renderer = new GameRenderer(new GameModel());
 
         public GameControl(IGameModel model)
         {

@@ -14,10 +14,10 @@ namespace FarFromFreedom.Model.Characters.Enemies
             this.initProperty(name, description, health, currentHealth, power);
         }
 
-        private string name;
-        private string description;
-        private double health;
-        private double currentHealth;
-        private double power;
+        private readonly string name = "PenguinEnemy";
+        private readonly string description = "PenguinEnemy";
+        private readonly double health = 2;
+        private readonly double currentHealth = 2;
+        private readonly double power = 2;
     }
 }

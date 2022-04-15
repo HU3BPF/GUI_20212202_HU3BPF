@@ -20,7 +20,7 @@ namespace FarFromFreedom.Model
             Area = new RectangleGeometry(area);
         }
 
-        public GameItem(Rect aread)
+        public GameItem(Rect area)
         {
             this.area = area;
             Area = new RectangleGeometry(area);

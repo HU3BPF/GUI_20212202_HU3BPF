@@ -5,22 +5,16 @@ namespace FarFromFreedom.Model.Characters
 {
     public abstract class Enemy : GameItem, IEnemy
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Enemy(Rect area, Vector speed) : base(area, speed)
-        {
-            this.name = name;
-            this.description = description;
-            this.health = health;
-            this.currentHealth = currentHealth;
-            this.power = power;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        { 
         }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Enemy(Rect area) : base(area)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            this.name = name;
-            this.description = description;
-            this.health = health;
-            this.currentHealth = currentHealth;
-            this.power = power;
         }
 
         private protected void initProperty(string name, string description, double health, double currentHealth, double power)
