@@ -15,7 +15,10 @@ namespace FarFromFreedom
         public GameControl(IGameModel model)
         {
             this.gameModel = model;
-        
+            gameLogic = new GameLogic();
+            //renderer = new GameRenderer(gameLogic.Map);
+            renderer = new GameRenderer(model);
+
         }
 
         public GameControl()
@@ -23,7 +26,6 @@ namespace FarFromFreedom
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
-            renderer = new GameRenderer(gameModel);
             if (this.renderer != null)
             {
                 drawingContext.DrawDrawing(this.renderer.BuildDrawing());
