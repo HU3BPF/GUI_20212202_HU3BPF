@@ -3,9 +3,27 @@ using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
 {
-    public class Enemy : GameItem, IEnemy
+    public abstract class Enemy : GameItem, IEnemy
     {
-        public Enemy(string name, string description, double health, double currentHealth, double power, Vector speed, Rect area) : base(area, speed)
+        public Enemy(Rect area, Vector speed) : base(area, speed)
+        {
+            this.name = name;
+            this.description = description;
+            this.health = health;
+            this.currentHealth = currentHealth;
+            this.power = power;
+        }
+
+        public Enemy(Rect area) : base(area)
+        {
+            this.name = name;
+            this.description = description;
+            this.health = health;
+            this.currentHealth = currentHealth;
+            this.power = power;
+        }
+
+        private protected void initProperty(string name, string description, double health, double currentHealth, double power)
         {
             this.name = name;
             this.description = description;

@@ -5,7 +5,17 @@ namespace FarFromFreedom.Model.Characters
 {
     public class MainCharacter : GameItem, IMainCharacter
     {
-        public MainCharacter(string name, string description, double health, double currentHealth, double power, Vector speed, int coin, Rect area) : base(area, speed)
+        public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, Rect area, Vector speed) : base(area, speed)
+        {
+            this.name = name;
+            this.description = description;
+            this.health = health;
+            this.currentHealth = currentHealth;
+            this.power = power;
+            this.coin = coin;
+        }
+
+        public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, Rect area) : base(area)
         {
             this.name = name;
             this.description = description;
