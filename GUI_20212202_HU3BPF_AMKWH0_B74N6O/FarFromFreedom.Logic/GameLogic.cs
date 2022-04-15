@@ -20,9 +20,9 @@ namespace FarFromFreedom.Logic
         {
 
         }
-        public void EnemyMove(MainCharacter character)
+        public void EnemyMove()
         {
-
+            MainCharacter character = gameModel.Character;
             List<Enemy> enemies = gameModel.Enemies;
             foreach (Enemy enemy in enemies)
             {
@@ -63,8 +63,9 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public void EnemyHit(MainCharacter character)
+        public void EnemyHit()
         {
+            MainCharacter character = gameModel.Character;
             List<Enemy> enemies = gameModel.Enemies;
             foreach (Enemy enemy in enemies)
             {
@@ -76,18 +77,20 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public bool GameEnd(MainCharacter character)
+        public bool GameEnd()
         {
+            MainCharacter character = gameModel.Character;
             bool gameEnded = false;
-            if (character.CurrentHealth == 0)
+            if (character.CurrentHealth <= 0)
             {
                 gameEnded = true;
             }
             return gameEnded;
         }
 
-        public void ItemPicked(MainCharacter character)
+        public void ItemPicked()
         {
+            MainCharacter character = gameModel.Character;
             IItem removeableItem;
             List<IItem> enemies = gameModel.Items;
             foreach (IItem item in enemies)

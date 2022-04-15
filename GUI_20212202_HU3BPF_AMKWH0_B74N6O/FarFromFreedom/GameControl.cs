@@ -14,7 +14,7 @@ namespace FarFromFreedom
         private IGameModel gameModel = new GameModel();
         private GameLogic gameLogic = new GameLogic();
         private GameRenderer renderer = new GameRenderer(new GameModel());
-        private DispatcherTimer characterTimer;
+        private DispatcherTimer gameTimer;
 
         public GameControl(IGameModel model)
         {
@@ -27,10 +27,15 @@ namespace FarFromFreedom
 
         }
 
-        private void Win_KeyDown(object sender, KeyEventArgs e)
+        private void MainCharacterMove(object sender, KeyEventArgs e)
         {
             gameLogic.PLayerMove(e.Key);
-            this.InvalidateVisual();
+            InvalidateVisual();
+        }
+
+        private void MainCharacterShoot(object sender, KeyEventArgs e)
+        {
+            gameLogic.PLayerMove(e.Key);
         }
 
         public GameControl()
@@ -40,7 +45,7 @@ namespace FarFromFreedom
         {
             if (this.renderer != null)
             {
-                drawingContext.DrawDrawing(this.renderer.BuildDrawing());
+               drawingContext.DrawDrawing(this.renderer.BuildDrawing());
             }
         }
 
@@ -49,18 +54,39 @@ namespace FarFromFreedom
             Window win = Window.GetWindow(this);
             if (win != null)
             {
-                characterTimer = new DispatcherTimer();
-                this.characterTimer.Interval = TimeSpan.FromMilliseconds(100);
-                characterTimer.Tick += this.Ticktimer_MainCharacter;
-                this.characterTimer.Start();
 
-                win.KeyDown += this.Win_KeyDown;
+                gameTimer = new DispatcherTimer();
+                this.gameTimer.Interval = TimeSpan.FromMilliseconds(150);
+                gameTimer.Tick += this.EnemyMove;
+                gameTimer.Tick += this.EnemyHit;
+                gameTimer.Tick += this.GameEnded;
+                this.gameTimer.Start();
+
+                win.KeyDown += this.MainCharacterMove;
             }
         }
 
-        private void Ticktimer_MainCharacter(object sender, EventArgs e)
+
+
+        private void EnemyHit(object sender, EventArgs e)
         {
-            this.InvalidateVisual();
+           //this.gameLogic.EnemyHit();
+        }
+        
+        private void GameEnded(object sender, EventArgs e)
+        {
+            if (this.gameLogic.GameEnd())
+            {
+                var w = Application.Current.Windows[0];
+                w.Hide();
+                MessageBox.Show("Game ended.");
+                gameTimer.Stop();
+            }
+        }
+
+        private void EnemyMove(object sender, EventArgs e)
+        {
+            this.gameLogic.EnemyMove();
         }
 
     }

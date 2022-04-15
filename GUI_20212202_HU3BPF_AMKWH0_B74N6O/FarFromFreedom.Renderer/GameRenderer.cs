@@ -26,7 +26,17 @@ namespace FarFromFreedom.Renderer
         public DrawingGroup BuildDrawing()
         {
             DrawingGroup drawingGroup = new DrawingGroup();
-            counter++;
+            
+            if (counter >= 5)
+            {
+                counter = 0;
+            }
+            else
+            {
+               counter++;
+            }
+
+
             foreach (var item in model.Enemies)
             {
                 Brush itemBrush = GameBrushes.GetValueOrDefault(item.Name);
@@ -43,10 +53,6 @@ namespace FarFromFreedom.Renderer
                 {
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
                 }
-            }
-            if (counter > 5)
-            {
-                counter = 0;
             }
                 drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
 

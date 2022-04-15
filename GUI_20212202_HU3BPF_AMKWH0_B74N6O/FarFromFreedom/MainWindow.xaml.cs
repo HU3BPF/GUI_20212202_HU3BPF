@@ -17,7 +17,7 @@ namespace FarFromFreedom
         public MainWindow()
         {
             InitializeComponent();
-            GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 5.5, 5.5, 3, 12, new Rect(50, 50, 300, 350)));
+            GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(50, 50, 300, 350)));
             List<Enemy> enemies = new List<Enemy>();
             List<IItem> Items = new List<IItem>();
             Items.Add(new Coin(new Rect(0, 0, 0, 0)));
