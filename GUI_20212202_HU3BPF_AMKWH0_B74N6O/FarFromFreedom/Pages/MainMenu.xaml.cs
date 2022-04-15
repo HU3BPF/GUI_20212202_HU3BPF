@@ -36,7 +36,6 @@ namespace FarFromFreedom.Pages
         public MainMenu()
         {
             this.model = new GameModel(new Model.Characters.MainCharacter("Dobby", "nincs", 10, 10, 10, 10, new Rect(new Point(10, 10), new Size(10, 25)), new Vector(1, 1)));
-            this.logic = new GameLogic();
             createMenu();
             InvalidateVisual();
         }
