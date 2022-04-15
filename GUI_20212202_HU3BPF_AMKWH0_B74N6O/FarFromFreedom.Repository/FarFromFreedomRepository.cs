@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace FarFromFreedom.Repository
 {
@@ -10,16 +11,17 @@ namespace FarFromFreedom.Repository
     {
         public IGameModel LoadGame(string filename)
         {
-            IGameModel gameModel;
+            IGameModel gameModel = new GameModel(new Model.Characters.MainCharacter("Dobby", "nincs", 10, 10, 10, 10, new Rect(new Point(10, 10), new Size(10, 25)), new Vector(1, 1)));
 
             using (StreamReader r = new StreamReader($"{filename}.json"))
             {
                 string json = r.ReadToEnd();
-
+                
                 gameModel = JsonConvert.DeserializeObject<IGameModel>(json, new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.None,
                     MissingMemberHandling = MissingMemberHandling.Ignore,
+
                 });
             }
 

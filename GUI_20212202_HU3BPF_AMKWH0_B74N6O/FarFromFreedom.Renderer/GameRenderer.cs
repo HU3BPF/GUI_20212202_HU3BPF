@@ -12,16 +12,17 @@ namespace FarFromFreedom.Renderer
     public class GameRenderer : FrameworkElement
     {
         private Dictionary<string, Brush> GameBrushes;
+        DrawingGroup drawingGroup;
         private IGameModel model;
         public GameRenderer(IGameModel model)
         {
             this.model = model;
+            GameBrushes = BurshRenderer.Init();
+            drawingGroup = new DrawingGroup();
         }
 
         public DrawingGroup BuildDrawing()
         {
-            GameBrushes = BurshRenderer.Init();
-            DrawingGroup drawingGroup = new DrawingGroup();
 
             foreach (var item in model.Enemies)
             {
