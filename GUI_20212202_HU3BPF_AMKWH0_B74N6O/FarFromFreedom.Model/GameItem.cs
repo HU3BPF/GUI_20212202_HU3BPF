@@ -11,12 +11,18 @@ namespace FarFromFreedom.Model
 
         private Rect area;
 
-        private Vector speed;
+        private Vector speed = new Vector(1,1);
 
         public GameItem(Rect area, Vector speed)
         {
             this.area = area;
             this.speed = speed;
+            Area = new RectangleGeometry(area);
+        }
+
+        public GameItem(Rect aread)
+        {
+            this.area = area;
             Area = new RectangleGeometry(area);
         }
 
