@@ -5,7 +5,7 @@ namespace FarFromFreedom.Logic
 {
     public class GameLogic : IGameModelLogic, IGameLogic
     {
-        public IGameModel[,] Map { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IGameModel Map { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void EnemyMove(Direction enemy)
         {
