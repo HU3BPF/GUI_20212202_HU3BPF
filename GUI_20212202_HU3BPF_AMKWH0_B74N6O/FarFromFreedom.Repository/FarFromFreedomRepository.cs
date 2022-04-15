@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace FarFromFreedom.Repository
 {
-    public class FarFromFreedomRepository : IFarFromFreedomRepository<IGameModel, SavedGame>
+    public class FarFromFreedomRepository 
     {
         public IGameModel LoadGame(string filename)
         {
@@ -28,14 +28,25 @@ namespace FarFromFreedom.Repository
             return gameModel;
         }
 
-        public List<SavedGame> LoadHighScore()
+        public List<SavedGame> LoadHighScore(SavedGame savedGame)
         {
             throw new NotImplementedException();
         }
 
         public void SaveGame(IGameModel gameModel, string filename)
         {
-            throw new NotImplementedException();
+            using (StreamWriter r = new StreamWriter($"{filename + DateTime.Now}.json"))
+            {
+                r.WriteLine(gameModel);
+            }
+        }
+            
+        public void LoadGame(IGameModel gameModel, string filename)
+        {
+            using (StreamWriter r = new StreamWriter($"{filename + DateTime.Now}.json"))
+            {
+                r.WriteLine(gameModel);
+            }
         }
 
         public void SaveHighScore(SavedGame highscore)
