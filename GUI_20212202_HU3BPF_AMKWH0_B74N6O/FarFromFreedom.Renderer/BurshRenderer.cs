@@ -40,6 +40,8 @@ namespace FarFromFreedom.Renderer
         private static Brush tearsBrush = GetBrushes(Path.Combine("Images", "items", "tears.png"));
         private static Brush timeBrush = GetBrushes(Path.Combine("Images", "items", "time.png"));
 
+        private static Brush bulletBrush = GetBrushes(Path.Combine("Images", "items", "tears.png"));
+
         private static ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
         internal static Dictionary<string, Brush> Init()
         {
@@ -63,6 +65,7 @@ namespace FarFromFreedom.Renderer
             initGameDrawings.Add("ZombieRunBEnemy", zombieRunBEnemyBursh);
             initGameDrawings.Add("ZombieAttackBEnemy", zombieAttackBEnemyBursh);
             initGameDrawings.Add("ZombieAttackAEnemy", zombieAttackAEnemyBrush);
+            initGameDrawings.Add("Bullet", bulletBrush);
 
 
             //Items

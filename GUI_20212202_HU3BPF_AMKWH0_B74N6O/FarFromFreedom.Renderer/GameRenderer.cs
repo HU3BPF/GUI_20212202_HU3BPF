@@ -54,7 +54,16 @@ namespace FarFromFreedom.Renderer
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
                 }
             }
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+
+            foreach (var item in model.bullets)
+            {
+                Brush itemBrush = GameBrushes.GetValueOrDefault("Bullet");
+                if (itemBrush != null)
+                {
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
+                }
+            }
+            drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
 
             return drawingGroup;
         }

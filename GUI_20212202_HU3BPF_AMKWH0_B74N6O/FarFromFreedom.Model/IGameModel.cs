@@ -8,6 +8,7 @@ namespace FarFromFreedom.Model
         MainCharacter Character { get; }
         List<Enemy> Enemies { get; set; }
         List<IItem> Items { get; set; }
+        List<Bullet> bullets { get; set; }
 
         void Init(List<Enemy> enemies, List<IItem> Items);
     }

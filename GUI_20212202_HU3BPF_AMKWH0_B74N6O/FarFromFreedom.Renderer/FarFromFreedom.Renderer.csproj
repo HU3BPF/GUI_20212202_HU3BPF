@@ -160,4 +160,8 @@
     <ProjectReference Include="..\FarFromFreedom.Model\FarFromFreedom.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\Bullet\" />
+  </ItemGroup>
+
 </Project>

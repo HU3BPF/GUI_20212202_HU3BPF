@@ -44,7 +44,6 @@ namespace FarFromFreedom.Model.Characters
 
         public int Coin => coin;
 
-
         public void PowerUp(double power)
         {
             this.power += power;
