@@ -15,6 +15,8 @@ namespace FarFromFreedom
         private GameLogic gameLogic = new GameLogic();
         private GameRenderer renderer = new GameRenderer(new GameModel());
         private DispatcherTimer gameTimer;
+        private DispatcherTimer bulletTimer;
+        private int counterTimer = 0;
 
         public GameControl(IGameModel model)
         {
@@ -25,17 +27,6 @@ namespace FarFromFreedom
 
             this.Loaded += GameLoader;
 
-        }
-
-        private void MainCharacterMove(object sender, KeyEventArgs e)
-        {
-            gameLogic.PLayerMove(e.Key);
-            InvalidateVisual();
-        }
-
-        private void MainCharacterShoot(object sender, KeyEventArgs e)
-        {
-            gameLogic.PLayerMove(e.Key);
         }
 
         public GameControl()
@@ -55,25 +46,75 @@ namespace FarFromFreedom
             if (win != null)
             {
 
-                gameTimer = new DispatcherTimer();
+                this.gameTimer = new DispatcherTimer();
+                this.bulletTimer = new DispatcherTimer();
+
                 this.gameTimer.Interval = TimeSpan.FromMilliseconds(150);
-                gameTimer.Tick += this.EnemyMove;
-                gameTimer.Tick += this.EnemyHit;
-                gameTimer.Tick += this.GameEnded;
+                this.bulletTimer.Interval = TimeSpan.FromSeconds(1);
+
+                this.gameTimer.Tick += this.EnemyMove;
+                this.gameTimer.Tick += this.EnemyHit;
+                this.gameTimer.Tick += this.BulletMove;
+                this.gameTimer.Tick += this.EnemyDamaged;
+               this.gameTimer.Tick += this.EnemyDestroy;
+               this.gameTimer.Tick += this.ItemPickedUp;
+                this.gameTimer.Tick += this.GameEnded;
+                this.bulletTimer.Tick += this.BulletTimer;
+
                 this.gameTimer.Start();
+                this.bulletTimer.Start();
 
                 win.KeyDown += this.MainCharacterMove;
+                win.KeyDown += this.MainCharacterShoot;
             }
         }
 
 
+        private async void MainCharacterMove(object sender, KeyEventArgs e)
+        {
+            gameLogic.PLayerMove(e.Key);
+            InvalidateVisual();
+        }
 
-        private void EnemyHit(object sender, EventArgs e)
+        private async void MainCharacterShoot(object sender, KeyEventArgs e)
+        {
+            if (counterTimer >= 2)
+            {
+                counterTimer = gameLogic.PlayerShoot(e.Key, counterTimer);
+            }
+        }
+
+        private async void EnemyDestroy(object sender, EventArgs e)
+        {
+            this.gameLogic.EnemyDestroy();
+        }
+
+        private async void BulletTimer(object sender, EventArgs e)
+        {
+           this.counterTimer++;
+        }
+
+        private async void EnemyDamaged(object sender, EventArgs e)
+        {
+            this.gameLogic.EnemyDamaged();
+        }
+
+        private async void ItemPickedUp(object sender, EventArgs e)
+        {
+            this.gameLogic.ItemPicked();
+        }
+
+        private async void EnemyHit(object sender, EventArgs e)
         {
            //this.gameLogic.EnemyHit();
         }
-        
-        private void GameEnded(object sender, EventArgs e)
+
+        private async void BulletMove(object sender, EventArgs e)
+        {
+            this.gameLogic.BulletMove();
+        }
+
+        private async void GameEnded(object sender, EventArgs e)
         {
             if (this.gameLogic.GameEnd())
             {
@@ -84,7 +125,7 @@ namespace FarFromFreedom
             }
         }
 
-        private void EnemyMove(object sender, EventArgs e)
+        private async void EnemyMove(object sender, EventArgs e)
         {
             this.gameLogic.EnemyMove();
         }

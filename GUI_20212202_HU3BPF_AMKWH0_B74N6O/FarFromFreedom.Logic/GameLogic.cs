@@ -1,13 +1,13 @@
 ﻿using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
+using FarFromFreedom.Model.Items;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Input;
 
 namespace FarFromFreedom.Logic
 {
-    public class GameLogic 
+    public class GameLogic
     {
         private IGameModel gameModel;
 
@@ -23,9 +23,17 @@ namespace FarFromFreedom.Logic
         public void EnemyMove()
         {
             MainCharacter character = gameModel.Character;
-            List<Enemy> enemies = gameModel.Enemies;
-            foreach (Enemy enemy in enemies)
+            Enemy enemy;
+            Queue<Enemy> queue = new Queue<Enemy>();
+            foreach (Enemy enemyAdd in gameModel.Enemies)
             {
+                queue.Enqueue(enemyAdd);
+            }
+
+            while (queue.Count > 0)
+            {
+                enemy = queue.Dequeue();
+
                 double x = character.Area.Rect.X - enemy.Area.Rect.X;
                 double y = character.Area.Rect.Y - enemy.Area.Rect.Y;
                 if (x > 0 && y > 0)
@@ -60,19 +68,77 @@ namespace FarFromFreedom.Logic
                 {
                     enemy.MoveDownRight();
                 }
+
+            }
+        }
+
+        public bool EnemyIsCollision(Queue<Enemy> queue,Enemy enemy)
+        {
+            for (int i = 0; i < queue.Count; i++)
+            {
+                Enemy enemyCollision = queue.Dequeue();
+                if (enemyCollision.IsCollision(enemy))
+                {
+                    enemyCollision.MoveUpLeft();
+                    enemy.MoveDownRight();
+                    return true;
+                }
+                else
+                {
+                    queue.Enqueue(enemyCollision);
+                }
+            }
+            return false;
+        }
+
+        public void EnemyDestroy()
+        {
+            Enemy removableEnemy = null;
+            foreach (Enemy enemy in gameModel.Enemies)
+            {
+                if (enemy.CurrentHealth <= 0)
+                {
+                    removableEnemy = enemy;
+                }
+            }
+            if (removableEnemy != null)
+            {
+                gameModel.Enemies.Remove(removableEnemy);
+            }
+        }
+
+        public void EnemyDamaged()
+        {
+            Bullet removeableBullet = null;
+            List<int> indexes = new List<int>();
+
+            foreach (var enemy in gameModel.Enemies)
+            {
+                foreach (var bullet in gameModel.bullets)
+                {
+                    bool isCollision = bullet.IsCollision(enemy);
+                    if (isCollision)
+                    {
+                        enemy.CurrentHealthDown(gameModel.Character.Power);
+                        removeableBullet = bullet;
+                    }
+                }
+                if (removeableBullet != null)
+                {
+                    gameModel.bullets.Remove(removeableBullet);
+                    removeableBullet = null;
+                }
             }
         }
 
         public void EnemyHit()
         {
-            MainCharacter character = gameModel.Character;
-            List<Enemy> enemies = gameModel.Enemies;
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in gameModel.Enemies)
             {
-                bool isCollision = enemy.IsCollision(character);
+                bool isCollision = enemy.IsCollision(gameModel.Character);
                 if (isCollision)
                 {
-                    character.CurrentHealthDown(enemy.Power);
+                    gameModel.Character.CurrentHealthDown(enemy.Power);
                 }
             }
         }
@@ -90,16 +156,19 @@ namespace FarFromFreedom.Logic
 
         public void ItemPicked()
         {
-            MainCharacter character = gameModel.Character;
-            IItem removeableItem;
-            List<IItem> enemies = gameModel.Items;
-            foreach (IItem item in enemies)
+            IItem itemPicked = null;
+            foreach (IItem item in gameModel.Items)
             {
-                bool isCollision = item.IsCollision(character);
+                bool isCollision = item.IsCollision(gameModel.Character);
                 if (isCollision)
                 {
-                    character.CoinUp(1);
+                    gameModel.Character.CoinUp(1);
+                    itemPicked = item;
                 }
+            }
+            if (itemPicked != null)
+            {
+                gameModel.Items.Remove(itemPicked);
             }
         }
 
@@ -120,6 +189,42 @@ namespace FarFromFreedom.Logic
             else if (key == Key.S)
             {
                 gameModel.Character.MoveDown();
+            }
+        }
+
+        public int PlayerShoot(Key key, int counter)
+        {
+            if (Key.Space == key)
+            {
+                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Up);
+                gameModel.bullets.Add(bullet);
+                return 0;
+            }
+            return counter;
+        }
+
+        public void BulletMove()
+        {
+            List<Bullet> bullets = gameModel.bullets;
+
+            foreach (var bullet in bullets)
+            {
+                if (bullet.Direction == Direction.Up)
+                {
+                    bullet.MoveUp();
+                }
+                else if(bullet.Direction == Direction.Down)
+                {
+                    bullet.MoveDown();
+                }
+                else if(bullet.Direction == Direction.Left)
+                {
+                    bullet.MoveLeft();
+                }
+                else if (bullet.Direction == Direction.Right)
+                {
+                    bullet.MoveRight();
+                }
             }
         }
 

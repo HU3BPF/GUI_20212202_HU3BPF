@@ -32,7 +32,7 @@ namespace FarFromFreedom
 
 
             MainMenu page = new MainMenu();
-            page.Show();
+           // page.Show();
         }
     }
 }
