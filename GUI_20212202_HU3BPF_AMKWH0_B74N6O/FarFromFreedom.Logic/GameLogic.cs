@@ -1,13 +1,14 @@
 ﻿using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Model.Items;
+using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace FarFromFreedom.Logic
 {
-    public class GameLogic
+    public class GameLogic : FarFromFreedomRepository
     {
         private IGameModel gameModel;
 
@@ -177,18 +178,22 @@ namespace FarFromFreedom.Logic
             if (key == Key.W)
             {
                 gameModel.Character.MoveUp();
+                DirectionChangerHelper(Direction.Up);
             }
             else if (key == Key.A)
             {
                 gameModel.Character.MoveLeft();
+                DirectionChangerHelper(Direction.Left);
             }
             else if (key == Key.D)
             {
                 gameModel.Character.MoveRight();
+                DirectionChangerHelper(Direction.Right);
             }
             else if (key == Key.S)
             {
                 gameModel.Character.MoveDown();
+                DirectionChangerHelper(Direction.Down);
             }
         }
 
@@ -231,6 +236,14 @@ namespace FarFromFreedom.Logic
         public void PlayerShoot(MainCharacter PlayerShoot)
         {
             throw new NotImplementedException();
+        }
+
+        private void DirectionChangerHelper(Direction direction)
+        {
+            if (direction != gameModel.Character.DirectionHelper.Direction)
+            {
+                gameModel.Character.DirectionHelper.DirectionChanger(direction);
+            }  
         }
     }
 }

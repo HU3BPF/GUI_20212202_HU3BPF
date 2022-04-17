@@ -44,6 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FarFromFreedom.Logic\FarFromFreedom.Logic.csproj" />
     <ProjectReference Include="..\FarFromFreedom.Renderer\FarFromFreedom.Renderer.csproj" />
+    <ProjectReference Include="..\FarFromFreedom.Repository\FarFromFreedom.Repository.csproj" />
   </ItemGroup>
 
 </Project>

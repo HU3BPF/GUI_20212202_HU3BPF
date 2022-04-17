@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using System.Windows.Media.Animation;
 using System.Collections.Generic;
+using FarFromFreedom.Model.Characters;
 
 namespace FarFromFreedom.Renderer
 {
@@ -26,10 +27,11 @@ namespace FarFromFreedom.Renderer
         public DrawingGroup BuildDrawing()
         {
             DrawingGroup drawingGroup = new DrawingGroup();
-            
-            if (counter >= 5)
+
+            if (counter >= 3 || model.Character.DirectionHelper.DirectionChanged)
             {
                 counter = 0;
+                model.Character.DirectionHelper.DefaultDirectionChange();
             }
             else
             {
@@ -63,7 +65,23 @@ namespace FarFromFreedom.Renderer
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
                 }
             }
-            drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+
+            if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
+            {
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyFront[counter], model.Character.Area));
+            }
+            else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
+            {
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+            }
+            else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
+            {
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+            }
+            else
+            {
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+            }
 
             return drawingGroup;
         }

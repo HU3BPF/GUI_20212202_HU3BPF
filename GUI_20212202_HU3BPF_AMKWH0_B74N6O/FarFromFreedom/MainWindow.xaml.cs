@@ -31,8 +31,8 @@ namespace FarFromFreedom
             this.Content = gameControl;
 
 
-            MainMenu page = new MainMenu();
-           // page.Show();
+            MainMenu page = new MainMenu(gameControl);
+           page.Show();
         }
     }
 }

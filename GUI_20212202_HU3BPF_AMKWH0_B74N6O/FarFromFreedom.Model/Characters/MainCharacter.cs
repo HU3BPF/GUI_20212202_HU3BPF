@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FarFromFreedom.Model.Items;
+using System.Windows;
 using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
@@ -31,6 +32,7 @@ namespace FarFromFreedom.Model.Characters
         private double currentHealth;
         private double power;
         private int coin;
+        private DirectionAnimationHelper directionHelper = new DirectionAnimationHelper();
 
         public string Name => name;
 
@@ -43,6 +45,8 @@ namespace FarFromFreedom.Model.Characters
         public double CurrentHealth => currentHealth;
 
         public int Coin => coin;
+
+        public DirectionAnimationHelper DirectionHelper => directionHelper;
 
         public void PowerUp(double power)
         {

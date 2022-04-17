@@ -11,9 +11,9 @@ namespace FarFromFreedom
 {
     public class GameControl : FrameworkElement
     {
-        private IGameModel gameModel = new GameModel();
-        private GameLogic gameLogic = new GameLogic();
-        private GameRenderer renderer = new GameRenderer(new GameModel());
+        public IGameModel gameModel = new GameModel();
+        public GameLogic gameLogic = new GameLogic();
+        public GameRenderer renderer = new GameRenderer(new GameModel());
         private DispatcherTimer gameTimer;
         private DispatcherTimer bulletTimer;
         private int counterTimer = 0;

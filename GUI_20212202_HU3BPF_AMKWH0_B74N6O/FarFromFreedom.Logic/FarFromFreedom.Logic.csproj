@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FarFromFreedom.Model\FarFromFreedom.Model.csproj" />
     <ProjectReference Include="..\FarFromFreedom.Renderer\FarFromFreedom.Renderer.csproj" />
+    <ProjectReference Include="..\FarFromFreedom.Repository\FarFromFreedom.Repository.csproj" />
   </ItemGroup>
 
 </Project>

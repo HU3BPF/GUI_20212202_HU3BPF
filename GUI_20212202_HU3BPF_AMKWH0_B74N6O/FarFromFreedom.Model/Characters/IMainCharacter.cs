@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FarFromFreedom.Model.Items;
+using System.Windows;
 
 namespace FarFromFreedom.Model.Characters
 {
@@ -10,7 +11,7 @@ namespace FarFromFreedom.Model.Characters
         string Name { get; }
         double Power { get; }
         int Coin { get; }
-
+        DirectionAnimationHelper DirectionHelper { get; }
         void CurrentHealthUp(double currentHealth);
         void CurrentHealthDown(double currentHealth);
         void HealthUp(double health);

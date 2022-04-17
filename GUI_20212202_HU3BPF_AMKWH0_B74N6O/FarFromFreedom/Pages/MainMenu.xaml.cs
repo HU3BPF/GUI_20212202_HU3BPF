@@ -1,5 +1,6 @@
 ﻿using FarFromFreedom.Logic;
 using FarFromFreedom.Model;
+using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,8 @@ namespace FarFromFreedom.Pages
     /// </summary>
     public partial class MainMenu : Window
     {
+        GameControl gameControl;
+        FarFromFreedomRepository repository = new FarFromFreedomRepository();
         const double border_height = 105;
         const double border_width = 350;
         const double windowHeigth = 700;
@@ -33,9 +36,10 @@ namespace FarFromFreedom.Pages
         IGameLogic logic;
         int selected_index = 0;
 
-        public MainMenu()
+        public MainMenu(GameControl gameControl)
         {
-            this.model = new GameModel(new Model.Characters.MainCharacter("Dobby", "nincs", 10, 10, 10, 10, new Rect(new Point(10, 10), new Size(10, 25)), new Vector(1, 1)));
+            this.gameControl = gameControl;
+            this.model = gameControl.gameModel;
             createMenu();
             InvalidateVisual();
         }
@@ -186,15 +190,14 @@ namespace FarFromFreedom.Pages
             {
                 case "New_Game":
                     this.SelectIndex(0);
-                    
                     return;
                 case "Continue":
                     this.SelectIndex(1);
-                    
+                    repository.SaveGame(gameControl.gameModel,"dobby");
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    
+                    repository.LoadGame("dobby_2022.4.17_18H56M");
                     return;
                 case "Options":
                     this.SelectIndex(3);
