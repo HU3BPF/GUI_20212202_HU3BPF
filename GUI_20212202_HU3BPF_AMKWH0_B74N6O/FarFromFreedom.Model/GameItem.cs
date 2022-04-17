@@ -1,10 +1,19 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows;
 using System.Windows.Media;
 
 namespace FarFromFreedom.Model
 {
     public abstract class GameItem : IMoveModel
     {
+        public GameItem()
+        {
+
+        }
+
+        [TypeConverter(typeof(RectangleGeometry))]
         public RectangleGeometry Area { get; }
 
         public Vector Speed => speed;
@@ -20,10 +29,18 @@ namespace FarFromFreedom.Model
             Area = new RectangleGeometry(area);
         }
 
+        public GameItem(string area, string speed)
+        {
+        }
+
         public GameItem(Rect area)
         {
             this.area = area;
             Area = new RectangleGeometry(area);
+        }
+
+        public GameItem(string area)
+        {
         }
 
         public bool IsCollision(GameItem other)

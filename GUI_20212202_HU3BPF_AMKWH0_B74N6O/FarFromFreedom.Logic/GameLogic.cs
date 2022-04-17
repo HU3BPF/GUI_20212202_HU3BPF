@@ -245,5 +245,10 @@ namespace FarFromFreedom.Logic
                 gameModel.Character.DirectionHelper.DirectionChanger(direction);
             }  
         }
+
+        public void GameLoader()
+        {
+            gameModel = this.LoadGame("dobby_2022.4.17_23H46M");
+        }
     }
 }

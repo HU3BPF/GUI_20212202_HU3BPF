@@ -1,9 +1,19 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System.Windows;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
     public class CutSwordEnemy : Enemy
     {
+        [JsonConstructor]
+        public CutSwordEnemy(string Name,string Description,double Health, double Power, double CurrentHealth, string Area, string Speed) : base(Area, Speed)
+        {
+            this.initProperty(Name, Description, Health, CurrentHealth, Power);
+        }
+        public CutSwordEnemy()
+        {
+
+        }
         public CutSwordEnemy(Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);

@@ -197,7 +197,7 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    repository.LoadGame("dobby_2022.4.17_18H56M");
+                    gameControl.GameLoader();
                     return;
                 case "Options":
                     this.SelectIndex(3);

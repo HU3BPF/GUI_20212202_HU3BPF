@@ -12,21 +12,14 @@ namespace FarFromFreedom.Repository
     {
         public IGameModel LoadGame(string filename)
         {
-            IGameModel gameModel = new GameModel(new MainCharacter("Dobby", "nincs", 10, 10, 10, 10, new Rect(new Point(10, 10), new Size(10, 25)), new Vector(1, 1)));
+
             string json = File.ReadAllText($"{filename}.json");
-            json.
 
-            if ("\"Character\": {{" == json.)
+            GameModel gameModel = JsonConvert.DeserializeObject<GameModel>(json, new JsonSerializerSettings
             {
-
-            }
-
-
-            MainCharacter a = JsonConvert.DeserializeObject<MainCharacter>(json, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.None,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-
+                TypeNameHandling = TypeNameHandling.All,
+                TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
             });
             return gameModel;
         }
@@ -46,8 +39,9 @@ namespace FarFromFreedom.Repository
             saveDate = saveDate.Trim();
             string jsonData = JsonConvert.SerializeObject(gameModel, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.None,
+                TypeNameHandling = TypeNameHandling.All,
                 TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+
             });
             File.WriteAllText($"{filename}_{saveDate}.json", jsonData);
         }

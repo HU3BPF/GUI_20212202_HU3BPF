@@ -32,6 +32,12 @@ namespace FarFromFreedom
         public GameControl()
         {
         }
+
+        public void GameLoader()
+        {
+            gameLogic.GameLoader();
+            InvalidateVisual();
+        }
         protected override void OnRender(DrawingContext drawingContext)
         {
             if (this.renderer != null)

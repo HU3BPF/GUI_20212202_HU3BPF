@@ -1,5 +1,6 @@
 ﻿using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Model.Items;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -8,6 +9,16 @@ namespace FarFromFreedom.Model
     public class GameModel : IGameModel
     {
         public GameModel(MainCharacter character) => Character = character;
+
+        [JsonConstructor]
+        public GameModel(MainCharacter character, List<Enemy> enemies, List<IItem> items, List<Bullet> bullets)
+        {
+            Character = character;
+            Enemies = enemies;
+            Items = items;
+            bullets = bullets;
+
+        }
         public GameModel()
         {
 

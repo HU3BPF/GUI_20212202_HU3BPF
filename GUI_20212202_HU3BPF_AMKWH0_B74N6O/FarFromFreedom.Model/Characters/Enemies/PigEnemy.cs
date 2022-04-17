@@ -1,9 +1,19 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System.Windows;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
     public class PigEnemy : Enemy
     {
+        [JsonConstructor]
+        public PigEnemy(string Name, string Description, double Health, double Power, double CurrentHealth, string Area, string Speed) : base(Area, Speed)
+        {
+            this.initProperty(Name, Description, Health, CurrentHealth, Power);
+        }
+        public PigEnemy()
+        {
+
+        }
         public PigEnemy(Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);

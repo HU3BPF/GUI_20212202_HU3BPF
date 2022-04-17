@@ -1,12 +1,12 @@
-﻿using FarFromFreedom.Model.Items;
+﻿using Newtonsoft.Json;
 using System.Windows;
-using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
 {
     public class MainCharacter : GameItem, IMainCharacter
     {
-        public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, Rect area, Vector speed) : base(area, speed)
+        [JsonConstructor]
+        public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, string area, string speed) : base(area, speed)
         {
             this.name = name;
             this.description = description;

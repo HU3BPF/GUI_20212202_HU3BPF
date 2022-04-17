@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System.Windows;
 using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Items
@@ -8,6 +9,16 @@ namespace FarFromFreedom.Model.Items
         public Coin(Rect area)
         {
             this.area = area;
+        }
+
+        [JsonConstructor]
+        public Coin(string name, string descritpon, int value, Rect area)
+        {
+            this.area = area;
+        }
+        public Coin()
+        {
+
         }
 
         public string Name => "Coin";
