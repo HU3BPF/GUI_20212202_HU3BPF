@@ -13,16 +13,19 @@ namespace FarFromFreedom.Renderer
     {
         public List<Brush> dobbyBack { get; set; }
         public List<Brush> dobbyFront { get; set; }
+        public List<Brush> dobbyLeft { get; set; }
         public MainCharacterRender()
         {
             dobbyBack = new List<Brush>();
             dobbyFront = new List<Brush>();
+            dobbyLeft = new List<Brush>();
             string path = Path.Combine("Images", "Dobby");
             int files = Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length;
             for (int i = 1; i <= 4; i++)
             {
                 dobbyBack.Add(GetBrushes(Path.Combine(path, $"dobbyBack{i}.jpg")));
                 dobbyFront.Add(GetBrushes(Path.Combine(path, $"dobbyFront{i}.jpg")));
+                dobbyLeft.Add(GetBrushes(Path.Combine(path, $"dobbyLeft{i}.jpg")));
             }
             
         }

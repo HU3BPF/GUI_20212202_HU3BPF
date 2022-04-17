@@ -76,7 +76,7 @@ namespace FarFromFreedom.Renderer
             }
             else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyLeft[counter], model.Character.Area));
             }
             else
             {

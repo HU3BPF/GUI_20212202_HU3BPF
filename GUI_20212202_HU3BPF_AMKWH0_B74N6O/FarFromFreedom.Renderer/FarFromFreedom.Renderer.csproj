@@ -20,6 +20,10 @@
     <None Remove="Images\Dobby\dobbyFront2.jpg" />
     <None Remove="Images\Dobby\dobbyFront3.jpg" />
     <None Remove="Images\Dobby\dobbyFront4.jpg" />
+    <None Remove="Images\Dobby\dobbyLeft1.jpg" />
+    <None Remove="Images\Dobby\dobbyLeft2.jpg" />
+    <None Remove="Images\Dobby\dobbyLeft3.jpg" />
+    <None Remove="Images\Dobby\dobbyLeft4.jpg" />
     <None Remove="Images\enemies\level1\hippoEnemy.gif" />
     <None Remove="Images\enemies\level1\pandaEnemy.gif" />
     <None Remove="Images\enemies\level1\penguinEnemy.gif" />
@@ -76,6 +80,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Dobby\dobbyFront4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyLeft1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyLeft2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyLeft3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Dobby\dobbyLeft4.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\enemies\level1\hippoEnemy.gif">
