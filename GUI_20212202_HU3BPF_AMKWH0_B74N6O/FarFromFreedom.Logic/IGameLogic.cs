@@ -18,6 +18,5 @@ namespace FarFromFreedom.Logic
         void ItemPicked();
         void PLayerMove(Key key);
         int PlayerShoot(Key key, int counter);
-        void PlayerShoot(MainCharacter PlayerShoot);
     }
 }

@@ -164,7 +164,7 @@ namespace FarFromFreedom.Logic
                 bool isCollision = item.IsCollision(gameModel.Character);
                 if (isCollision)
                 {
-                    gameModel.Character.CoinUp(1);
+                    ItemPickerHelper(item);
                     itemPicked = item;
                 }
             }
@@ -203,28 +203,28 @@ namespace FarFromFreedom.Logic
             if (Key.W == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Up);
-                DirectionChangerHelper(Direction.Up);
+                gameModel.Character.DirectionHelper.DirectionChanger(Direction.Up);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
             else if (Key.S == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Down);
-                DirectionChangerHelper(Direction.Down);
+                gameModel.Character.DirectionHelper.DirectionChanger(Direction.Down);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
             else if(Key.A == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Left);
-                DirectionChangerHelper(Direction.Left);
+                gameModel.Character.DirectionHelper.DirectionChanger(Direction.Left);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
             else if(Key.D == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Right);
-                DirectionChangerHelper(Direction.Right);
+                gameModel.Character.DirectionHelper.DirectionChanger(Direction.Right);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
@@ -256,16 +256,49 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public void PlayerShoot(MainCharacter PlayerShoot)
-        {
-            throw new NotImplementedException();
-        }
-
         private void DirectionChangerHelper(Direction direction)
         {
             if (direction != gameModel.Character.DirectionHelper.Direction)
             {
                 gameModel.Character.DirectionHelper.DirectionChanger(direction);
+            }
+        }
+
+        private void ItemPickerHelper(IItem item)
+        {
+            if(item.GetType() == typeof(Hearth))
+            {
+                Hearth hearth = (Hearth)item;
+                gameModel.Character.CurrentHealthUp(hearth.Health);
+            }
+            else if(item.GetType() == typeof(Bomb))
+            {
+                Bomb bomb = (Bomb)item;
+            }
+            else if (item.GetType() == typeof(Bootle))
+            {
+                Bootle bootle = (Bootle)item;
+                gameModel.Character.PowerUp(bootle.Power);
+            }
+            else if (item.GetType() == typeof(Coin))
+            {
+                Coin coin = (Coin)item;
+                gameModel.Character.CoinUp(coin.Value);
+            }
+            else if (item.GetType() == typeof(Money))
+            {
+                Money money = (Money)item;
+                gameModel.Character.CoinUp(money.Value);
+            }
+            else if (item.GetType() == typeof(Hearth))
+            {
+                Shield shield = (Shield)item;
+                gameModel.Character.HealthUp(shield.Armor);
+            }
+            else if (item.GetType() == typeof(Star))
+            {
+                Star star = (Star)item;
+                gameModel.Character.PowerUp(star.Power);
             }
         }
 
