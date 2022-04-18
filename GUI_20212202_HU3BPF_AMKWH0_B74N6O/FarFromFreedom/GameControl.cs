@@ -5,6 +5,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace FarFromFreedom
@@ -76,15 +77,22 @@ namespace FarFromFreedom
 
         private async void MainCharacterMove(object sender, KeyEventArgs e)
         {
-            gameLogic.PLayerMove(e.Key);
-            InvalidateVisual();
+            if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Left || e.Key == Key.Right)
+            {
+                gameLogic.PLayerMove(e.Key);
+                InvalidateVisual();
+            }
         }
 
         private async void MainCharacterShoot(object sender, KeyEventArgs e)
         {
-            if (counterTimer >= 2)
+            if (e.Key == Key.W || e.Key == Key.S || e.Key == Key.A || e.Key == Key.D)
             {
-                counterTimer = gameLogic.PlayerShoot(e.Key, counterTimer);
+                if (counterTimer >= 2)
+                {
+                    counterTimer = gameLogic.PlayerShoot(e.Key, counterTimer);
+                    InvalidateVisual();
+                }
             }
         }
 
