@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace FarFromFreedom.Logic
 {
-    public class GameLogic : FarFromFreedomRepository
+    public class GameLogic : FarFromFreedomRepository, IGameLogic
     {
         private IGameModel gameModel;
 
@@ -74,7 +74,7 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public bool EnemyIsCollision(Queue<Enemy> queue,Enemy enemy)
+        public bool EnemyIsCollision(Queue<Enemy> queue, Enemy enemy)
         {
             for (int i = 0; i < queue.Count; i++)
             {
@@ -176,22 +176,22 @@ namespace FarFromFreedom.Logic
 
         public void PLayerMove(Key key)
         {
-            if (key == Key.W)
+            if (key == Key.Up)
             {
                 gameModel.Character.MoveUp();
                 DirectionChangerHelper(Direction.Up);
             }
-            else if (key == Key.A)
+            else if (key == Key.Left)
             {
                 gameModel.Character.MoveLeft();
                 DirectionChangerHelper(Direction.Left);
             }
-            else if (key == Key.D)
+            else if (key == Key.Right)
             {
                 gameModel.Character.MoveRight();
                 DirectionChangerHelper(Direction.Right);
             }
-            else if (key == Key.S)
+            else if (key == Key.Down)
             {
                 gameModel.Character.MoveDown();
                 DirectionChangerHelper(Direction.Down);
@@ -200,9 +200,31 @@ namespace FarFromFreedom.Logic
 
         public int PlayerShoot(Key key, int counter)
         {
-            if (Key.Space == key)
+            if (Key.W == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Up);
+                DirectionChangerHelper(Direction.Up);
+                gameModel.bullets.Add(bullet);
+                return 0;
+            }
+            else if (Key.S == key)
+            {
+                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Down);
+                DirectionChangerHelper(Direction.Down);
+                gameModel.bullets.Add(bullet);
+                return 0;
+            }
+            else if(Key.A == key)
+            {
+                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Left);
+                DirectionChangerHelper(Direction.Left);
+                gameModel.bullets.Add(bullet);
+                return 0;
+            }
+            else if(Key.D == key)
+            {
+                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Right);
+                DirectionChangerHelper(Direction.Right);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
@@ -219,11 +241,11 @@ namespace FarFromFreedom.Logic
                 {
                     bullet.MoveUp();
                 }
-                else if(bullet.Direction == Direction.Down)
+                else if (bullet.Direction == Direction.Down)
                 {
                     bullet.MoveDown();
                 }
-                else if(bullet.Direction == Direction.Left)
+                else if (bullet.Direction == Direction.Left)
                 {
                     bullet.MoveLeft();
                 }
@@ -244,12 +266,12 @@ namespace FarFromFreedom.Logic
             if (direction != gameModel.Character.DirectionHelper.Direction)
             {
                 gameModel.Character.DirectionHelper.DirectionChanger(direction);
-            }  
+            }
         }
 
         public IGameModel GameLoader(string fileName)
         {
-           return this.LoadGame(fileName);
+            return this.LoadGame(fileName);
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using FarFromFreedom.Model;
 
 namespace FarFromFreedom.Repository
 {
-    public interface IFarFromFreedomRepository<TGameModel, THighScore>
+    public interface IFarFromFreedomRepository
     {
-        TGameModel LoadGame(string filename);
-        void SaveGame(TGameModel gameModel, string filename);
-        List<THighScore> LoadHighScore();
-        void SaveHighScore(THighScore highscore);
+        IGameModel LoadGame(string filename);
+        void SaveGame(IGameModel gameModel, string filename);
     }
 }

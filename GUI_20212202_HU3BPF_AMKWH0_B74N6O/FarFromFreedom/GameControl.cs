@@ -54,7 +54,7 @@ namespace FarFromFreedom
                 this.gameTimer = new DispatcherTimer();
                 this.bulletTimer = new DispatcherTimer();
 
-                this.gameTimer.Interval = TimeSpan.FromMilliseconds(150);
+                this.gameTimer.Interval = TimeSpan.FromMilliseconds(30);
                 this.bulletTimer.Interval = TimeSpan.FromSeconds(1);
 
                 this.gameTimer.Tick += this.EnemyMove;

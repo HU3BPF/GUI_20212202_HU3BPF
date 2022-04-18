@@ -10,7 +10,7 @@ using FarFromFreedom.Model.Characters;
 
 namespace FarFromFreedom.Renderer
 {
-    public class GameRenderer : FrameworkElement
+    public class GameRenderer : FrameworkElement, IGameRenderer
     {
         private Dictionary<string, Brush> GameBrushes;
         private MainCharacterRender mainCharacter;
@@ -35,7 +35,7 @@ namespace FarFromFreedom.Renderer
             }
             else
             {
-               counter++;
+                counter++;
             }
 
 
@@ -45,7 +45,7 @@ namespace FarFromFreedom.Renderer
                 if (itemBrush != null)
                 {
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
-                } 
+                }
             }
 
             foreach (var item in model.Items)
@@ -72,7 +72,7 @@ namespace FarFromFreedom.Renderer
             }
             else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyRight[counter], model.Character.Area));
             }
             else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
             {
