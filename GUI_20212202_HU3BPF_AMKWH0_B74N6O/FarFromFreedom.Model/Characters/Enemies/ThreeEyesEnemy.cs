@@ -1,10 +1,20 @@
 ﻿
+using Newtonsoft.Json;
 using System.Windows;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
     public class ThreeEyesEnemy : Enemy
     {
+        [JsonConstructor]
+        public ThreeEyesEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
+        {
+            this.initProperty(name, description, health, currentHealth, power);
+        }
+        public ThreeEyesEnemy()
+        {
+
+        }
         public ThreeEyesEnemy(Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);

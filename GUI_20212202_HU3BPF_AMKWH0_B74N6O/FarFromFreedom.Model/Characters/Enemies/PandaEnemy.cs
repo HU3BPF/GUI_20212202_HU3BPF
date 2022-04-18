@@ -1,9 +1,19 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System.Windows;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
     public class PandaEnemy : Enemy
     {
+        [JsonConstructor]
+        public PandaEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
+        {
+            this.initProperty(name, description, health, currentHealth, power);
+        }
+        public PandaEnemy()
+        {
+
+        }
         public PandaEnemy(Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);
