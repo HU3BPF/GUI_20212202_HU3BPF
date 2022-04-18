@@ -17,10 +17,10 @@ namespace FarFromFreedom
         public MainWindow()
         {
             InitializeComponent();
-            GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(50, 50, 300, 350)));
+            GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(50, 50, 100, 100)));
             List<Enemy> enemies = new List<Enemy>();
             List<IItem> Items = new List<IItem>();
-            Items.Add(new Coin(new Rect(0, 0, 0, 0)));
+            Items.Add(new Coin(new Rect(20, 20, 100, 100)));
             Items.Add(new Coin(new Rect(200, 30, 300, 220)));
             Items.Add(new Coin(new Rect(400, 400, 300, 220)));
             enemies.Add(new HippoEnemy(new Rect(600, 10, 300, 220), new Vector(1, 1)));
