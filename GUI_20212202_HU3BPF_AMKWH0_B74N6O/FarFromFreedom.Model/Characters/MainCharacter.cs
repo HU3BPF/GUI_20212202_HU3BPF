@@ -6,16 +6,6 @@ namespace FarFromFreedom.Model.Characters
     public class MainCharacter : GameItem, IMainCharacter
     {
         [JsonConstructor]
-        public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, string area, string speed) : base(area, speed)
-        {
-            this.name = name;
-            this.description = description;
-            this.health = health;
-            this.currentHealth = currentHealth;
-            this.power = power;
-            this.coin = coin;
-        }
-
         public MainCharacter(string name, string description, double health, double currentHealth, double power, int coin, Rect area) : base(area)
         {
             this.name = name;

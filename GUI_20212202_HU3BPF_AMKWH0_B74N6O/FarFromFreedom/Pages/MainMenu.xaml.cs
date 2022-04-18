@@ -197,7 +197,10 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    gameControl.GameLoader();
+                    IGameModel model = gameControl.GameLoader("dobby_2022.4.18_12H46M");
+                    GameLogic logic = new GameLogic(model);
+                    
+                    this.gameControl.gameLogic = logic;
                     return;
                 case "Options":
                     this.SelectIndex(3);

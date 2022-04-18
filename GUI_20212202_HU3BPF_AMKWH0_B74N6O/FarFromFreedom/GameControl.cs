@@ -33,10 +33,9 @@ namespace FarFromFreedom
         {
         }
 
-        public void GameLoader()
+        public IGameModel GameLoader(string fileName)
         {
-            gameLogic.GameLoader();
-            InvalidateVisual();
+           return gameLogic.GameLoader(fileName);
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -74,7 +73,6 @@ namespace FarFromFreedom
                 win.KeyDown += this.MainCharacterShoot;
             }
         }
-
 
         private async void MainCharacterMove(object sender, KeyEventArgs e)
         {

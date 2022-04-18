@@ -1,26 +1,23 @@
 ﻿
 
-using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Helpers
 {
-    public class JsonRectConverter : DefaultContractResolver
+    public class JsonRectConverter : JsonConverter<RectangleGeometry>
     {
-        protected override JsonContract CreateContract(Type objectType)
+        public override RectangleGeometry? ReadJson(JsonReader reader, Type objectType, RectangleGeometry? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            // Add additional types here such as Vector2/3 etc.
-            if (objectType == typeof(Rect))
-            {
-                return CreateObjectContract(objectType);
-            }
-            else if(objectType == typeof(Vector))
-            {
-                return CreateObjectContract(objectType);
-            }
+            return new RectangleGeometry();
+        }
 
-            return base.CreateContract(objectType);
+        public override void WriteJson(JsonWriter writer, RectangleGeometry? value, JsonSerializer serializer)
+        {
+            Rect convertedValue = value.Rect;
+            serializer.Serialize(writer, convertedValue);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace FarFromFreedom.Model.Characters.Enemies
     public class HippoEnemy : Enemy
     {
         [JsonConstructor]
-        public HippoEnemy(string name, string description, double health, double power, double currentHealth, string area, string speed) : base(area, speed)
+        public HippoEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);
         }

@@ -6,9 +6,9 @@ namespace FarFromFreedom.Model.Characters.Enemies
     public class PigEnemy : Enemy
     {
         [JsonConstructor]
-        public PigEnemy(string Name, string Description, double Health, double Power, double CurrentHealth, string Area, string Speed) : base(Area, Speed)
+        public PigEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
         {
-            this.initProperty(Name, Description, Health, CurrentHealth, Power);
+            this.initProperty(name, description, health, currentHealth, power);
         }
         public PigEnemy()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarFromFreedom.Model.Helpers;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows;
@@ -13,7 +14,7 @@ namespace FarFromFreedom.Model
 
         }
 
-        [TypeConverter(typeof(RectangleGeometry))]
+        [TypeConverter(typeof(JsonRectConverter))]
         public RectangleGeometry Area { get; }
 
         public Vector Speed => speed;
@@ -27,10 +28,6 @@ namespace FarFromFreedom.Model
             this.area = area;
             this.speed = speed;
             Area = new RectangleGeometry(area);
-        }
-
-        public GameItem(string area, string speed)
-        {
         }
 
         public GameItem(Rect area)

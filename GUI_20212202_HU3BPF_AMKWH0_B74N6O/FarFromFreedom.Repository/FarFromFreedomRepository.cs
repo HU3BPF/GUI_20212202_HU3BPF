@@ -1,10 +1,9 @@
 ﻿using FarFromFreedom.Model;
-using FarFromFreedom.Model.Characters;
+using FarFromFreedom.Model.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 
 namespace FarFromFreedom.Repository
 {
@@ -12,7 +11,6 @@ namespace FarFromFreedom.Repository
     {
         public IGameModel LoadGame(string filename)
         {
-
             string json = File.ReadAllText($"{filename}.json");
 
             GameModel gameModel = JsonConvert.DeserializeObject<GameModel>(json, new JsonSerializerSettings
@@ -31,6 +29,8 @@ namespace FarFromFreedom.Repository
 
         public void SaveGame(IGameModel gameModel, string filename)
         {
+            List<JsonConverter> jsonConverter = new List<JsonConverter>();
+            jsonConverter.Add(new JsonRectConverter());
             string saveDate = DateTime.Now.Year.ToString() + ".";
             saveDate += DateTime.Now.Month.ToString() + ".";
             saveDate += DateTime.Now.Day.ToString() + "_";
@@ -41,7 +41,7 @@ namespace FarFromFreedom.Repository
             {
                 TypeNameHandling = TypeNameHandling.All,
                 TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
-
+                Converters = jsonConverter
             });
             File.WriteAllText($"{filename}_{saveDate}.json", jsonData);
         }

@@ -1,6 +1,7 @@
 ﻿using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Model.Items;
+using FarFromFreedom.Renderer;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
@@ -246,9 +247,9 @@ namespace FarFromFreedom.Logic
             }  
         }
 
-        public void GameLoader()
+        public IGameModel GameLoader(string fileName)
         {
-            gameModel = this.LoadGame("dobby_2022.4.17_23H46M");
+           return this.LoadGame(fileName);
         }
     }
 }
