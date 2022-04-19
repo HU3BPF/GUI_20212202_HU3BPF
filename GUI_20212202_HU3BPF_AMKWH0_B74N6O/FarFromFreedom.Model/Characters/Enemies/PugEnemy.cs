@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
@@ -24,10 +26,12 @@ namespace FarFromFreedom.Model.Characters.Enemies
             this.initProperty(name, description, health, currentHealth, power);
         }
 
-        private readonly string name = "PugEnemy";
+        private readonly string name = "pugEnemy";
         private readonly string description = "PugEnemy";
         private readonly double health = 2;
         private readonly double currentHealth = 2;
         private readonly double power = 2;
+
+        public override int level => 1;
     }
 }

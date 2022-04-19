@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace FarFromFreedom.Model.Characters
 {
@@ -38,7 +42,17 @@ namespace FarFromFreedom.Model.Characters
         private double health;
         private double currentHealth;
         private double power;
+        private int counter = 0;
+        private int CounterLength { get => Directory.GetFiles(EnemyPath, "*", SearchOption.AllDirectories).Length - 1; }
 
+        public abstract int level { get; }
+
+        string EnemyPath => Path.Combine("Images", "enemies", $"level{level}", Name);
+
+        protected ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
+
+        public Dictionary<string, Brush> ImageBurshes => ImageBurshesInit();
+        public int Counter { get => counter; }
         public string Name => name;
 
         public string Description => description;
@@ -78,5 +92,28 @@ namespace FarFromFreedom.Model.Characters
         {
             this.currentHealth -= currentHealth;
         }
+
+        public void counterUp()
+        {
+            counter += 1;
+            if (CounterLength < Counter)
+            {
+                counter = 0;
+            }
+        }
+
+        private Dictionary<string, Brush> ImageBurshesInit()
+        {
+            Dictionary<string, Brush> enemies = new Dictionary<string, Brush>();
+
+
+            for (int i = 0; i <= CounterLength; i++)
+            {
+                enemies.Add($"{Name}{i}", GetBrushes(Path.Combine(EnemyPath, $"{Name}{i}.png")));
+            }
+
+            return enemies;
+        }
+
     }
 }

@@ -24,10 +24,12 @@ namespace FarFromFreedom.Model.Characters.Enemies
             this.initProperty(name, description, health, currentHealth, power);
         }
 
-        private readonly string name = "FlyingEnemy";
+        private readonly string name = "flyingEnemy";
         private readonly string description = "FlyingEnemy";
         private readonly double health = 2;
         private readonly double currentHealth = 2;
         private readonly double power = 2;
+
+        public override int level => 2;
     }
 }

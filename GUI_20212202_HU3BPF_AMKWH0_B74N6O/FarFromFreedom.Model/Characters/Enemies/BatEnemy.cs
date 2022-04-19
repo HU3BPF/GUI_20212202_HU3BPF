@@ -13,7 +13,6 @@ namespace FarFromFreedom.Model.Characters.Enemies
         }
         public BatEnemy()
         {
-
         }
         public BatEnemy(Rect area, Vector speed) : base(area, speed)
         {
@@ -25,7 +24,9 @@ namespace FarFromFreedom.Model.Characters.Enemies
             this.initProperty(name, description, health, currentHealth, power);
         }
 
-        private readonly string name = "BatEnemy";
+        public override int level => 2;
+
+        private readonly string name = "batEnemy";
         private readonly string description = "BatEnemy";
         private readonly double health = 2;
         private readonly double currentHealth = 2;

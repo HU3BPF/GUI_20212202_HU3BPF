@@ -56,7 +56,7 @@ namespace FarFromFreedom
                 this.bulletTimer = new DispatcherTimer();
 
                 this.gameTimer.Interval = TimeSpan.FromMilliseconds(30);
-                this.bulletTimer.Interval = TimeSpan.FromSeconds(1);
+                this.bulletTimer.Interval = TimeSpan.FromSeconds(0.5);
 
                 this.gameTimer.Tick += this.EnemyMove;
                 this.gameTimer.Tick += this.EnemyHit;
@@ -80,7 +80,6 @@ namespace FarFromFreedom
             if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Left || e.Key == Key.Right)
             {
                 gameLogic.PLayerMove(e.Key);
-                InvalidateVisual();
             }
         }
 
@@ -91,7 +90,6 @@ namespace FarFromFreedom
                 if (counterTimer >= 2)
                 {
                     counterTimer = gameLogic.PlayerShoot(e.Key, counterTimer);
-                    InvalidateVisual();
                 }
             }
         }
@@ -140,6 +138,7 @@ namespace FarFromFreedom
         private async void EnemyMove(object sender, EventArgs e)
         {
             this.gameLogic.EnemyMove();
+            InvalidateVisual();
         }
 
     }

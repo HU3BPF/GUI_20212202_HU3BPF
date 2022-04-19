@@ -18,7 +18,7 @@ namespace FarFromFreedom.Renderer
         private int counter;
         public GameRenderer(IGameModel model)
         {
-            mainCharacter = new MainCharacterRender();
+            mainCharacter = new MainCharacterRender(model.Character);
             this.model = model;
             GameBrushes = BurshRenderer.Init();
             counter = 0;
@@ -28,23 +28,14 @@ namespace FarFromFreedom.Renderer
         {
             DrawingGroup drawingGroup = new DrawingGroup();
 
-            if (counter >= 3 || model.Character.DirectionHelper.DirectionChanged)
-            {
-                counter = 0;
-                model.Character.DirectionHelper.DefaultDirectionChange();
-            }
-            else
-            {
-                counter++;
-            }
-
 
             foreach (var item in model.Enemies)
             {
-                Brush itemBrush = GameBrushes.GetValueOrDefault(item.Name);
+                Brush itemBrush = item.ImageBurshes.GetValueOrDefault(item.Name + item.Counter);
                 if (itemBrush != null)
                 {
                     drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
+                    item.counterUp();
                 }
             }
 
@@ -68,19 +59,23 @@ namespace FarFromFreedom.Renderer
 
             if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyFront[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyFront[mainCharacter.Counter], model.Character.Area));
+                mainCharacter.counterUp();
             }
             else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyRight[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyRight[mainCharacter.Counter], model.Character.Area));
+                mainCharacter.counterUp();
             }
             else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyLeft[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyLeft[mainCharacter.Counter], model.Character.Area));
+                mainCharacter.counterUp();
             }
             else
             {
-                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[counter], model.Character.Area));
+                drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[mainCharacter.Counter], model.Character.Area));
+                mainCharacter.counterUp();
             }
 
             return drawingGroup;

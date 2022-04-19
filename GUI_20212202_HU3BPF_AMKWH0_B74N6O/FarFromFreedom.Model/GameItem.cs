@@ -98,12 +98,12 @@ namespace FarFromFreedom.Model
             Area.Rect = area;
         }
 
-        void SpeedUp(Vector speed)
+        public void SpeedUp(Vector speed)
         {
             speed.X += 0.1;
             speed.Y += 0.1;
         }
-        void SpeedDown(Vector speed)
+        public void SpeedDown(Vector speed)
         {
             speed.X -= 0.1;
             speed.Y -= 0.1;
