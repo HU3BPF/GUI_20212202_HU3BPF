@@ -196,6 +196,7 @@ namespace FarFromFreedom.Logic
                 gameModel.Character.MoveDown();
                 DirectionChangerHelper(Direction.Down);
             }
+            gameModel.Character.CharacterMoved = true;
         }
 
         public int PlayerShoot(Key key, int counter)

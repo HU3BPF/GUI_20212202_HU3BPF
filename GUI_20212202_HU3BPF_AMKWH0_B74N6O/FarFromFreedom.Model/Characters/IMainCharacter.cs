@@ -11,6 +11,7 @@ namespace FarFromFreedom.Model.Characters
         string Name { get; }
         double Power { get; }
         int Coin { get; }
+        bool CharacterMoved { get; set; }
         DirectionAnimationHelper DirectionHelper { get; }
         void CurrentHealthUp(double currentHealth);
         void CurrentHealthDown(double currentHealth);

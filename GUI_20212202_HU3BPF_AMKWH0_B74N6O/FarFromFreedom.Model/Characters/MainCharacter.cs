@@ -38,6 +38,8 @@ namespace FarFromFreedom.Model.Characters
 
         public DirectionAnimationHelper DirectionHelper => directionHelper;
 
+        public bool CharacterMoved { get; set; } = false;
+
         public void PowerUp(double power)
         {
             this.power += power;

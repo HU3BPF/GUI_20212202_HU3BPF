@@ -50,6 +50,7 @@ namespace FarFromFreedom.Renderer
             {
                 counter++;
             }
+            character.CharacterMoved = false;
         }
         public MainCharacterRender()
         {
