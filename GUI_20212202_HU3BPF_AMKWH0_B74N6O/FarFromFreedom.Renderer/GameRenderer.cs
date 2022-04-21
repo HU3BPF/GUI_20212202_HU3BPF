@@ -13,12 +13,13 @@ namespace FarFromFreedom.Renderer
     public class GameRenderer : FrameworkElement, IGameRenderer
     {
         private Dictionary<string, Brush> GameBrushes;
-        private MainCharacterRender mainCharacter;
+        private MainCharacterRender mainCharacterRenderer;
+        private Dictionary<string, Brush> backGroundBrushes = BackgroundRenderer.Init();
         private IGameModel model;
         private int counter;
         public GameRenderer(IGameModel model)
         {
-            mainCharacter = new MainCharacterRender(model.Character);
+            mainCharacterRenderer = new MainCharacterRender(model.Character);
             this.model = model;
             GameBrushes = BurshRenderer.Init();
             counter = 0;
@@ -28,14 +29,16 @@ namespace FarFromFreedom.Renderer
         {
             DrawingGroup drawingGroup = new DrawingGroup();
 
+            drawingGroup.Children.Add(GetDrawing(backGroundBrushes["Level1Start"], new RectangleGeometry(new Rect(0,0,1290,730))));
 
-            foreach (var item in model.Enemies)
+
+            foreach (var enemy in model.Enemies)
             {
-                Brush itemBrush = item.ImageBurshes.GetValueOrDefault(item.Name + item.Counter);
+                Brush itemBrush = enemy.ImageBurshes.GetValueOrDefault(enemy.Name + enemy.Counter);
                 if (itemBrush != null)
                 {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
-                    item.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, enemy.Area));
+                    enemy.counterUp();
                 }
             }
 
@@ -48,12 +51,12 @@ namespace FarFromFreedom.Renderer
                 }
             }
 
-            foreach (var item in model.bullets)
+            foreach (var bullet in model.bullets)
             {
-                Brush itemBrush = GameBrushes.GetValueOrDefault("Bullet");
+                Brush itemBrush = GameBrushes.GetValueOrDefault("TearsBrush");
                 if (itemBrush != null)
                 {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, bullet.Area));
                 }
             }
 
@@ -61,46 +64,48 @@ namespace FarFromFreedom.Renderer
             {
                 if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyFront[mainCharacter.Counter], model.Character.Area));
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyFront[mainCharacterRenderer.Counter], model.Character.Area));
                 }
                 else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyRight[mainCharacter.Counter], model.Character.Area));
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyRight[mainCharacterRenderer.Counter], model.Character.Area));
                 }
                 else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyLeft[mainCharacter.Counter], model.Character.Area));
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyLeft[mainCharacterRenderer.Counter], model.Character.Area));
                 }
                 else
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[mainCharacter.Counter], model.Character.Area));
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyBack[mainCharacterRenderer.Counter], model.Character.Area));
                 }
             }
             else
             {
                 if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyFront[mainCharacter.Counter], model.Character.Area));
-                    mainCharacter.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyFront[mainCharacterRenderer.Counter], model.Character.Area));
+                    mainCharacterRenderer.counterUp();
                 }
                 else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyRight[mainCharacter.Counter], model.Character.Area));
-                    mainCharacter.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyRight[mainCharacterRenderer.Counter], model.Character.Area));
+                    mainCharacterRenderer.counterUp();
                 }
                 else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyLeft[mainCharacter.Counter], model.Character.Area));
-                    mainCharacter.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyLeft[mainCharacterRenderer.Counter], model.Character.Area));
+                    mainCharacterRenderer.counterUp();
                 }
                 else
                 {
-                    drawingGroup.Children.Add(GetDrawing(mainCharacter.dobbyBack[mainCharacter.Counter], model.Character.Area));
-                    mainCharacter.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyBack[mainCharacterRenderer.Counter], model.Character.Area));
+                    mainCharacterRenderer.counterUp();
                 }
             }
             return drawingGroup;
         }
+
+        public void GameModelChanged(IGameModel gameModel) => this.model = gameModel;
 
 
         private Drawing GetDrawing(Brush brush, RectangleGeometry rectangleGeometry)

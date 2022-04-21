@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\background\Level1.jpg" />
+    <None Remove="Images\background\Level1_start.jpg" />
+    <None Remove="Images\background\Level2.jpg" />
+    <None Remove="Images\background\Level3.png" />
+    <None Remove="Images\background\MainMenu.png" />
+    <None Remove="Images\background\Start.jpg" />
     <None Remove="Images\Dobby\dobbyback1.jpg" />
     <None Remove="Images\Dobby\dobbyBack1.png" />
     <None Remove="Images\Dobby\dobbyback2.jpg" />
@@ -165,6 +171,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\background\Level1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background\Level1_start.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background\Level2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background\Level3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background\MainMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background\Start.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Dobby\dobbyBack1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

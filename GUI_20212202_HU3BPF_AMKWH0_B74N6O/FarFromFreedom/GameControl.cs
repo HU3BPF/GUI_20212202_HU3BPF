@@ -12,16 +12,14 @@ namespace FarFromFreedom
 {
     public class GameControl : FrameworkElement
     {
-        public IGameModel gameModel = new GameModel();
-        public GameLogic gameLogic = new GameLogic();
-        public GameRenderer renderer = new GameRenderer(new GameModel());
+        public IGameLogic gameLogic = new GameLogic();
+        public IGameRenderer renderer;
         private DispatcherTimer gameTimer;
         private DispatcherTimer bulletTimer;
         private int counterTimer = 0;
 
         public GameControl(IGameModel model)
         {
-            this.gameModel = model;
             gameLogic = new GameLogic(model);
             //renderer = new GameRenderer(gameLogic.Map);
             renderer = new GameRenderer(model);
@@ -34,9 +32,14 @@ namespace FarFromFreedom
         {
         }
 
-        public IGameModel GameLoader(string fileName)
+        public IGameModel GameLoad(string fileName)
         {
-           return gameLogic.GameLoader(fileName);
+           return gameLogic.GameLoad(fileName);
+        }
+
+        public void GameSave(string fileName)
+        {
+           gameLogic.GameSave(fileName);
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -94,6 +97,18 @@ namespace FarFromFreedom
             }
         }
 
+        public void RoomLoad(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                this.gameLogic.RoomUp();
+            }
+            else
+            {
+                this.gameLogic.RoomDown();
+            }
+        }
+
         private async void EnemyDestroy(object sender, EventArgs e)
         {
             this.gameLogic.EnemyDestroy();
@@ -116,7 +131,7 @@ namespace FarFromFreedom
 
         private async void EnemyHit(object sender, EventArgs e)
         {
-           //this.gameLogic.EnemyHit();
+          // this.gameLogic.EnemyHit();
         }
 
         private async void BulletMove(object sender, EventArgs e)

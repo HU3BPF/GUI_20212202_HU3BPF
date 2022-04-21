@@ -5,23 +5,35 @@ using FarFromFreedom.Renderer;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FarFromFreedom.Logic
 {
-    public class GameLogic : FarFromFreedomRepository, IGameLogic
+    public class GameLogic : IGameLogic
     {
+        public int CurrentRoom => currentRoom;
+        public int CurrentLevel => currentLevel;
+
         private IGameModel gameModel;
+        private IFarFromFreedomRepository farFromFreedomRepository;
+        private int currentRoom = -1;
+        private int currentLevel = 0;
 
         public GameLogic(IGameModel gameModel)
         {
             this.gameModel = gameModel;
+        }
+        public GameLogic(int levels, string fileName)
+        {
+            farFromFreedomRepository = new FarFromFreedomRepository(levels, fileName);
         }
 
         public GameLogic()
         {
 
         }
+
         public void EnemyMove()
         {
             MainCharacter character = gameModel.Character;
@@ -146,6 +158,11 @@ namespace FarFromFreedom.Logic
             }
         }
 
+        public void GameSave(string fileName)
+        {
+            this.farFromFreedomRepository.SaveGame(gameModel, fileName);
+        }
+
         public bool GameEnd()
         {
             MainCharacter character = gameModel.Character;
@@ -177,6 +194,10 @@ namespace FarFromFreedom.Logic
 
         public void PLayerMove(Key key)
         {
+            if (MainCharacterMoveChecker(key, gameModel.Character.Area.Rect))
+            {
+                return;
+            }
             if (key == Key.Up)
             {
                 gameModel.Character.MoveUp();
@@ -216,14 +237,14 @@ namespace FarFromFreedom.Logic
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
-            else if(Key.A == key)
+            else if (Key.A == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Left);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Left);
                 gameModel.bullets.Add(bullet);
                 return 0;
             }
-            else if(Key.D == key)
+            else if (Key.D == key)
             {
                 Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Right);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Right);
@@ -258,6 +279,33 @@ namespace FarFromFreedom.Logic
             }
         }
 
+        public void HighscoreUp(double highscore)
+        {
+            this.gameModel.Character.HighscoreUp(highscore);
+        }
+
+        public IGameModel GameLoad(string fileName)
+        {
+            return farFromFreedomRepository.LoadGame(fileName);
+        }
+
+        public void levelUp()
+        {
+            this.currentLevel++;
+        }
+
+        public void RoomUp()
+        {
+            ++this.currentRoom;
+            this.RoomLooder();
+        }
+
+        public void RoomDown()
+        {
+            --this.currentRoom;
+            this.RoomLooder();
+        }
+
         private void DirectionChangerHelper(Direction direction)
         {
             if (direction != gameModel.Character.DirectionHelper.Direction)
@@ -268,12 +316,12 @@ namespace FarFromFreedom.Logic
 
         private void ItemPickerHelper(IItem item)
         {
-            if(item.GetType() == typeof(Hearth))
+            if (item.GetType() == typeof(Hearth))
             {
                 Hearth hearth = (Hearth)item;
                 gameModel.Character.CurrentHealthUp(hearth.Health);
             }
-            else if(item.GetType() == typeof(Bomb))
+            else if (item.GetType() == typeof(Bomb))
             {
                 Bomb bomb = (Bomb)item;
             }
@@ -304,14 +352,31 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public void HighscoreUp(double highscore)
+        private bool MainCharacterMoveChecker(Key key, Rect area)
         {
-            this.gameModel.Character.HighscoreUp(highscore);
+            if (area == null)
+            {
+                return true;
+            }
+            else if (area.Left <= 112 && Key.Left == key)
+            {
+                return true;
+            }
+            else if (area.Right >= 1180 && Key.Right == key)
+            {
+                return true;
+            }
+            else if (area.Top <= 112 && Key.Up == key)
+            {
+                return true;
+            }
+            else if (area.Bottom >= 600 && Key.Down == key)
+            {
+                return true;
+            }
+            return false;
         }
 
-        public IGameModel GameLoader(string fileName)
-        {
-            return this.LoadGame(fileName);
-        }
+        private void RoomLooder() => gameModel = farFromFreedomRepository.GameModelMap[currentLevel][currentRoom];
     }
 }

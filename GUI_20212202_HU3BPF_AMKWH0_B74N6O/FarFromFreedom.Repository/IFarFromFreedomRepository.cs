@@ -5,8 +5,9 @@ namespace FarFromFreedom.Repository
 {
     public interface IFarFromFreedomRepository
     {
-        Dictionary<string, IGameModel> gameModelMap { get; set; }
-        IGameModel LoadGame(string filename);
+        List<Dictionary<int, IGameModel>> GameModelMap { get; }
+
+        IGameModel LoadGame(string fileName);
         void SaveGame(IGameModel gameModel, string filename);
     }
 }

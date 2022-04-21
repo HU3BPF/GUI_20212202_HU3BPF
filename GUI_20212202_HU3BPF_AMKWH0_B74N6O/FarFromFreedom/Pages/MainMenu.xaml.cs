@@ -26,7 +26,7 @@ namespace FarFromFreedom.Pages
     public partial class MainMenu : Window
     {
         GameControl gameControl;
-        FarFromFreedomRepository repository = new FarFromFreedomRepository();
+        FarFromFreedomRepository repository = new FarFromFreedomRepository(1,"LevelsFileName");
         const double border_height = 105;
         const double border_width = 350;
         const double windowHeigth = 700;
@@ -39,7 +39,6 @@ namespace FarFromFreedom.Pages
         public MainMenu(GameControl gameControl)
         {
             this.gameControl = gameControl;
-            this.model = gameControl.gameModel;
             createMenu();
             InvalidateVisual();
         }
@@ -193,11 +192,11 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Continue":
                     this.SelectIndex(1);
-                    repository.SaveGame(gameControl.gameModel,"dobby");
+                    this.gameControl.gameLogic.GameSave("dobby");
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    IGameModel model = gameControl.GameLoader("dobby_2022.4.18_12H46M");
+                    IGameModel model = gameControl.gameLogic.GameLoad("dobby_2022.4.18_12H46M");
                     GameLogic logic = new GameLogic(model);
                     
                     this.gameControl.gameLogic = logic;
