@@ -9,11 +9,31 @@ namespace FarFromFreedom.Repository
 {
     public class FarFromFreedomRepository : IFarFromFreedomRepository
     {
-        public Dictionary<string, IGameModel> gameModelMap { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //Az adott pályának a száma és a hozzá tartozó értéke.
+        //Lista azért van mert minden level 1 lista elem és benne tartozó értékek leszenk megjelölve számmal.
+        //Így vissza is tudunk menni 1 levelen egy pályára.
+        public List<Dictionary<int, IGameModel>> GameModelMap => gameModelMap;
 
-        public IGameModel LoadGame(string filename)
+        private List<Dictionary<int, IGameModel>> gameModelMap = new List<Dictionary<int, IGameModel>>();
+
+        public FarFromFreedomRepository(int levels, string fileName)
         {
-            string json = File.ReadAllText($"{filename}.json");
+            if (true)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < levels; i++)
+                {
+                    gameModelMap.Add(GameModelIniter($"fileName{fileName}"));
+                }
+            }
+        }
+
+        public IGameModel LoadGame(string fileName)
+        {
+            string json = File.ReadAllText($"{fileName}.json");
 
             GameModel gameModel = JsonConvert.DeserializeObject<GameModel>(json, new JsonSerializerSettings
             {
@@ -41,6 +61,26 @@ namespace FarFromFreedom.Repository
                 Converters = jsonConverter
             });
             File.WriteAllText($"{filename}_{saveDate}.json", jsonData);
+        }
+
+        private Dictionary<int, IGameModel> GameModelIniter(string fileName)
+        {
+            Dictionary<int, IGameModel> newGameModelMap = new Dictionary<int, IGameModel>();
+            string json = File.ReadAllText($"{fileName}.json");
+
+            List<GameModel> gameModel = JsonConvert.DeserializeObject<List<GameModel>>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+            });
+
+            for (int i = 0; i < gameModel.Count; i++)
+            {
+                newGameModelMap.Add(i, gameModel[i]);
+            }
+
+            return newGameModelMap;
         }
     }
 }

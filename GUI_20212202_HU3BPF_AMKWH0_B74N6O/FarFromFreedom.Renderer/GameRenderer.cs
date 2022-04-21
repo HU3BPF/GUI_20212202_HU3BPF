@@ -29,13 +29,13 @@ namespace FarFromFreedom.Renderer
             DrawingGroup drawingGroup = new DrawingGroup();
 
 
-            foreach (var item in model.Enemies)
+            foreach (var enemy in model.Enemies)
             {
-                Brush itemBrush = item.ImageBurshes.GetValueOrDefault(item.Name + item.Counter);
+                Brush itemBrush = enemy.ImageBurshes.GetValueOrDefault(enemy.Name + enemy.Counter);
                 if (itemBrush != null)
                 {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
-                    item.counterUp();
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, enemy.Area));
+                    enemy.counterUp();
                 }
             }
 
@@ -101,6 +101,8 @@ namespace FarFromFreedom.Renderer
             }
             return drawingGroup;
         }
+
+        public void GameModelChanged(IGameModel gameModel) => this.model = gameModel;
 
 
         private Drawing GetDrawing(Brush brush, RectangleGeometry rectangleGeometry)
