@@ -31,5 +31,6 @@ namespace FarFromFreedom.Model.Characters.Enemies
         private readonly double power = 2;
 
         public override int level => 2;
+        public override double Highscore => 20;
     }
 }

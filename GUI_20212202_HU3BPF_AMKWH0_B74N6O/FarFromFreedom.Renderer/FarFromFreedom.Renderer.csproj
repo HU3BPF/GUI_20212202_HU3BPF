@@ -57,6 +57,7 @@
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy13.png" />
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy14.png" />
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy15.png" />
+    <None Remove="Images\enemies\level1\waspEnemy\waspEnemy2.png" />
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy3.png" />
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy4.png" />
     <None Remove="Images\enemies\level1\waspEnemy\waspEnemy5.png" />
@@ -272,7 +273,7 @@
     <Content Include="Images\enemies\level1\waspEnemy\waspEnemy14.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\enemies\level1\waspEnemy\waspEnemy15.png">
+    <Content Include="Images\enemies\level1\waspEnemy\waspEnemy2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\enemies\level1\waspEnemy\waspEnemy3.png">

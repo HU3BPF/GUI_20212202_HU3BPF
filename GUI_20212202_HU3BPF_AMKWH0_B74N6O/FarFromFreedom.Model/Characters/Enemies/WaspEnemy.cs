@@ -1,38 +1,40 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {
-    public class PugEnemy : Enemy
+    public class WaspEnemy : Enemy
     {
         [JsonConstructor]
-        public PugEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
+        public WaspEnemy(string name, string description, double health, double power, double currentHealth, Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);
         }
-        public PugEnemy()
+        public WaspEnemy()
         {
-
         }
-        public PugEnemy(Rect area, Vector speed) : base(area, speed)
-        {
-            this.initProperty(name, description, health, currentHealth, power);
-        }
-
-        public PugEnemy(Rect area) : base(area)
+        public WaspEnemy(Rect area, Vector speed) : base(area, speed)
         {
             this.initProperty(name, description, health, currentHealth, power);
         }
 
-        private readonly string name = "pugEnemy";
-        private readonly string description = "PugEnemy";
+        public WaspEnemy(Rect area) : base(area)
+        {
+            this.initProperty(name, description, health, currentHealth, power);
+        }
+
+        public override int level => 1;
+        public override double Highscore => 10;
+
+        private readonly string name = "waspEnemy";
+        private readonly string description = "waspEnemy";
         private readonly double health = 2;
         private readonly double currentHealth = 2;
         private readonly double power = 2;
-
-        public override int level => 1;
-        public override double Highscore => 20;
     }
 }

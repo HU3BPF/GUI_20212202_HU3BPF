@@ -25,6 +25,7 @@ namespace FarFromFreedom.Model.Characters.Enemies
         }
 
         public override int level => 2;
+        public override double Highscore => 20;
 
         private readonly string name = "batEnemy";
         private readonly string description = "BatEnemy";
