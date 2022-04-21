@@ -106,6 +106,7 @@ namespace FarFromFreedom.Logic
             if (removableEnemy != null)
             {
                 gameModel.Enemies.Remove(removableEnemy);
+                gameModel.Character.HighscoreUp(removableEnemy.Highscore);
             }
         }
 
@@ -301,6 +302,11 @@ namespace FarFromFreedom.Logic
                 Star star = (Star)item;
                 gameModel.Character.PowerUp(star.Power);
             }
+        }
+
+        public void HighscoreUp(double highscore)
+        {
+            this.gameModel.Character.HighscoreUp(highscore);
         }
 
         public IGameModel GameLoader(string fileName)

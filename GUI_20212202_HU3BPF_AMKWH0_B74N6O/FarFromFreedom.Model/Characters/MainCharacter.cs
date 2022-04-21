@@ -22,6 +22,7 @@ namespace FarFromFreedom.Model.Characters
         private double currentHealth;
         private double power;
         private int coin;
+        private double highscore;
         private DirectionAnimationHelper directionHelper = new DirectionAnimationHelper();
 
         public string Name => name;
@@ -35,6 +36,8 @@ namespace FarFromFreedom.Model.Characters
         public double CurrentHealth => currentHealth;
 
         public int Coin => coin;
+
+        public double Highscore => highscore;
 
         public DirectionAnimationHelper DirectionHelper => directionHelper;
 
@@ -78,6 +81,11 @@ namespace FarFromFreedom.Model.Characters
         public void CoinDown(int coin)
         {
             this.coin -= coin;
+        }
+
+        public void HighscoreUp(double highscore)
+        {
+            this.highscore = highscore;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace FarFromFreedom.Model.Characters
         string Name { get; }
         double Power { get; }
         int Coin { get; }
+        double Highscore { get; }
         bool CharacterMoved { get; set; }
         DirectionAnimationHelper DirectionHelper { get; }
         void CurrentHealthUp(double currentHealth);
@@ -21,5 +22,6 @@ namespace FarFromFreedom.Model.Characters
         void PowerDown(double power);
         void CoinUp(int coin);
         void CoinDown(int coin);
+        void HighscoreUp(double Highscore);
     }
 }

@@ -43,6 +43,8 @@ namespace FarFromFreedom.Model.Characters
         private double currentHealth;
         private double power;
         private int counter = 0;
+
+        public abstract double Highscore { get; }
         private int CounterLength { get => Directory.GetFiles(EnemyPath, "*", SearchOption.AllDirectories).Length - 1; }
 
         public abstract int level { get; }

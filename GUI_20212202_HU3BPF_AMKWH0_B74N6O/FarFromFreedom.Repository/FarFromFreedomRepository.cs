@@ -9,6 +9,8 @@ namespace FarFromFreedom.Repository
 {
     public class FarFromFreedomRepository : IFarFromFreedomRepository
     {
+        public Dictionary<string, IGameModel> gameModelMap { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public IGameModel LoadGame(string filename)
         {
             string json = File.ReadAllText($"{filename}.json");
