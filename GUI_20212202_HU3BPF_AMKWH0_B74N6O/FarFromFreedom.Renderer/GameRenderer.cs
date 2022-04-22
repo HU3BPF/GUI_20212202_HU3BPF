@@ -31,7 +31,6 @@ namespace FarFromFreedom.Renderer
 
             drawingGroup.Children.Add(GetDrawing(backGroundBrushes["Level1Start"], new RectangleGeometry(new Rect(0,0,1290,730))));
 
-
             foreach (var enemy in model.Enemies)
             {
                 Brush itemBrush = enemy.ImageBurshes.GetValueOrDefault(enemy.Name + enemy.Counter);
