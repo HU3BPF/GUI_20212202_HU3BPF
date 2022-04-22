@@ -48,6 +48,11 @@ namespace FarFromFreedom.Logic
             {
                 enemy = queue.Dequeue();
 
+                if (EnemyWallInspect(enemy))
+                {
+                    return;
+                }
+
                 double x = character.Area.Rect.X - enemy.Area.Rect.X;
                 double y = character.Area.Rect.Y - enemy.Area.Rect.Y;
                 if (x > 0 && y > 0)
@@ -58,7 +63,7 @@ namespace FarFromFreedom.Logic
                 {
                     enemy.MoveRight();
                 }
-                else if (x == 0 && y > 0)
+                else if (x == 0 && y < 0)
                 {
                     enemy.MoveUp();
                 }
@@ -74,7 +79,7 @@ namespace FarFromFreedom.Logic
                 {
                     enemy.MoveDownLeft();
                 }
-                else if (x == 0 && y < 0)
+                else if (x == 0 && y > 0)
                 {
                     enemy.MoveDown();
                 }
@@ -372,6 +377,35 @@ namespace FarFromFreedom.Logic
             }
             else if (area.Bottom >= 600 && Key.Down == key)
             {
+                return true;
+            }
+            return false;
+        }
+
+        private bool EnemyWallInspect(Enemy enemy)
+        {
+            if (enemy.Area.Rect == null)
+            {
+                return true;
+            }
+            else if (enemy.Area.Rect.Left <= 112)
+            {
+                enemy.MoveRight();
+                return true;
+            }
+            else if (enemy.Area.Rect.Right >= 1180)
+            {
+                enemy.MoveLeft();
+                return true;
+            }
+            else if (enemy.Area.Rect.Top <= 112)
+            {
+                enemy.MoveDown();
+                return true;
+            }
+            else if (enemy.Area.Rect.Bottom >= 600)
+            {
+                enemy.MoveUp();
                 return true;
             }
             return false;

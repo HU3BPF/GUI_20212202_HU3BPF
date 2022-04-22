@@ -217,7 +217,9 @@ namespace FarFromFreedom.Pages
             switch (index)
             {
                 case 0://this.logic.New_Game();
-                    System.Windows.MessageBox.Show("New Game re nyomtál");
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
                     return;
                 case 1://this.logic.Continue();
                     System.Windows.MessageBox.Show("Continue ra nyomtál");

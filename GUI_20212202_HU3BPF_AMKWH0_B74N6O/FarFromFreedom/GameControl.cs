@@ -131,7 +131,7 @@ namespace FarFromFreedom
 
         private async void EnemyHit(object sender, EventArgs e)
         {
-          // this.gameLogic.EnemyHit();
+           //this.gameLogic.EnemyHit();
         }
 
         private async void BulletMove(object sender, EventArgs e)
