@@ -122,6 +122,7 @@ namespace FarFromFreedom.Logic
             }
             if (removableEnemy != null)
             {
+                ItemAdder(gameModel, removableEnemy.Area.Rect);
                 gameModel.Enemies.Remove(removableEnemy);
                 gameModel.Character.HighscoreUp(removableEnemy.Highscore);
             }
@@ -411,6 +412,36 @@ namespace FarFromFreedom.Logic
             return false;
         }
 
+        private void ItemAdder(IGameModel gameModel, Rect react)
+        {
+            Random r = new Random();
+            int randomNumber = r.Next(0, 100);
+
+            switch (randomNumber)
+            {
+                case 0:
+                    gameModel.Items.Add(new Bootle(new Rect(react.Location, new Size(50,50))));
+                    return;
+                case 10:
+                    gameModel.Items.Add(new Coin(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 20:
+                    gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 30:
+                    gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 40:
+                    gameModel.Items.Add(new Money(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 50s:
+                    gameModel.Items.Add(new Shield(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 60:
+                    gameModel.Items.Add(new Star(new Rect(react.Location, new Size(50, 50))));
+                    return;
+            }
+        }
         private void RoomLooder() => gameModel = farFromFreedomRepository.GameModelMap[currentLevel][currentRoom];
     }
 }
