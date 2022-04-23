@@ -434,7 +434,7 @@ namespace FarFromFreedom.Logic
                 case 40:
                     gameModel.Items.Add(new Money(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 50s:
+                case 50:
                     gameModel.Items.Add(new Shield(new Rect(react.Location, new Size(50, 50))));
                     return;
                 case 60:
