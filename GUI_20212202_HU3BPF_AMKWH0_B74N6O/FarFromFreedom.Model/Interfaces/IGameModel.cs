@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FarFromFreedom.Model
 {
-    public interface IGameModel
+    public interface IGameModel : IModel
     {
         MainCharacter Character { get; }
         List<Enemy> Enemies { get; set; }
