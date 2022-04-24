@@ -104,7 +104,7 @@ namespace FarFromFreedom.Renderer
             return drawingGroup;
         }
 
-        public void GameModelChanged(IGameModel gameModel) => this.model = gameModel;
+        public void GameModelChanged(IModel model) => this.model = (model as IGameModel);
 
 
         private Drawing GetDrawing(Brush brush, RectangleGeometry rectangleGeometry)

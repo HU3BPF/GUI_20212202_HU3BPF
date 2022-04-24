@@ -15,6 +15,7 @@ namespace FarFromFreedom.Renderer
         private static Brush Level1Start = GetBrushes(Path.Combine("Images", "background", "Level1_start.jpg"));
         private static Brush Level2 = GetBrushes(Path.Combine("Images", "background", "Level2.jpg"));
         private static Brush Level3 = GetBrushes(Path.Combine("Images", "background", "Level3.jpg"));
+
         private static ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
         internal static Dictionary<string, Brush> Init()
         {

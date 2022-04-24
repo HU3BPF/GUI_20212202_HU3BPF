@@ -6,6 +6,6 @@ namespace FarFromFreedom.Renderer
     public interface IGameRenderer
     {
         DrawingGroup BuildDrawing();
-        void GameModelChanged(IGameModel gameModel);
+        void GameModelChanged(IModel model);
     }
 }

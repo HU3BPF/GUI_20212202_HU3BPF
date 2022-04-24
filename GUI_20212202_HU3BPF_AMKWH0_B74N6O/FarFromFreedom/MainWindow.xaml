@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="769" Width="1305" Background="Black">
     <Grid x:Name="grid">
-        <local:GameControl />
+        <local:BaseControl />
     </Grid>
 </Window>

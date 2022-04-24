@@ -20,6 +20,8 @@ namespace FarFromFreedom.Renderer
         private static Brush starBrush = GetBrushes(Path.Combine("Images", "items", "star.png"));
         private static Brush tearsBrush = GetBrushes(Path.Combine("Images", "items", "tears.png"));
         private static Brush timeBrush = GetBrushes(Path.Combine("Images", "items", "time.png"));
+        private static Brush welcomePageBrush = GetBrushes(Path.Combine("Images", "background", "Start.jpg"));
+        private static Brush mainMenuBrush = GetBrushes(Path.Combine("Images", "background", "MainMenu.png"));
 
         private static ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
         internal static Dictionary<string, Brush> Init()
