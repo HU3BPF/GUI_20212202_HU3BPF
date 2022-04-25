@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FarFromFreedom.Logic
 {
-    internal interface IMenuLogic
+    public interface IMenuLogic
     {
         /// <summary>
         /// Ezzel a metódussal érjük el, hogy kiválaszt egy menüelemet a felhasználó.

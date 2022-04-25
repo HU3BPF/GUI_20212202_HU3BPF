@@ -13,17 +13,22 @@ using System.Windows.Input;
 
 namespace FarFromFreedom
 {
-    static class MenuSubControl
+    public class MenuSubControl
     {
-        static MenuLogic logic;
+        IMenuLogic? logic;
 
-        public static void Init(IMenuModel model)
+        public void Init(IMenuModel model)
         {
             logic = new MenuLogic(model);
             
         }
 
-        public static int HandleInput(BaseControl control, IMenuModel menuModel, object sender, KeyEventArgs e)
+        public void Dispose()
+        {
+            logic = null;
+        }
+
+        public int HandleInput(BaseControl control, IMenuModel menuModel, object sender, KeyEventArgs e)
         {
             if (e != null)
             {
@@ -31,32 +36,32 @@ namespace FarFromFreedom
                 {
 
                     case Key.Enter:
-                        logic.SelectIndex(menuModel.SelectedIndex);
+                        logic?.SelectIndex(menuModel.SelectedIndex);
                         if (menuModel.SelectedIndex < 2)
                         {
-                            ChangeModel(control);
+                            GameLoad(control);
                         }
                         return 1;
                     case Key.Escape:
                         menuModel.IsWelcomePage = true;
                         return 1;
                     case Key.Up:
-                        logic.DescSelectedIndex();
+                        logic?.DescSelectedIndex();
                         return 1;
                     case Key.Down:
-                        logic.IncSelectedIndex();
+                        logic?.IncSelectedIndex();
                         return 1;
                     case Key.S:
-                        logic.IncSelectedIndex();
+                        logic?.IncSelectedIndex();
                         return 1;
                     case Key.W:
-                        logic.DescSelectedIndex();
+                        logic?.DescSelectedIndex();
                         return 1;
                     case Key.Space:
-                        logic.SelectIndex(menuModel.SelectedIndex);
+                        logic?.SelectIndex(menuModel.SelectedIndex);
                         if (menuModel.SelectedIndex < 2)
                         {
-                            ChangeModel(control);
+                            GameLoad(control);
                         }
                         return 1;
                     case Key.Back:
@@ -67,7 +72,7 @@ namespace FarFromFreedom
             return -1;
         }
 
-        private static void ChangeModel(BaseControl control)
+        private void GameLoad(BaseControl control)
         {
             GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(500, 500, 100, 100)));
             List<Enemy> enemies = new List<Enemy>();
@@ -86,9 +91,6 @@ namespace FarFromFreedom
 
         }
 
-        internal static void Dispose()
-        {
-            logic = null;
-        }
+        
     }
 }

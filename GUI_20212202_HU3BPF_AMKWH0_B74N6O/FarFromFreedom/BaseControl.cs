@@ -21,6 +21,8 @@ namespace FarFromFreedom
         private DispatcherTimer gameTimer;
         private DispatcherTimer bulletTimer;
         private int counterTimer = 0;
+        private MenuSubControl menuSubControl = new MenuSubControl();
+        private GameSubControl gameSubControl = new GameSubControl();
 
 
         public BaseControl()
@@ -28,7 +30,7 @@ namespace FarFromFreedom
             this.ChangeModel(new MenuModel());
             //this.model = new MenuModel();
             //this.renderer = new MenuRenderer(this.model as IMenuModel);
-            
+            this.menuSubControl.Init((IMenuModel)this.model);
             
 
             this.Loaded += GameLoader;
@@ -93,7 +95,7 @@ namespace FarFromFreedom
                     return;
                 }
 
-                if (MenuSubControl.HandleInput(this, menuModel, sender, e) == 1)
+                if (this.menuSubControl.HandleInput(this, menuModel, sender, e) == 1)
                 {
                     InvalidateVisual();
                 }
@@ -107,98 +109,35 @@ namespace FarFromFreedom
 
         public void ChangeModel(IModel model)
         {
-            MenuSubControl.Dispose();
+            if (this.model is IMenuModel)
+            {
+                this.menuSubControl.Dispose();
+            }
+            else if (this.model is IGameModel gameModel)
+            {
+                this.gameSubControl.Dispose();
+            }
+
             this.model = model;
+
             if (this.model is IMenuModel menuModel)
             {
                 this.renderer = new MenuRenderer((IMenuModel)this.model);
-                MenuSubControl.Init((IMenuModel)this.model);
+                this.menuSubControl.Init((IMenuModel)this.model);
             }
             else if (this.model is IGameModel gameModel)
             {
                 this.renderer = new GameRenderer((IGameModel)this.model);
+                this.gameSubControl.Init((IGameModel)this.model, this);
+                this.gameSubControl.gameTimer.Tick += GameTimer_ScreenRefresh;
             }
 
             InvalidateVisual();
         }
 
-        //private async void MainCharacterMove(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Left || e.Key == Key.Right)
-        //    {
-        //        gameLogic.PLayerMove(e.Key);
-        //    }
-        //}
-
-        //private async void MainCharacterShoot(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.W || e.Key == Key.S || e.Key == Key.A || e.Key == Key.D)
-        //    {
-        //        if (counterTimer >= 2)
-        //        {
-        //            counterTimer = gameLogic.PlayerShoot(e.Key, counterTimer);
-        //        }
-        //    }
-        //}
-
-        //public void RoomLoad(object sender, EventArgs e)
-        //{
-        //    if (true)
-        //    {
-        //        this.gameLogic.RoomUp();
-        //    }
-        //    else
-        //    {
-        //        this.gameLogic.RoomDown();
-        //    }
-        //}
-
-        //private async void EnemyDestroy(object sender, EventArgs e)
-        //{
-        //    this.gameLogic.EnemyDestroy();
-        //}
-
-        //private async void BulletTimer(object sender, EventArgs e)
-        //{
-        //    this.counterTimer++;
-        //}
-
-        //private async void EnemyDamaged(object sender, EventArgs e)
-        //{
-        //    this.gameLogic.EnemyDamaged();
-        //}
-
-        //private async void ItemPickedUp(object sender, EventArgs e)
-        //{
-        //    this.gameLogic.ItemPicked();
-        //}
-
-        //private async void EnemyHit(object sender, EventArgs e)
-        //{
-        //    //this.gameLogic.EnemyHit();
-        //}
-
-        //private async void BulletMove(object sender, EventArgs e)
-        //{
-        //    this.gameLogic.BulletMove();
-        //}
-
-        //private async void GameEnded(object sender, EventArgs e)
-        //{
-        //    if (this.gameLogic.GameEnd())
-        //    {
-        //        var w = Application.Current.Windows[0];
-        //        w.Hide();
-        //        MessageBox.Show("Game ended.");
-        //        gameTimer.Stop();
-        //    }
-        //}
-
-        //private async void EnemyMove(object sender, EventArgs e)
-        //{
-        //    this.gameLogic.EnemyMove();
-        //    InvalidateVisual();
-        //}
-
+        private void GameTimer_ScreenRefresh(object? sender, EventArgs e)
+        {
+            InvalidateVisual();
+        }
     }
 }
