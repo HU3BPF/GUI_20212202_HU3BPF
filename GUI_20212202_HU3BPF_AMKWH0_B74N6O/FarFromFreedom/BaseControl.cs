@@ -1,6 +1,7 @@
 ﻿using FarFromFreedom.Logic;
 using FarFromFreedom.Model;
 using FarFromFreedom.Renderer;
+using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace FarFromFreedom
             //this.model = new MenuModel();
             //this.renderer = new MenuRenderer(this.model as IMenuModel);
             this.menuSubControl.Init((IMenuModel)this.model);
-            
+            FarFromFreedomRepository test = new FarFromFreedomRepository(1, "teszt");
 
             this.Loaded += GameLoader;
         }
@@ -51,6 +52,7 @@ namespace FarFromFreedom
             if (this.renderer != null)
             {
                 drawingContext.DrawDrawing(this.renderer.BuildDrawing());
+                FarFromFreedomRepository test = new FarFromFreedomRepository(1, "teszt");
             }
         }
 

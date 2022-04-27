@@ -5,11 +5,11 @@ namespace FarFromFreedom.Model
 {
     public interface IGameModel : IModel
     {
-        MainCharacter Character { get; }
-        List<Enemy> Enemies { get; set; }
+        IMainCharacter Character { get; }
+        List<IEnemy> Enemies { get; set; }
         List<IItem> Items { get; set; }
-        List<Bullet> bullets { get; set; }
+        List<Bullet> Bullets { get; set; }
 
-        void Init(List<Enemy> enemies, List<IItem> Items);
+        void Init(List<IEnemy> enemies, List<IItem> Items);
     }
 }

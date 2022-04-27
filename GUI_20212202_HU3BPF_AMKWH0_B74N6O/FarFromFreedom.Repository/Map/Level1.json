@@ -1,8 +1,10 @@
 {
-  "GameModel": [
+  "Rect": [
     {
-      "id": "1"
-
+      "x": 5,
+      "y": 6,
+      "width": 7,
+      "height": 8
     }
   ]
 }

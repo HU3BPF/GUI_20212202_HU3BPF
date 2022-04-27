@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace FarFromFreedom.Repository
 {
@@ -20,7 +21,7 @@ namespace FarFromFreedom.Repository
         {
             if (true)
             {
-
+                gameModelMap.Add(GameModelIniter($"fileName{fileName}"));
             }
             else
             {
@@ -63,10 +64,25 @@ namespace FarFromFreedom.Repository
             File.WriteAllText($"{filename}_{saveDate}.json", jsonData);
         }
 
+        class rect2 : Rect
+        {
+
+        }
+
         private Dictionary<int, IGameModel> GameModelIniter(string fileName)
         {
             Dictionary<int, IGameModel> newGameModelMap = new Dictionary<int, IGameModel>();
-            string json = File.ReadAllText($"{fileName}.json");
+            //string json = File.ReadAllText($"{fileName}.json");
+            string json = File.ReadAllText(Path.Combine("Map", "Level1.json"));
+            Rect tesztt = new Rect(5, 5, 10, 10);
+            
+
+            Rect rectr = JsonConvert.DeserializeObject<Rect>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+            });
 
             List<GameModel> gameModel = JsonConvert.DeserializeObject<List<GameModel>>(json, new JsonSerializerSettings
             {

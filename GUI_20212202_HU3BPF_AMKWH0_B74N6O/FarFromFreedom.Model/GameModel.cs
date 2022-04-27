@@ -8,30 +8,42 @@ namespace FarFromFreedom.Model
 {
     public class GameModel : IGameModel
     {
+        private IMainCharacter character;
+        private List<IEnemy> enemies;
+        private List<IItem> items;
+        private List<Bullet> bullets;
+
+        
         public GameModel(MainCharacter character) => Character = character;
 
+        //[JsonConstructor]
+        //public GameModel(MainCharacter character, List<Enemy> enemies, List<IItem> items, List<Bullet> bullets)
+        //{
+        //    Character = character;
+        //    Enemies = enemies;
+        //    Items = items;
+        //    bullets = bullets;
+
+        //}
         [JsonConstructor]
-        public GameModel(MainCharacter character, List<Enemy> enemies, List<IItem> items, List<Bullet> bullets)
+        public GameModel(List<IEnemy> enemies, List<IItem> items)
         {
-            Character = character;
             Enemies = enemies;
             Items = items;
-            bullets = bullets;
-
         }
         public GameModel()
         {
 
         }
 
-        public MainCharacter Character { get; } = new MainCharacter("Dobby", "alma", 5.5, 5.5, 3, 12, new Rect(50, 50, 50, 50));
+        public IMainCharacter Character { get => this.character; set => this.character = value; }
 
-        public List<Enemy> Enemies { get; set; } = new List<Enemy>();
-        public List<IItem> Items { get; set; } = new List<IItem>();
+        public List<IEnemy> Enemies { get => this.enemies; set => this.enemies = value; }
+        public List<IItem> Items { get => this.items; set => this.items = value; }
 
-        public List<Bullet> bullets { get; set; } = new List<Bullet>();
+        public List<Bullet> Bullets { get => this.bullets; set => this.bullets = value; }
 
-        public void Init(List<Enemy> enemies, List<IItem> Items)
+        public void Init(List<IEnemy> enemies, List<IItem> Items)
         {
             this.Enemies = enemies;
             this.Items = Items;

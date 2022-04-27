@@ -75,7 +75,7 @@ namespace FarFromFreedom
         private void GameLoad(BaseControl control)
         {
             GameModel game = new GameModel(new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(500, 500, 100, 100)));
-            List<Enemy> enemies = new List<Enemy>();
+            List<IEnemy> enemies = new List<IEnemy>();
             List<IItem> Items = new List<IItem>();
             Items.Add(new Coin(new Rect(200, 200, 100, 100)));
             Items.Add(new Coin(new Rect(200, 300, 300, 220)));

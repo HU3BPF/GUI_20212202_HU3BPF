@@ -12,7 +12,7 @@ namespace FarFromFreedom.Renderer
 {
     public class MainCharacterRender
     {
-        public MainCharacterRender(MainCharacter character)
+        public MainCharacterRender(IMainCharacter character)
         {
             this.character = character;
             dobbyBack = new List<Brush>();
@@ -34,7 +34,7 @@ namespace FarFromFreedom.Renderer
         public List<Brush> dobbyLeft { get; set; }
         public List<Brush> dobbyRight { get; set; }
 
-        private MainCharacter character;
+        private IMainCharacter character;
 
         public int Counter => counter;
 

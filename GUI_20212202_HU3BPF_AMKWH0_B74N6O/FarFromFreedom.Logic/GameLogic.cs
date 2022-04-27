@@ -36,7 +36,7 @@ namespace FarFromFreedom.Logic
 
         public void EnemyMove()
         {
-            MainCharacter character = gameModel.Character;
+            MainCharacter character = (MainCharacter)gameModel.Character;
             Enemy enemy;
             Queue<Enemy> queue = new Queue<Enemy>();
             foreach (Enemy enemyAdd in gameModel.Enemies)
@@ -133,9 +133,9 @@ namespace FarFromFreedom.Logic
             Bullet removeableBullet = null;
             List<int> indexes = new List<int>();
 
-            foreach (var enemy in gameModel.Enemies)
+            foreach (Enemy enemy in gameModel.Enemies)
             {
-                foreach (var bullet in gameModel.bullets)
+                foreach (var bullet in gameModel.Bullets)
                 {
                     bool isCollision = bullet.IsCollision(enemy);
                     if (isCollision)
@@ -146,7 +146,7 @@ namespace FarFromFreedom.Logic
                 }
                 if (removeableBullet != null)
                 {
-                    gameModel.bullets.Remove(removeableBullet);
+                    gameModel.Bullets.Remove(removeableBullet);
                     removeableBullet = null;
                 }
             }
@@ -156,7 +156,7 @@ namespace FarFromFreedom.Logic
         {
             foreach (Enemy enemy in gameModel.Enemies)
             {
-                bool isCollision = enemy.IsCollision(gameModel.Character);
+                bool isCollision = enemy.IsCollision((MainCharacter)gameModel.Character);
                 if (isCollision)
                 {
                     gameModel.Character.CurrentHealthDown(enemy.Power);
@@ -171,7 +171,7 @@ namespace FarFromFreedom.Logic
 
         public bool GameEnd()
         {
-            MainCharacter character = gameModel.Character;
+            IMainCharacter character = gameModel.Character;
             bool gameEnded = false;
             if (character.CurrentHealth <= 0)
             {
@@ -185,7 +185,7 @@ namespace FarFromFreedom.Logic
             IItem itemPicked = null;
             foreach (IItem item in gameModel.Items)
             {
-                bool isCollision = item.IsCollision(gameModel.Character);
+                bool isCollision = item.IsCollision((MainCharacter)gameModel.Character);
                 if (isCollision)
                 {
                     ItemPickerHelper(item);
@@ -200,28 +200,28 @@ namespace FarFromFreedom.Logic
 
         public void PLayerMove(Key key)
         {
-            if (MainCharacterMoveChecker(key, gameModel.Character.Area.Rect))
+            if (MainCharacterMoveChecker(key, ((MainCharacter)gameModel.Character).Area.Rect))
             {
                 return;
             }
             if (key == Key.Up)
             {
-                gameModel.Character.MoveUp();
+                ((MainCharacter)gameModel.Character).MoveUp();
                 DirectionChangerHelper(Direction.Up);
             }
             else if (key == Key.Left)
             {
-                gameModel.Character.MoveLeft();
+                ((MainCharacter)gameModel.Character).MoveLeft();
                 DirectionChangerHelper(Direction.Left);
             }
             else if (key == Key.Right)
             {
-                gameModel.Character.MoveRight();
+                ((MainCharacter)gameModel.Character).MoveRight();
                 DirectionChangerHelper(Direction.Right);
             }
             else if (key == Key.Down)
             {
-                gameModel.Character.MoveDown();
+                ((MainCharacter)gameModel.Character).MoveDown();
                 DirectionChangerHelper(Direction.Down);
             }
             gameModel.Character.CharacterMoved = true;
@@ -231,30 +231,30 @@ namespace FarFromFreedom.Logic
         {
             if (Key.W == key)
             {
-                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Up);
+                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Up);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Up);
-                gameModel.bullets.Add(bullet);
+                gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.S == key)
             {
-                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Down);
+                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Down);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Down);
-                gameModel.bullets.Add(bullet);
+                gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.A == key)
             {
-                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Left);
+                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Left);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Left);
-                gameModel.bullets.Add(bullet);
+                gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.D == key)
             {
-                Bullet bullet = new Bullet(this.gameModel.Character.Area.Rect, Direction.Right);
+                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Right);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Right);
-                gameModel.bullets.Add(bullet);
+                gameModel.Bullets.Add(bullet);
                 return 0;
             }
             return counter;
@@ -262,7 +262,7 @@ namespace FarFromFreedom.Logic
 
         public void BulletMove()
         {
-            List<Bullet> bullets = gameModel.bullets;
+            List<Bullet> bullets = gameModel.Bullets;
 
             foreach (var bullet in bullets)
             {
