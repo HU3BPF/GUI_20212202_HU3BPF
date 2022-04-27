@@ -63,6 +63,11 @@ namespace FarFromFreedom.Repository
             File.WriteAllText($"{filename}_{saveDate}.json", jsonData);
         }
 
+        //Meg fogom írni a fenébe az xml betöltését és akkor nem
+        //kell vacakolni azzal ,hogy a hülye Rect et nem tuja betölteni...
+        //Egy szoba egy game model lesz, egy modelb be lesz tölve a 2 lista (enemy, item)
+        //Az egyes enemyk létrehozásához az xmlben kell (name desc az nem kell, power, health az kell).
+
 
 
         private Dictionary<int, IGameModel> GameModelIniter(string fileName)

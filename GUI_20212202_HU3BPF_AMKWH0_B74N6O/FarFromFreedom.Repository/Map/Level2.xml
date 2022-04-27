@@ -1,31 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level2>
-	<Room ID="1" Type="Netural">
+	<Room ID="2" Type="Item">
 		<Neighbours>
-			<UpperNeighbour ID="5"/>
-			<LeftNeighbour  ID="3"/>
+			<UpperNeighbour/>
+			<LeftNeighbour/>
 			<LowerNeighbour/>
-			<RightNeighbour/>
+			<RightNeighbour ID="1"/>
 		</Neighbours>
 		<Enemies>
 		</Enemies>
 	</Room>
-	<Room ID="2" Type="Item">
+	<Room ID="1" Type="Enemy">
 		<Neighbours>
 			<UpperNeighbour ID="3"/>
-			<LeftNeighbour/>
+			<LeftNeighbour ID="2"/>
 			<LowerNeighbour/>
 			<RightNeighbour/>
 		</Neighbours>
-		<Enemies>
-		</Enemies>
+		<Enemy Type="Enemy_1" X="400" Y="400"/>
 	</Room>
 	<Room ID="3" Type="Neutral">
 		<Neighbours>
-			<UpperNeighbour ID="4"/>
+			<UpperNeighbour ID="5"/>
 			<LeftNeighbour/>
-			<LowerNeighbour ID="2"/>
-			<RightNeighbour ID="1"/>
+			<LowerNeighbour ID="1"/>
+			<RightNeighbour ID="4"/>
 		</Neighbours>
 		<Enemies>
 		</Enemies>
@@ -39,28 +38,28 @@
 	</Room>
 	<Room ID="4" Type="Enemy">
 		<Neighbours>
-			<UpperNeighbour/>
-			<LeftNeighbour/>
-			<LowerNeighbour ID="3"/>
-			<RightNeighbour ID="5"/>
+			<UpperNeighbour ID="6"/>
+			<LeftNeighbour ID="3"/>
+			<LowerNeighbour/>
+			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Enemy_1" X="400" Y="400"/>
 			<Enemy Type="Enemy_2" X="1000" Y="600"/>
+			<Enemy Type="Enemy_3" X="300" Y="200"/>
 		</Enemies>
 		<Objects>
-			<Rock X="500" Y="360" Width="40" Height="40"/>
-			<Rock X="700" Y="360" Width="40" Height="40"/>
-			<Rock X="640" Y="300" Width="40" Height="40"/>
-			<Fire X="640" Y="600" Width="40" Height="40"/>
+			<Rock X="230" Y="120" Width="40" Height="40"/>
+			<Rock X="410" Y="540" Width="40" Height="40"/>
+			<Rock X="600" Y="460" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="5" Type="Enemy">
 		<Neighbours>
-			<UpperNeighbour ID="6"/>
-			<LeftNeighbour ID="4"/>
-			<LowerNeighbour ID="1"/>
-			<RightNeighbour/>
+			<UpperNeighbour/>
+			<LeftNeighbour/>
+			<LowerNeighbour ID="3"/>
+			<RightNeighbour ID="6"/>
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Enemy_1" X="400" Y="400"/>
@@ -75,14 +74,16 @@
 	</Room>
 	<Room ID="6" Type="Enemy">
 		<Neighbours>
-			<UpperNeighbour/>
-			<LeftNeighbour/>
-			<LowerNeighbour ID="5"/>
-			<RightNeighbour ID="7"/>
+			<UpperNeighbour ID="7"/>
+			<LeftNeighbour ID="5"/>
+			<LowerNeighbour ID="4"/>
+			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Enemy_2" X="400" Y="400"/>
 			<Enemy Type="Enemy_3" X="1000" Y="600"/>
+			<Enemy Type="Enemy_3" X="300" Y="200"/>
+			<Enemy Type="Enemy_1" X="760" Y="700"/>
 		</Enemies>
 		<Objects>
 			<Fire X="500" Y="360" Width="40" Height="40"/>
@@ -95,8 +96,8 @@
 	<Room ID="7" Type="Enemy">
 		<Neighbours>
 			<UpperNeighbour/>
-			<LeftNeighbour ID="6"/>
-			<LowerNeighbour/>
+			<LeftNeighbour/>
+			<LowerNeighbour ID="6"/>
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
@@ -113,12 +114,12 @@
 	<Room ID="8" Type="Boss">
 		<Neighbours>
 			<UpperNeighbour/>
-			<LeftNeighbour/>
+			<LeftNeighbour ID="7"/>
 			<LowerNeighbour/>
-			<RightNeighbour ID="7"/>
+			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Boss_1" X="200" Y="200" />
+			<Enemy Type="Boss_2" X="200" Y="200" />
 		</Enemies>
 		<Objects>
 			<Rock X="500" Y="360" Width="40" Height="40"/>
