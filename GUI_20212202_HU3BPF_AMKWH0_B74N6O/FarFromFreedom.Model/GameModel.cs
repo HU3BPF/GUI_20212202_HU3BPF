@@ -28,12 +28,15 @@ namespace FarFromFreedom.Model
         [JsonConstructor]
         public GameModel(List<IEnemy> enemies, List<IItem> items)
         {
-            Enemies = enemies;
-            Items = items;
+            this.enemies = enemies;
+            this.items = items;
+            this.bullets = new List<Bullet>();
         }
         public GameModel()
         {
-
+            this.enemies = new List<IEnemy>();
+            this.items = new List<IItem>();
+            this.bullets = new List<Bullet>();
         }
 
         public IMainCharacter Character { get => this.character; set => this.character = value; }
@@ -43,10 +46,11 @@ namespace FarFromFreedom.Model
 
         public List<Bullet> Bullets { get => this.bullets; set => this.bullets = value; }
 
-        public void Init(List<IEnemy> enemies, List<IItem> Items)
+        public void Init(List<IEnemy> enemies, List<IItem> items)
         {
-            this.Enemies = enemies;
-            this.Items = Items;
+            this.enemies = enemies;
+            this.items = items;
+            this.bullets = new List<Bullet>(); ;
         }
     }
 }
