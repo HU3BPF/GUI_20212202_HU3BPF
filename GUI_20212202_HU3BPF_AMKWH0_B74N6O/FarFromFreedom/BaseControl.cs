@@ -1,6 +1,7 @@
 ﻿using FarFromFreedom.Logic;
 using FarFromFreedom.Model;
 using FarFromFreedom.Renderer;
+using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace FarFromFreedom
             //this.model = new MenuModel();
             //this.renderer = new MenuRenderer(this.model as IMenuModel);
             this.menuSubControl.Init((IMenuModel)this.model);
+
             
+
 
             this.Loaded += GameLoader;
         }
@@ -59,27 +62,7 @@ namespace FarFromFreedom
             Window win = Window.GetWindow(this);
             if (win != null)
             {
-
-                //this.gameTimer = new DispatcherTimer();
-                //this.bulletTimer = new DispatcherTimer();
-
-                //this.gameTimer.Interval = TimeSpan.FromMilliseconds(30);
-                //this.bulletTimer.Interval = TimeSpan.FromSeconds(0.5);
-
-                //this.gameTimer.Tick += this.EnemyMove;
-                //this.gameTimer.Tick += this.EnemyHit;
-                //this.gameTimer.Tick += this.BulletMove;
-                //this.gameTimer.Tick += this.EnemyDamaged;
-                //this.gameTimer.Tick += this.EnemyDestroy;
-                //this.gameTimer.Tick += this.ItemPickedUp;
-                //this.gameTimer.Tick += this.GameEnded;
-                //this.bulletTimer.Tick += this.BulletTimer;
-
-                //this.gameTimer.Start();
-                //this.bulletTimer.Start();
-
                 win.KeyDown += HandleInput;
-                //win.KeyDown += this.MainCharacterShoot;
             }
         }
 

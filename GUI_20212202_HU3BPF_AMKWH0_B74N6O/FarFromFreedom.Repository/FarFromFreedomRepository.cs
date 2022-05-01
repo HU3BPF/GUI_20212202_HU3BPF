@@ -1,9 +1,13 @@
 ﻿using FarFromFreedom.Model;
+using FarFromFreedom.Model.Characters;
+using FarFromFreedom.Model.Characters.Enemies;
 using FarFromFreedom.Model.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace FarFromFreedom.Repository
 {
@@ -20,7 +24,7 @@ namespace FarFromFreedom.Repository
         {
             if (true)
             {
-
+                this.LoadLevel(1);
             }
             else
             {
@@ -68,7 +72,166 @@ namespace FarFromFreedom.Repository
         //Egy szoba egy game model lesz, egy modelb be lesz tölve a 2 lista (enemy, item)
         //Az egyes enemyk létrehozásához az xmlben kell (name desc az nem kell, power, health az kell).
 
+        private void LoadLevel(int lvl)
+        {
+            Dictionary<int, IGameModel> newGameModelMap = new Dictionary<int, IGameModel>();
+            //string json = File.ReadAllText($"Level{lvl}.xml");
 
+            XDocument source = XDocument.Load(Path.Combine("Map", $"Level{lvl}.xml"));
+            int key;
+            GameModel tmpModel;
+            
+            foreach (XElement room in source.Element($"Level{lvl}").Elements("Room"))
+            {
+                key = int.Parse(room.Attribute("ID").Value);
+
+                int[] neighbours = this.GetNeighbours(room);
+
+                List<IEnemy> enemies = this.GetEnemies(room);
+
+                List<IItem> items = this.GetItems(room);
+                tmpModel = new GameModel(neighbours, enemies, items);
+
+                newGameModelMap.Add(key, tmpModel);
+            }
+            this.GameModelMap.Add(newGameModelMap);
+
+            //List<GameModel> gameModel = JsonConvert.DeserializeObject<List<GameModel>>(json, new JsonSerializerSettings
+            //{
+            //    TypeNameHandling = TypeNameHandling.All,
+            //    TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
+            //    ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+            //});
+
+            //for (int i = 0; i < gameModel.Count; i++)
+            //{
+            //    newGameModelMap.Add(i, gameModel[i]);
+            //}
+
+        }
+
+        /// <summary>
+        /// Loads the items in the room.
+        /// </summary>
+        /// <param name="room"> The room's xelemnt. </param>
+        /// <returns> List of items. </returns>
+        private List<IItem> GetItems(XElement room)
+        {
+            List<IItem> result = new List<IItem>();
+
+            foreach (XElement obj in room.Element("Objects").Elements("Object"))
+            {
+                IItem tmp;
+                int x, y, width, height;
+                x = int.Parse(obj.Attribute("X").Value);
+                y = int.Parse(obj.Attribute("Y").Value);
+                width = int.Parse(obj.Attribute("Width").Value);
+                height = int.Parse(obj.Attribute("Height").Value);
+
+                switch (obj.Attribute("Type").Value)
+                {
+                    //case "Plyaelem":
+                    //    tmp = new Pályaelem(x, y, width, height);
+                    //    break;
+                    default:
+                        break;
+                }
+            }
+
+
+            return result;
+        }
+
+        /// <summary>
+        /// Loads the enemies from the room.
+        /// </summary>
+        /// <param name="room"> The room's xelemet. </param>
+        /// <returns> List of enemies. </returns>
+        private List<IEnemy> GetEnemies(XElement room)
+        {
+            List<IEnemy> result = new List<IEnemy>();
+
+            foreach (XElement obj in room.Element("Enemies").Elements("Enemy"))
+            {
+                IEnemy tmp = new BatEnemy();
+                int x, y, width, height;
+                x = int.Parse(obj.Attribute("X").Value);
+                y = int.Parse(obj.Attribute("Y").Value);
+                width = int.Parse(obj.Attribute("Width").Value);
+                height = int.Parse(obj.Attribute("Height").Value);
+                Rect rect = new Rect(x, y, width, height);
+
+                switch (obj.Attribute("Type").Value)
+                {
+
+                    case "Mushroom":
+                        tmp = new MushroomEnemy(rect);
+                        break;
+                    case "Pug":
+                        tmp = new PugEnemy(rect);
+                        break;
+                    case "Wasp":
+                        tmp = new WaspEnemy(rect);
+                        break;
+                    case "Bat":
+                        tmp = new BatEnemy(rect);
+                        break;
+                    case "Flying":
+                        tmp = new PugEnemy(rect);
+                        break;
+                    case "Monster":
+                        tmp = new MonsterEnemy(rect);
+                        break;
+                    case "Cat":
+                        tmp = new CatEnemy(rect);
+                        break;
+                    case "ZombieRunB":
+                        tmp = new ZombieRunBEnemy(rect);
+                        break;
+                    case "ZombieWalkCripple":
+                        tmp = new ZombieWalkCrippleEnemy(rect);
+                        break;
+                    default:
+                        break;
+                }
+
+                result.Add(tmp);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Loads a rooms neighbours.
+        /// </summary>
+        /// <param name="room"> The room's xelement. </param>
+        /// <returns> Int array that represents the neighbours' ids. </returns>
+        private int[] GetNeighbours(XElement room)
+        {
+            int[] result = new int[4];
+
+            if (!int.TryParse(room.Element("Neighbours").Element("UpperNeighbour").Attribute("ID")?.Value, out result[0]))
+            {
+                result[0] = -1;
+            }
+
+            if (!int.TryParse(room.Element("Neighbours").Element("RightNeighbour").Attribute("ID")?.Value, out result[1]))
+            {
+                result[1] = -1;
+            }
+
+            if (!int.TryParse(room.Element("Neighbours").Element("LowerNeighbour").Attribute("ID")?.Value, out result[2]))
+            {
+                result[2] = -1;
+            }
+
+            if (!int.TryParse(room.Element("Neighbours").Element("LeftNeighbour").Attribute("ID")?.Value, out result[3]))
+            {
+                result[3] = -1;
+            }
+
+            return result;
+        }
 
         private Dictionary<int, IGameModel> GameModelIniter(string fileName)
         {
@@ -89,5 +252,5 @@ namespace FarFromFreedom.Repository
 
             return newGameModelMap;
         }
-    }
+    } 
 }

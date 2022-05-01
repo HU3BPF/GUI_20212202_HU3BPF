@@ -9,6 +9,8 @@
 		</Neighbours>
 		<Enemies>
 		</Enemies>
+		<Objects>
+		</Objects>
 	</Room>
 	<Room ID="2" Type="Item">
 		<Neighbours>
@@ -19,6 +21,8 @@
 		</Neighbours>
 		<Enemies>
 		</Enemies>
+		<Objects>
+		</Objects>
 	</Room>
 	<Room ID="3" Type="Neutral">
 		<Neighbours>
@@ -30,11 +34,11 @@
 		<Enemies>
 		</Enemies>
 		<Objects>
-			<Fire X="500" Y="360" Width="40" Height="40"/>
-			<Fire X="700" Y="360" Width="40" Height="40"/>
-			<Fire X="640" Y="300" Width="40" Height="40"/>
-			<Fire X="640" Y="600" Width="40" Height="40"/>
-			<Chest X="640" Y="360" Width="40" Height="40"/>
+			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Fire" X="700" Y="360" Width="40" Height="40"/>
+			<Object Type="Fire" X="640" Y="300" Width="40" Height="40"/>
+			<Object Type="Fire" X="640" Y="600" Width="40" Height="40"/>
+			<Object Type="Chest" X="640" Y="360" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="4" Type="Enemy">
@@ -45,14 +49,14 @@
 			<RightNeighbour ID="5"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Enemy_1" X="400" Y="400"/>
-			<Enemy Type="Enemy_2" X="1000" Y="600"/>
+			<Enemy Type="Wasp" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="Pug" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
-			<Rock X="500" Y="360" Width="40" Height="40"/>
-			<Rock X="700" Y="360" Width="40" Height="40"/>
-			<Rock X="640" Y="300" Width="40" Height="40"/>
-			<Fire X="640" Y="600" Width="40" Height="40"/>
+			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Rock" X="700" Y="360" Width="40" Height="40"/>
+			<Object Type="Rock" X="640" Y="300" Width="40" Height="40"/>
+			<Object Type="Fire" X="640" Y="600" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="5" Type="Enemy">
@@ -63,14 +67,14 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Enemy_1" X="400" Y="400"/>
-			<Enemy Type="Enemy_3" X="1000" Y="600"/>
+			<Enemy Type="Wasp" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="Mushroom" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
-			<Fire X="500" Y="360" Width="40" Height="40"/>
-			<Rock X="100" Y="700" Width="40" Height="40"/>
-			<Rock X="400" Y="230" Width="40" Height="40"/>
-			<Rock X="300" Y="130" Width="40" Height="40"/>			
+			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Rock" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="Rock" X="400" Y="230" Width="40" Height="40"/>
+			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>			
 		</Objects>
 	</Room>
 	<Room ID="6" Type="Enemy">
@@ -81,15 +85,15 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Enemy_2" X="400" Y="400"/>
-			<Enemy Type="Enemy_3" X="1000" Y="600"/>
+			<Enemy Type="Pug" X="400" Y="400"  Width="40" Height="40"/>
+			<Enemy Type="Mushroom" X="1000" Y="600"  Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
-			<Fire X="500" Y="360" Width="40" Height="40"/>
-			<Fire X="100" Y="700" Width="40" Height="40"/>
-			<Fire X="400" Y="230" Width="40" Height="40"/>
-			<Rock X="300" Y="130" Width="40" Height="40"/>
-			<Rock X="210" Y="540" Width="40" Height="40"/>
+			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Fire" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="Fire" X="400" Y="230" Width="40" Height="40"/>
+			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="Rock" X="210" Y="540" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="7" Type="Enemy">
@@ -100,17 +104,17 @@
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Enemy_2" X="400" Y="400"/>
-			<Enemy Type="Enemy_1" X="1000" Y="600"/>
+			<Enemy Type="Pug" X="400" Y="400"  Width="40" Height="40"/>
+			<Enemy Type="Wasp" X="1000" Y="600"  Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
-			<Fire X="500" Y="360" Width="40" Height="40"/>
-			<Rock X="210" Y="430" Width="40" Height="40"/>
-			<Rock X="300" Y="130" Width="40" Height="40"/>
-			<Rock X="400" Y="530" Width="40" Height="40"/>
+			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Rock" X="210" Y="430" Width="40" Height="40"/>
+			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="Rock" X="400" Y="530" Width="40" Height="40"/>
 		</Objects>
 	</Room>
-	<Room ID="8" Type="Boss">
+	<Room ID="8" Type="Enemy">
 		<Neighbours>
 			<UpperNeighbour/>
 			<LeftNeighbour/>
@@ -118,13 +122,16 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Boss_1" X="200" Y="200" />
+			<Enemy Type="Wasp" X="110" Y="200"  Width="40" Height="40"/>
+			<Enemy Type="Pug" X="320" Y="800"  Width="40" Height="40"/>
+			<Enemy Type="Mushroom" X="631" Y="410"  Width="40" Height="40"/>
+			<Enemy Type="Wasp" X="340" Y="450"  Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
-			<Rock X="500" Y="360" Width="40" Height="40"/>
-			<Rock X="100" Y="700" Width="40" Height="40"/>
-			<Rock X="210" Y="430" Width="40" Height="40"/>
-			<Rock X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="Rock" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="Rock" X="210" Y="430" Width="40" Height="40"/>
+			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 </Level1>
