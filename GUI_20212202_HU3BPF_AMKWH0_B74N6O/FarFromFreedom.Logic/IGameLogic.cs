@@ -26,5 +26,7 @@ namespace FarFromFreedom.Logic
         int PlayerShoot(Key key, int counter);
         void RoomDown();
         void RoomUp();
+        void GenerateDoors();
+        int DoorIntersect();
     }
 }

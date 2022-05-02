@@ -29,7 +29,8 @@ namespace FarFromFreedom.Renderer
         {
             DrawingGroup drawingGroup = new DrawingGroup();
 
-            drawingGroup.Children.Add(GetDrawing(backGroundBrushes["Level1Start"], new RectangleGeometry(new Rect(0,0,1290,730))));
+            this.DrawBackgroung(drawingGroup);
+
 
             foreach (Enemy enemy in model.Enemies)
             {
@@ -107,6 +108,25 @@ namespace FarFromFreedom.Renderer
             }
             
             return drawingGroup;
+        }
+
+        private void DrawBackgroung(DrawingGroup drawingGroup)
+        {
+            double vystart = (1290.0 - 178.0) / 2.0;
+            double hxstart = (730.0 - 175.0) / 2.0;
+            //178,195 fl
+            //175,175 jb
+            drawingGroup.Children.Add(GetDrawing(backGroundBrushes["Level1Start_base"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+
+
+            if (this.model.Doors.Count != 0)
+            {
+                foreach (Door door in this.model.Doors)
+                {
+                    drawingGroup.Children.Add(GetDrawing(backGroundBrushes[door.Description], door.Area));
+                }
+            }
+            
         }
 
         public void GameModelChanged(IModel model) => this.model = (model as IGameModel);

@@ -85,7 +85,7 @@ namespace FarFromFreedom.Model.Characters
 
         public void HighscoreUp(double highscore)
         {
-            this.highscore = highscore;
+            this.highscore += highscore;
         }
     }
 }

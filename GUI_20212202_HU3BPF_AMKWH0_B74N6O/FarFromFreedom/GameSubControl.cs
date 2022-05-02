@@ -46,6 +46,9 @@ namespace FarFromFreedom
                 gameTimer.Tick += EnemyDestroy;
                 gameTimer.Tick += ItemPickedUp;
                 gameTimer.Tick += GameEnded;
+                gameTimer.Tick += DoorGenerator;
+                gameTimer.Tick += DoorEnter;
+                
                 bulletTimer.Tick += BulletTimer;
 
                 gameTimer.Start();
@@ -54,6 +57,20 @@ namespace FarFromFreedom
                 win.KeyDown += this.MainCharacterMove;
                 win.KeyDown += this.MainCharacterShoot;
             }
+        }
+
+        private void DoorEnter(object? sender, EventArgs e)
+        {
+            int? roomid = logic?.DoorIntersect();
+            if (roomid != -1)
+            {
+                MessageBox.Show(roomid.ToString());
+            }
+        }
+
+        private void DoorGenerator(object? sender, EventArgs e)
+        {
+            logic?.GenerateDoors();
         }
 
         private async void MainCharacterMove(object sender, KeyEventArgs e)
@@ -109,7 +126,7 @@ namespace FarFromFreedom
 
         private async void EnemyHit(object sender, EventArgs e)
         {
-            //this.logic?.EnemyHit();
+            this.logic?.EnemyHit();
         }
 
         private async void BulletMove(object sender, EventArgs e)

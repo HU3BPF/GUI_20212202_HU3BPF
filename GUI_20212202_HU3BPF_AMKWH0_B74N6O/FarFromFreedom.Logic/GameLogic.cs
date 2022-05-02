@@ -443,5 +443,47 @@ namespace FarFromFreedom.Logic
             }
         }
         private void RoomLooder() => gameModel = farFromFreedomRepository.GameModelMap[currentLevel][currentRoom];
+
+        public int DoorIntersect()
+        {
+            foreach (Door door in this.gameModel.Doors)
+            {
+                if (door.IsCollision((GameItem)this.gameModel.Character))
+                {
+                    return door.RoomId;
+                }
+            }
+            return -1;
+        }
+
+        public void GenerateDoors()
+        {
+            double w60percent = 178.0 * 0.6;
+            double h60percent = 195 * 0.6;
+            double a60percent = 175 * 0.6;
+            double vystart = (1290.0 - w60percent) / 2.0;
+            double hxstart = (730.0 - a60percent) / 2.0;
+            //178,195 fl
+            //175,175 jb
+            if (this.gameModel.Enemies.Count == 0 && this.gameModel.Doors?.Count ==0)
+            {
+                if (this.gameModel.UpperNeighbour != -1)
+                {
+                    this.gameModel.Doors.Add(new Door(1, 1, this.gameModel.UpperNeighbour, new Rect(vystart, 15, w60percent, h60percent)));
+                }
+                if (this.gameModel.RightNeighbour != -1)
+                {
+                    this.gameModel.Doors.Add(new Door(1, 2, this.gameModel.RightNeighbour, new Rect(1275 - a60percent, hxstart, a60percent, a60percent)));
+                }
+                if (this.gameModel.LowerNeighbour != -1)
+                {
+                    this.gameModel.Doors.Add(new Door(1, 3, this.gameModel.LowerNeighbour, new Rect(vystart, 715 - h60percent, w60percent, h60percent)));
+                }
+                if (this.gameModel.LeftNeighbour != -1)
+                {
+                    this.gameModel.Doors.Add(new Door(1, 4, this.gameModel.LeftNeighbour, new Rect(15, hxstart, a60percent, a60percent)));
+                }
+            }
+        }
     }
 }

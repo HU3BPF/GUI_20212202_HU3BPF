@@ -77,7 +77,7 @@ namespace FarFromFreedom
         {
             FarFromFreedomRepository repo = new FarFromFreedomRepository(1, "");
             IGameModel game = repo.GameModelMap[0][5];
-            game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(500, 500, 100, 100));
+            game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
             
             control.ChangeModel(game);
 

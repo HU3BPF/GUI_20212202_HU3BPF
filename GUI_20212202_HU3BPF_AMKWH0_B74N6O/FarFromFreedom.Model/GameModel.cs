@@ -16,6 +16,7 @@ namespace FarFromFreedom.Model
         private int lowerNeighbour;
         private int rightNeighbour;
         private int leftNeighbour;
+        private List<Door> doors;
 
 
 
@@ -41,6 +42,7 @@ namespace FarFromFreedom.Model
             this.enemies = enemies;
             this.items = items;
             this.bullets = new List<Bullet>();
+            this.doors = new List<Door>();
         }
 
         public GameModel()
@@ -48,6 +50,7 @@ namespace FarFromFreedom.Model
             this.enemies = new List<IEnemy>();
             this.items = new List<IItem>();
             this.bullets = new List<Bullet>();
+            this.doors = new List<Door>();
         }
 
         public IMainCharacter Character { get => this.character; set => this.character = value; }
@@ -60,6 +63,7 @@ namespace FarFromFreedom.Model
         public int LowerNeighbour { get => this.lowerNeighbour; set => this.lowerNeighbour = value; }
         public int RightNeighbour { get => this.rightNeighbour; set => this.rightNeighbour = value; }
         public int LeftNeighbour { get => this.leftNeighbour; set => this.leftNeighbour = value; }
+        public List<Door> Doors { get => doors; set => doors = value; }
 
         public void Init(List<IEnemy> enemies, List<IItem> items)
         {

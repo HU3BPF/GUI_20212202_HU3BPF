@@ -9,6 +9,7 @@ namespace FarFromFreedom.Model
         List<IEnemy> Enemies { get; set; }
         List<IItem> Items { get; set; }
         List<Bullet> Bullets { get; set; }
+        List<Door> Doors { get; set; }
 
         int UpperNeighbour { get; set; }
         int LowerNeighbour { get; set; } 
