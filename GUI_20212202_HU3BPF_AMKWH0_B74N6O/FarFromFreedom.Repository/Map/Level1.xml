@@ -64,7 +64,7 @@
 			<UpperNeighbour ID="6"/>
 			<LeftNeighbour ID="4"/>
 			<LowerNeighbour ID="1"/>
-			<RightNeighbour ID="0"/>
+			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Wasp" X="400" Y="400" Width="40" Height="40"/>

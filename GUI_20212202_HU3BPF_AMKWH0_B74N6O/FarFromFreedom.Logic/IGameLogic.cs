@@ -28,5 +28,6 @@ namespace FarFromFreedom.Logic
         void RoomUp();
         void GenerateDoors();
         int DoorIntersect();
+        IGameModel ChangeRoom(int roomid);
     }
 }

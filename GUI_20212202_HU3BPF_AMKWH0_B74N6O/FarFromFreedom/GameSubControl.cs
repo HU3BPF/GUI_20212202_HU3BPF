@@ -16,6 +16,7 @@ namespace FarFromFreedom
         public DispatcherTimer? gameTimer;
         DispatcherTimer? bulletTimer;
         private int counterTimer = 0;
+        BaseControl baseControl;
 
         public void Dispose()
         {
@@ -29,6 +30,7 @@ namespace FarFromFreedom
         public void Init(IGameModel model, BaseControl baseControl)
         {
             logic = new GameLogic(model);
+            this.baseControl = baseControl;
             Window win = Window.GetWindow(baseControl);
             if (win != null)
             {
@@ -62,9 +64,11 @@ namespace FarFromFreedom
         private void DoorEnter(object? sender, EventArgs e)
         {
             int? roomid = logic?.DoorIntersect();
-            if (roomid != -1)
+            if (roomid != -1 && roomid != null)
             {
-                MessageBox.Show(roomid.ToString());
+
+                baseControl.ChangeModel(logic?.ChangeRoom((int)roomid));
+                //MessageBox.Show(roomid.ToString());
             }
         }
 

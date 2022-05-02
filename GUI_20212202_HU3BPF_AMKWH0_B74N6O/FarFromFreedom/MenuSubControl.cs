@@ -76,7 +76,7 @@ namespace FarFromFreedom
         private void GameLoad(BaseControl control)
         {
             FarFromFreedomRepository repo = new FarFromFreedomRepository(1, "");
-            IGameModel game = repo.GameModelMap[0][5];
+            IGameModel game = repo.GameModelMap[0][1];
             game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
             
             control.ChangeModel(game);

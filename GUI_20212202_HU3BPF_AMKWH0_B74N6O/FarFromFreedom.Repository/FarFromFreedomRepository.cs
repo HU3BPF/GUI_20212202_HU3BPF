@@ -24,7 +24,7 @@ namespace FarFromFreedom.Repository
         {
             if (true)
             {
-                this.LoadLevel(1);
+                this.LoadLevel(levels);
             }
             else
             {

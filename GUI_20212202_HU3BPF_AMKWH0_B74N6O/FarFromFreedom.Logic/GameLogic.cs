@@ -23,6 +23,7 @@ namespace FarFromFreedom.Logic
         public GameLogic(IGameModel gameModel)
         {
             this.gameModel = gameModel;
+            farFromFreedomRepository = new FarFromFreedomRepository(1, "");
         }
         public GameLogic(int levels, string fileName)
         {
@@ -484,6 +485,14 @@ namespace FarFromFreedom.Logic
                     this.gameModel.Doors.Add(new Door(1, 4, this.gameModel.LeftNeighbour, new Rect(15, hxstart, a60percent, a60percent)));
                 }
             }
+        }
+
+        public IGameModel ChangeRoom(int roomid)
+        {
+            IMainCharacter mc = this.gameModel.Character;
+            this.gameModel = farFromFreedomRepository.GameModelMap[0][roomid];
+            this.gameModel.Character = mc;
+            return this.gameModel;
         }
     }
 }
