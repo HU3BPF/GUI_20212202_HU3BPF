@@ -230,30 +230,37 @@ namespace FarFromFreedom.Logic
 
         public int PlayerShoot(Key key, int counter)
         {
+            double x, y, w, h;
+            x = ((MainCharacter)gameModel.Character).Area.Rect.X;
+            y = ((MainCharacter)gameModel.Character).Area.Rect.Y;
+            w = ((MainCharacter)gameModel.Character).Area.Rect.Width;
+            h = ((MainCharacter)gameModel.Character).Area.Rect.Height;
+            x += w / 2;
+            y += h / 4;
             if (Key.W == key)
             {
-                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Up);
+                Bullet bullet = new Bullet(new Rect(x,y, 20,20), Direction.Up);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Up);
                 gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.S == key)
             {
-                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Down);
+                Bullet bullet = new Bullet(new Rect(x, y, 20, 20), Direction.Down);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Down);
                 gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.A == key)
             {
-                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Left);
+                Bullet bullet = new Bullet(new Rect(x, y, 20, 20), Direction.Left);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Left);
                 gameModel.Bullets.Add(bullet);
                 return 0;
             }
             else if (Key.D == key)
             {
-                Bullet bullet = new Bullet(((MainCharacter)gameModel.Character).Area.Rect, Direction.Right);
+                Bullet bullet = new Bullet(new Rect(x, y, 20, 20), Direction.Right);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Right);
                 gameModel.Bullets.Add(bullet);
                 return 0;

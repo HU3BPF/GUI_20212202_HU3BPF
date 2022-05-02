@@ -18,7 +18,7 @@ namespace FarFromFreedom.Renderer
         private static Brush moneyBrush = GetBrushes(Path.Combine("Images", "items", "money.png"));
         private static Brush shieldBrush = GetBrushes(Path.Combine("Images", "items", "shield.png"));
         private static Brush starBrush = GetBrushes(Path.Combine("Images", "items", "star.png"));
-        private static Brush tearsBrush = GetBrushes(Path.Combine("Images", "items", "tears.png"));
+        private static Brush tearsBrush = GetBrushes(Path.Combine("Images", "items", "bullet.png"));
         private static Brush timeBrush = GetBrushes(Path.Combine("Images", "items", "time.png"));
         private static Brush welcomePageBrush = GetBrushes(Path.Combine("Images", "background", "Start.jpg"));
         private static Brush mainMenuBrush = GetBrushes(Path.Combine("Images", "background", "MainMenu.png"));

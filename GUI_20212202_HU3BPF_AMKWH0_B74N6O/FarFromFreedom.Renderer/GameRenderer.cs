@@ -57,6 +57,7 @@ namespace FarFromFreedom.Renderer
                 if (itemBrush != null)
                 {
                     drawingGroup.Children.Add(GetDrawing(itemBrush, bullet.Area));
+
                 }
             }
 

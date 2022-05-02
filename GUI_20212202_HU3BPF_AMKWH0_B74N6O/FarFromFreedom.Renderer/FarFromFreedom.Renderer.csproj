@@ -614,6 +614,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Images\items\bullet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Images\levels\Level1\Level1door1_small.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
