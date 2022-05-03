@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace FarFromFreedom.Logic
 {
@@ -23,11 +24,11 @@ namespace FarFromFreedom.Logic
         public GameLogic(IGameModel gameModel)
         {
             this.gameModel = gameModel;
-            farFromFreedomRepository = new FarFromFreedomRepository(1, "");
+            farFromFreedomRepository = FarFromFreedomRepository.Instance();
         }
         public GameLogic(int levels, string fileName)
         {
-            farFromFreedomRepository = new FarFromFreedomRepository(levels, fileName);
+            farFromFreedomRepository = FarFromFreedomRepository.Instance();
         }
 
         public GameLogic()
@@ -498,8 +499,36 @@ namespace FarFromFreedom.Logic
         {
             int currentLevel = this.gameModel.Level;
             int currentRoomID = this.gameModel.RoomID;
+
             this.farFromFreedomRepository.GameModelMap[currentLevel - 1][currentRoomID] = this.gameModel;
             IMainCharacter mc = this.gameModel.Character;
+
+            if (roomid == this.gameModel.UpperNeighbour)
+            {
+                RectangleGeometry newArea = new RectangleGeometry(new Rect(mc.Area.Rect.X, 480, mc.Area.Rect.Width, mc.Area.Rect.Height));
+                mc.RepositionByEnteringAnotherRoom(newArea.Rect);
+                mc.Area = newArea;
+            }
+            else if (roomid == this.gameModel.LeftNeighbour)
+            {
+                RectangleGeometry newArea = new RectangleGeometry(new Rect(1080, mc.Area.Rect.Y, mc.Area.Rect.Width, mc.Area.Rect.Height));
+                mc.RepositionByEnteringAnotherRoom(newArea.Rect);
+                mc.Area = newArea;
+            }
+            else if (roomid == this.gameModel.LowerNeighbour)
+            {
+                RectangleGeometry newArea = new RectangleGeometry(new Rect(mc.Area.Rect.X, 140, mc.Area.Rect.Width, mc.Area.Rect.Height));
+                mc.RepositionByEnteringAnotherRoom(newArea.Rect);
+                mc.Area = newArea;
+            }
+            else if (roomid == this.gameModel.RightNeighbour)
+            {
+                RectangleGeometry newArea = new RectangleGeometry(new Rect(136, mc.Area.Rect.Y, mc.Area.Rect.Width, mc.Area.Rect.Height));
+                mc.RepositionByEnteringAnotherRoom(newArea.Rect);
+                mc.Area = newArea;
+            }
+
+
             this.gameModel = farFromFreedomRepository.GameModelMap[0][roomid];
             this.gameModel.Character = mc;
             return this.gameModel;

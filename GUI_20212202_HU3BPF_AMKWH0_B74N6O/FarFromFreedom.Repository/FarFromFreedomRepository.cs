@@ -19,19 +19,21 @@ namespace FarFromFreedom.Repository
         public List<Dictionary<int, IGameModel>> GameModelMap => gameModelMap;
 
         private List<Dictionary<int, IGameModel>> gameModelMap = new List<Dictionary<int, IGameModel>>();
-
-        public FarFromFreedomRepository(int levels, string fileName)
+        private static IFarFromFreedomRepository instance = null;
+        public static IFarFromFreedomRepository Instance()
         {
-            if (true)
+            if (instance == null)
             {
-                this.LoadLevel(levels);
+                instance = new FarFromFreedomRepository(1);
             }
-            else
+            return instance;
+        }
+        private FarFromFreedomRepository(int levels)
+        {
+            this.LoadLevel(levels);
+            for (int i = 1; i <= levels; i++)
             {
-                for (int i = 0; i < levels; i++)
-                {
-                    gameModelMap.Add(GameModelIniter($"fileName{fileName}"));
-                }
+                this.LoadLevel(i);
             }
         }
 

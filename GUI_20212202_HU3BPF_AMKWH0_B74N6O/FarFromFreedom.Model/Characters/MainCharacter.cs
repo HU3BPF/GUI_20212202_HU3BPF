@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Windows;
+using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
 {
@@ -42,6 +43,7 @@ namespace FarFromFreedom.Model.Characters
         public DirectionAnimationHelper DirectionHelper => directionHelper;
 
         public bool CharacterMoved { get; set; } = false;
+        
 
         public void PowerUp(double power)
         {
@@ -86,6 +88,11 @@ namespace FarFromFreedom.Model.Characters
         public void HighscoreUp(double highscore)
         {
             this.highscore += highscore;
+        }
+
+        public void RepositionByEnteringAnotherRoom(Rect rect)
+        {
+            this.areaRect = rect;
         }
     }
 }

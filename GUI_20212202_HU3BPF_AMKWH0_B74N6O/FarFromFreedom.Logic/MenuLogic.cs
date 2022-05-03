@@ -1,9 +1,12 @@
 ﻿using FarFromFreedom.Model;
+using FarFromFreedom.Model.Characters;
+using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FarFromFreedom.Logic
 {
@@ -90,9 +93,21 @@ namespace FarFromFreedom.Logic
         /// Ennek a hatására egy új modelnek kell majd betöltődni a BaseControl osztályba 
         /// </summary>
         /// <param name="selectedIndex"></param>
-        public void SelectIndex(int selectedIndex)
+        public IModel SelectIndex()
         {
-            // Valamit vissza kellene adni amiből tudni lehet milyen modell az amit akarunk a controlba rakni
+            switch (this.model.SelectedIndex)
+            {
+                case 0:
+                    IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
+                    IGameModel game = repo.GameModelMap[0][1];
+                    game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(604, 312, 70, 100));
+                    return game;
+                case 3:
+                    return null;
+                default:
+                    break;
+            }
+            return new MenuModel();
         }
     }
 }

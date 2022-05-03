@@ -37,11 +37,7 @@ namespace FarFromFreedom
                 {
 
                     case Key.Enter:
-                        logic?.SelectIndex(menuModel.SelectedIndex);
-                        if (menuModel.SelectedIndex < 2)
-                        {
-                            GameLoad(control);
-                        }
+                        this.HandleSelection(control, logic?.SelectIndex());
                         return 1;
                     case Key.Escape:
                         menuModel.IsWelcomePage = true;
@@ -59,11 +55,7 @@ namespace FarFromFreedom
                         logic?.DescSelectedIndex();
                         return 1;
                     case Key.Space:
-                        logic?.SelectIndex(menuModel.SelectedIndex);
-                        if (menuModel.SelectedIndex < 2)
-                        {
-                            GameLoad(control);
-                        }
+                        this.HandleSelection(control, logic?.SelectIndex());
                         return 1;
                     case Key.Back:
                         menuModel.IsWelcomePage = true;
@@ -73,9 +65,41 @@ namespace FarFromFreedom
             return -1;
         }
 
+        private void HandleSelection(BaseControl control, IModel model)
+        {
+            if (model == null)
+            {
+                Window.GetWindow(control).Close();
+                return;
+            }
+
+            if (model is IGameModel gameModel)
+            {
+                if (gameModel.Level == 1 && gameModel.RoomID == 1 && gameModel.Character.Highscore == 0)
+                {
+                    Intro introWindow = new Intro();
+                    introWindow.ShowDialog();
+                }
+                control.ChangeModel(gameModel);
+            }
+            
+            
+        }
+
+        private void NewGame(BaseControl control)
+        {
+            IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
+            IGameModel game = repo.GameModelMap[0][1];
+            Intro introWindow = new Intro();
+            introWindow.ShowDialog();
+            game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
+
+            control.ChangeModel(game);
+        }
+
         private void GameLoad(BaseControl control)
         {
-            FarFromFreedomRepository repo = new FarFromFreedomRepository(1, "");
+            IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
             IGameModel game = repo.GameModelMap[0][1];
             game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
             

@@ -96,7 +96,7 @@ namespace FarFromFreedom
             {
                 this.menuSubControl.Dispose();
             }
-            else if (this.model is IGameModel gameModel)
+            else if (this.model is IGameModel gameModel && !(model is IGameModel))
             {
                 this.gameSubControl.Dispose();
             }

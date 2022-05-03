@@ -32,4 +32,10 @@
     <ProjectReference Include="..\FarFromFreedom.Repository\FarFromFreedom.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="StoryVideo\backgroundStory.mov">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

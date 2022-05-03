@@ -17,6 +17,8 @@ namespace FarFromFreedom
         DispatcherTimer? bulletTimer;
         private int counterTimer = 0;
         BaseControl baseControl;
+        IGameModel model;
+        bool initializeChecker = false;
 
         public void Dispose()
         {
@@ -33,10 +35,11 @@ namespace FarFromFreedom
             {
                 logic = new GameLogic(model);
             }
+            this.model = model;
             
             this.baseControl = baseControl;
             Window win = Window.GetWindow(baseControl);
-            if (win != null)
+            if (win != null && initializeChecker == false)
             {
 
                 gameTimer = new DispatcherTimer();
@@ -61,10 +64,19 @@ namespace FarFromFreedom
                 bulletTimer.Start();
 
                 win.KeyDown += this.MainCharacterMove;
+                win.KeyDown += TestButtons;
                 win.KeyDown += this.MainCharacterShoot;
+                initializeChecker = true;
             }
         }
 
+        private void TestButtons(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.H)
+            {
+                MessageBox.Show("X: " + this.model.Character.Area.Rect.X + "\nY: " + this.model.Character.Area.Rect.Y);
+            }
+        }
 
         private void DoorEnter(object? sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarFromFreedom.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,7 @@ namespace FarFromFreedom.Logic
         /// Ezzel a metódussal érjük el, hogy kiválaszt egy menüelemet a felhasználó.
         /// Ennek a hatására egy új modelnek kell majd betöltődni a BaseControl osztályba 
         /// </summary>
-        /// <param name="selectedIndex"></param>
-        public void SelectIndex(int selectedIndex);
+        public IModel SelectIndex();
 
         /// <summary>
         /// Ez növeli a kiválaszott menüelem indexét, a tartományokon belül maradva.

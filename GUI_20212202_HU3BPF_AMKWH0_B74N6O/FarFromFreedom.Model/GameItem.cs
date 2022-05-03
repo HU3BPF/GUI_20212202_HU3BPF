@@ -15,11 +15,13 @@ namespace FarFromFreedom.Model
         }
 
         [TypeConverter(typeof(JsonRectConverter))]
-        public RectangleGeometry Area { get; }
+        public RectangleGeometry Area { get; set; }
 
         public Vector Speed => speed;
 
         private Rect area;
+
+        protected Rect areaRect { set => this.area = value; }
 
         private Vector speed = new Vector(4,4);
 

@@ -26,7 +26,7 @@ namespace FarFromFreedom.Pages
     public partial class MainMenu : Window
     {
         GameControl gameControl;
-        FarFromFreedomRepository repository = new FarFromFreedomRepository(1,"LevelsFileName");
+        IFarFromFreedomRepository repository = FarFromFreedomRepository.Instance();
         const double border_height = 105;
         const double border_width = 350;
         const double windowHeigth = 700;
