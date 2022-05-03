@@ -2,6 +2,7 @@
 using FarFromFreedom.Model;
 using FarFromFreedom.Renderer;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -19,6 +20,8 @@ namespace FarFromFreedom
         BaseControl baseControl;
         IGameModel model;
         bool initializeChecker = false;
+        private MediaPlayer player;
+        bool playing = true;
 
         public void Dispose()
         {
@@ -41,6 +44,10 @@ namespace FarFromFreedom
             Window win = Window.GetWindow(baseControl);
             if (win != null && initializeChecker == false)
             {
+                MediaPlayer sound = new MediaPlayer();
+                sound.Open(new Uri(Path.Combine("StoryVideo", "music.mp3"), UriKind.Relative));
+                this.player = sound;
+                sound.Play();
 
                 gameTimer = new DispatcherTimer();
                 bulletTimer = new DispatcherTimer();
@@ -56,6 +63,7 @@ namespace FarFromFreedom
                 gameTimer.Tick += ItemPickedUp;
                 gameTimer.Tick += GameEnded;
                 gameTimer.Tick += DoorGenerator;
+                gameTimer.Tick += TearDestroyer;
                 gameTimer.Tick += DoorEnter;
                 
                 bulletTimer.Tick += BulletTimer;
@@ -66,8 +74,30 @@ namespace FarFromFreedom
                 win.KeyDown += this.MainCharacterMove;
                 win.KeyDown += TestButtons;
                 win.KeyDown += this.MainCharacterShoot;
+                win.KeyDown += MusicPlayer;
                 initializeChecker = true;
             }
+        }
+
+        private void MusicPlayer(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.P)
+            {
+                if (playing)
+                {
+                    player.Pause();
+                }
+                else
+                {
+                    player.Play();
+                }
+                playing = !playing;
+            }
+        }
+
+        private void TearDestroyer(object? sender, EventArgs e)
+        {
+            logic?.DisposeOutOFBoundsTears();
         }
 
         private void TestButtons(object sender, KeyEventArgs e)
@@ -147,7 +177,14 @@ namespace FarFromFreedom
 
         private async void EnemyHit(object sender, EventArgs e)
         {
-            this.logic?.EnemyHit();
+            if (this.logic.EnemyHit())
+            {
+                Random r = new Random();
+                MediaPlayer sound = new MediaPlayer();
+                sound.Open(new Uri(Path.Combine("StoryVideo", $"Hurt_grunt_{r.Next(0,3)}.wav"), UriKind.Relative));
+                sound.Play();
+            }
+            
         }
 
         private async void BulletMove(object sender, EventArgs e)
@@ -161,6 +198,10 @@ namespace FarFromFreedom
             {
                 var w = Application.Current.Windows[0];
                 w.Hide();
+
+                MediaPlayer sound = new MediaPlayer();
+                sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
+                sound.Play();
                 MessageBox.Show("Game ended.");
                 gameTimer.Stop();
             }

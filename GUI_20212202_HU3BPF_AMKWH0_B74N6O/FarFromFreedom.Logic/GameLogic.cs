@@ -154,16 +154,19 @@ namespace FarFromFreedom.Logic
             }
         }
 
-        public void EnemyHit()
+        public bool EnemyHit()
         {
+            bool result = false;
             foreach (Enemy enemy in gameModel.Enemies)
             {
                 bool isCollision = enemy.IsCollision((MainCharacter)gameModel.Character);
                 if (isCollision)
                 {
                     gameModel.Character.CurrentHealthDown(enemy.Power);
+                    result = true;
                 }
             }
+            return result;
         }
 
         public void GameSave(string fileName)
@@ -463,6 +466,32 @@ namespace FarFromFreedom.Logic
                 }
             }
             return -1;
+        }
+
+        public void DisposeOutOFBoundsTears()
+        {
+            List<Bullet> removables = new List<Bullet>();
+            foreach (Bullet tear in this.gameModel.Bullets)
+            {
+                
+                if (tear.Area.Rect.Left <= 105)
+                {
+                    removables.Add(tear);
+                }
+                else if (tear.Area.Rect.Right >= 1190)
+                {
+                    removables.Add(tear);
+                }
+                else if (tear.Area.Rect.Top <= 105)
+                {
+                    removables.Add(tear);
+                }
+                else if (tear.Area.Rect.Bottom >= 610)
+                {
+                    removables.Add(tear);
+                }
+            }
+            removables.ForEach(x => this.gameModel.Bullets.Remove(x));
         }
 
         public void GenerateDoors()

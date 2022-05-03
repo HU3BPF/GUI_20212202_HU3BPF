@@ -4,10 +4,12 @@ using FarFromFreedom.Renderer;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -32,8 +34,6 @@ namespace FarFromFreedom
             //this.model = new MenuModel();
             //this.renderer = new MenuRenderer(this.model as IMenuModel);
             this.menuSubControl.Init((IMenuModel)this.model);
-
-            
 
 
             this.Loaded += GameLoader;
@@ -109,7 +109,7 @@ namespace FarFromFreedom
                 this.menuSubControl.Init((IMenuModel)this.model);
             }
             else if (this.model is IGameModel gameModel)
-            {
+            { 
                 this.renderer = new GameRenderer((IGameModel)this.model);
                 this.gameSubControl.Init((IGameModel)this.model, this);
                 this.gameSubControl.gameTimer.Tick += GameTimer_ScreenRefresh;

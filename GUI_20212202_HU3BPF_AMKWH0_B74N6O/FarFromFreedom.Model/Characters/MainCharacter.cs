@@ -15,6 +15,7 @@ namespace FarFromFreedom.Model.Characters
             this.currentHealth = currentHealth;
             this.power = power;
             this.coin = coin;
+            this.SpeedSetter = new Vector(6, 6);
         }
 
         private string name;

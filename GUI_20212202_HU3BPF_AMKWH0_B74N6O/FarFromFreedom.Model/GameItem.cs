@@ -25,6 +25,8 @@ namespace FarFromFreedom.Model
 
         private Vector speed = new Vector(4,4);
 
+        protected Vector SpeedSetter { set => this.speed = value; }
+
         public GameItem(Rect area, Vector speed)
         {
             this.area = area;

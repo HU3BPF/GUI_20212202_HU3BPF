@@ -13,7 +13,7 @@ namespace FarFromFreedom.Logic
         void BulletMove();
         void EnemyDamaged();
         void EnemyDestroy();
-        void EnemyHit();
+        bool EnemyHit();
         bool EnemyIsCollision(Queue<Enemy> queue, Enemy enemy);
         void EnemyMove();
         bool GameEnd();
@@ -29,5 +29,6 @@ namespace FarFromFreedom.Logic
         void GenerateDoors();
         int DoorIntersect();
         IGameModel ChangeRoom(int roomid);
+        void DisposeOutOFBoundsTears();
     }
 }
