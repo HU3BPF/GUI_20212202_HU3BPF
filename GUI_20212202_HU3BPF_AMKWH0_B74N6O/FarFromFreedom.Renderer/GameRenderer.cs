@@ -31,36 +31,65 @@ namespace FarFromFreedom.Renderer
 
             this.DrawBackgroung(drawingGroup);
 
+            this.DrawEnemies(drawingGroup);
 
-            foreach (Enemy enemy in model.Enemies)
+            this.DrawItems(drawingGroup);
+
+            this.DrawTears(drawingGroup);
+
+            this.DrawMainCharacter(drawingGroup);
+
+            this.DrawInterface(drawingGroup);
+            
+            return drawingGroup;
+        }
+
+        private void DrawInterface(DrawingGroup drawingGroup)
+        {
+            Brush heartBrush = GameBrushes.GetValueOrDefault("Heart");
+            Brush emptyHeartBrush = GameBrushes.GetValueOrDefault("EmptyHeart");
+
+            int hearts = (int)(this.model.Character.CurrentHealth / 10);
+            int emptyhears = 10 - hearts;
+
+            double x = 20.0;
+            double y = 20.0;
+            double w = 69.0*0.60;
+            double h = 62.0*0.60;
+            double spacing = 10.0;
+
+            //w69 h62 
+            for (int i = 1; i <= hearts; i++)
             {
-                Brush itemBrush = enemy.ImageBurshes.GetValueOrDefault(enemy.Name + enemy.Counter);
-                if (itemBrush != null)
-                {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, enemy.Area));
-                    enemy.counterUp();
-                }
+                drawingGroup.Children.Add(this.GetDrawing(heartBrush, new RectangleGeometry(new Rect(x, y, w, h))));
+                x += w + spacing;
             }
 
-            foreach (var item in model.Items)
+            for (int i = 1; i <= emptyhears; i++)
             {
-                Brush itemBrush = GameBrushes.GetValueOrDefault(item.Name);
-                if (itemBrush != null)
-                {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
-                }
+                drawingGroup.Children.Add(this.GetDrawing(emptyHeartBrush, new RectangleGeometry(new Rect(x, y, w, h))));
+                x += w + spacing;
             }
 
-            foreach (var bullet in model.Bullets)
-            {
-                Brush itemBrush = GameBrushes.GetValueOrDefault("TearsBrush");
-                if (itemBrush != null)
-                {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, bullet.Area));
 
-                }
-            }
+            string hs = this.model.Character.Highscore.ToString();
+            FormattedText formattedText = new FormattedText(
+              hs,
+              System.Globalization.CultureInfo.CurrentCulture,
+              FlowDirection.LeftToRight,
+              new Typeface("Arial"),
+              20,
+              Brushes.Black,
+              1);
+            GeometryDrawing highscore = new GeometryDrawing(null, new Pen(Brushes.SandyBrown, 2), formattedText.BuildGeometry(new Point(1290 - 10 - (hs.Length*13), 20)));
 
+            drawingGroup.Children.Add(highscore);
+
+
+        }
+
+        private void DrawMainCharacter(DrawingGroup drawingGroup)
+        {
             if (model.Character is MainCharacter mainCharacter)
             {
                 if (model.Character.CharacterMoved == false)
@@ -107,17 +136,60 @@ namespace FarFromFreedom.Renderer
                 }
 
             }
-            
-            return drawingGroup;
+
+        }
+
+        private void DrawTears(DrawingGroup drawingGroup)
+        {
+            foreach (var bullet in model.Bullets)
+            {
+                Brush itemBrush = GameBrushes.GetValueOrDefault("TearsBrush");
+                if (itemBrush != null)
+                {
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, bullet.Area));
+
+                }
+            }
+        }
+
+        private void DrawItems(DrawingGroup drawingGroup)
+        {
+            foreach (var item in model.Items)
+            {
+                Brush itemBrush = GameBrushes.GetValueOrDefault(item.Name);
+                if (itemBrush != null)
+                {
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
+                }
+            }
+        }
+
+        private void DrawEnemies(DrawingGroup drawingGroup)
+        {
+            foreach (Enemy enemy in model.Enemies)
+            {
+                Brush itemBrush = enemy.ImageBurshes.GetValueOrDefault(enemy.Name + enemy.Counter);
+                if (itemBrush != null)
+                {
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, enemy.Area));
+                    enemy.counterUp();
+                }
+            }
         }
 
         private void DrawBackgroung(DrawingGroup drawingGroup)
         {
-            double vystart = (1290.0 - 178.0) / 2.0;
-            double hxstart = (730.0 - 175.0) / 2.0;
-            //178,195 fl
-            //175,175 jb
-            drawingGroup.Children.Add(GetDrawing(backGroundBrushes["Level1Start_base"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+            int levee = this.model.Level;
+
+            if (this.model.Level == 1 && this.model.RoomID == 1)
+            {
+                drawingGroup.Children.Add(GetDrawing(backGroundBrushes[$"Level{this.model.Level}Start_base"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+            }
+            else
+            {
+                drawingGroup.Children.Add(GetDrawing(backGroundBrushes[$"Level{this.model.Level}_base"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+            }
+
 
 
             if (this.model.Doors.Count != 0)

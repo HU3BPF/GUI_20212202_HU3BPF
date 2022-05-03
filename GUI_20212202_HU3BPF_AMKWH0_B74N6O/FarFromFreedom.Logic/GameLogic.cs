@@ -496,6 +496,9 @@ namespace FarFromFreedom.Logic
 
         public IGameModel ChangeRoom(int roomid)
         {
+            int currentLevel = this.gameModel.Level;
+            int currentRoomID = this.gameModel.RoomID;
+            this.farFromFreedomRepository.GameModelMap[currentLevel - 1][currentRoomID] = this.gameModel;
             IMainCharacter mc = this.gameModel.Character;
             this.gameModel = farFromFreedomRepository.GameModelMap[0][roomid];
             this.gameModel.Character = mc;

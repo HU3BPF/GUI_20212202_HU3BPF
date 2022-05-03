@@ -14,7 +14,7 @@ namespace FarFromFreedom.Renderer
         private static Brush bottle2Brush = GetBrushes(Path.Combine("Images", "items", "bottle2.png"));
         private static Brush coinBrush = GetBrushes(Path.Combine("Images", "items", "coin.png"));
         private static Brush heartBrush = GetBrushes(Path.Combine("Images", "items", "heart.png"));
-        private static Brush heart2Brush = GetBrushes(Path.Combine("Images", "items", "heart2.png"));
+        private static Brush emptyheartBrush = GetBrushes(Path.Combine("Images", "items", "emptyheart.png"));
         private static Brush moneyBrush = GetBrushes(Path.Combine("Images", "items", "money.png"));
         private static Brush shieldBrush = GetBrushes(Path.Combine("Images", "items", "shield.png"));
         private static Brush starBrush = GetBrushes(Path.Combine("Images", "items", "star.png"));
@@ -34,7 +34,7 @@ namespace FarFromFreedom.Renderer
             initGameDrawings.Add("Bag", bagBrush);
             initGameDrawings.Add("Bomb", bombBrush);
             initGameDrawings.Add("Bottle2", bottle2Brush);
-            initGameDrawings.Add("Heart2", heart2Brush);
+            initGameDrawings.Add("EmptyHeart", emptyheartBrush);
             initGameDrawings.Add("Coin", coinBrush);
             initGameDrawings.Add("Heart", heartBrush);
             initGameDrawings.Add("Money", moneyBrush);

@@ -14,7 +14,9 @@ namespace FarFromFreedom.Model
         int UpperNeighbour { get; set; }
         int LowerNeighbour { get; set; } 
         int RightNeighbour { get; set; } 
-        int LeftNeighbour { get; set; } 
+        int LeftNeighbour { get; set; }
+        int RoomID { get; set; }
+        int Level { get; set; }
 
         void Init(List<IEnemy> enemies, List<IItem> Items);
     }

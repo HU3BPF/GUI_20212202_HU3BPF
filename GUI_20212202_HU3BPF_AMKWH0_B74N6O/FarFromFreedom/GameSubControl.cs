@@ -20,7 +20,7 @@ namespace FarFromFreedom
 
         public void Dispose()
         {
-            this.logic = null;
+            //this.logic = null;
             this.gameTimer?.Stop();
             this.gameTimer = null;
             this.bulletTimer?.Stop();
@@ -29,7 +29,11 @@ namespace FarFromFreedom
 
         public void Init(IGameModel model, BaseControl baseControl)
         {
-            logic = new GameLogic(model);
+            if (logic is null)
+            {
+                logic = new GameLogic(model);
+            }
+            
             this.baseControl = baseControl;
             Window win = Window.GetWindow(baseControl);
             if (win != null)
@@ -60,6 +64,7 @@ namespace FarFromFreedom
                 win.KeyDown += this.MainCharacterShoot;
             }
         }
+
 
         private void DoorEnter(object? sender, EventArgs e)
         {

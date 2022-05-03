@@ -50,7 +50,7 @@
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Wasp" X="400" Y="400" Width="80" Height="80"/>
-			<Enemy Type="Pug" X="1000" Y="600" Width="80" Height="80"/>
+			<Enemy Type="Pug" X="1000" Y="600" Width="121" Height="80"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
@@ -85,7 +85,7 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Pug" X="400" Y="400"  Width="80" Height="80"/>
+			<Enemy Type="Pug" X="400" Y="400"  Width="121" Height="80"/>
 			<Enemy Type="Mushroom" X="1000" Y="600"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
@@ -104,7 +104,7 @@
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Pug" X="400" Y="400"  Width="80" Height="80"/>
+			<Enemy Type="Pug" X="400" Y="400"  Width="121" Height="80"/>
 			<Enemy Type="Wasp" X="1000" Y="600"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
@@ -117,15 +117,15 @@
 	<Room ID="8" Type="Enemy">
 		<Neighbours>
 			<UpperNeighbour/>
-			<LeftNeighbour/>
+			<LeftNeighbour ID="7"/>
 			<LowerNeighbour/>
-			<RightNeighbour ID="7"/>
+			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Wasp" X="110" Y="200"  Width="40" Height="40"/>
-			<Enemy Type="Pug" X="320" Y="800"  Width="40" Height="40"/>
-			<Enemy Type="Mushroom" X="631" Y="410"  Width="40" Height="40"/>
-			<Enemy Type="Wasp" X="340" Y="450"  Width="40" Height="40"/>
+			<Enemy Type="Wasp" X="110" Y="200"  Width="80" Height="80"/>
+			<Enemy Type="Pug" X="320" Y="800"  Width="121" Height="80"/>
+			<Enemy Type="Mushroom" X="631" Y="410"  Width="80" Height="80"/>
+			<Enemy Type="Wasp" X="340" Y="450"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
