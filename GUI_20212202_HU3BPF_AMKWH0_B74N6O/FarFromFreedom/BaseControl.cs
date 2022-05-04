@@ -62,8 +62,15 @@ namespace FarFromFreedom
             Window win = Window.GetWindow(this);
             if (win != null)
             {
+                win.MouseDown += TesztPointWriter;
                 win.KeyDown += HandleInput;
             }
+        }
+
+        private void TesztPointWriter(object sender, MouseButtonEventArgs e)
+        {
+            Point p =Mouse.GetPosition(this);
+            MessageBox.Show($"X: {p.X}\nY: {p.Y}");
         }
 
         private void HandleInput(object sender, KeyEventArgs e)

@@ -98,7 +98,7 @@ namespace FarFromFreedom.Logic
             {
                 case 0: this.model.NewGameOpacity = opacity; break;
                 case 1: this.model.ContinueOpacity = opacity; break;
-                case 2: this.model.StatsOpacity = opacity; break;
+                case 2: this.model.HighscoreOpacity = opacity; break;
                 case 3: this.model.ExitGameOpacity = opacity; break;
             }
         }
@@ -119,12 +119,21 @@ namespace FarFromFreedom.Logic
                     return game;
                 case 1:
                     return this.prevGameModel;
+                case 2:
+                    this.LoadHighscores();
+                    return this.model;
                 case 3:
                     return null;
                 default:
                     break;
             }
             return new MenuModel();
+        }
+
+        public void LoadHighscores()
+        {
+            this.model.IsHighscoreList = true;
+            this.model.GetHighscores = this.repository.LoadHighscores();
         }
     }
 }

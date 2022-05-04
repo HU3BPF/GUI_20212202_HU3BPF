@@ -50,6 +50,13 @@ namespace FarFromFreedom.Repository
             return gameModel;
         }
 
+        /// <summary>
+        /// Saves the current main character, and its position.
+        /// </summary>
+        /// <param name="mc"> Main character class. </param>
+        /// <param name="level"> Current level. </param>
+        /// <param name="roomid"> Current room ID. </param>
+        /// <param name="clearedRoomIDs"> List of roomids that has no enemies. </param>
         public void SaveGameToXml(IMainCharacter mc, int level, int roomid, List<int> clearedRoomIDs)
         {
             XElement clearedRooms = new XElement("Cleared_Rooms");
@@ -90,6 +97,7 @@ namespace FarFromFreedom.Repository
             sw.Close();
 
         }
+
         public void SaveGame(IGameModel gameModel, string filename)
         {
             List<JsonConverter> jsonConverter = new List<JsonConverter>();
@@ -290,6 +298,10 @@ namespace FarFromFreedom.Repository
             return newGameModelMap;
         }
 
+        /// <summary>
+        /// Loads the save file.
+        /// </summary>
+        /// <returns> Game model. </returns>
         public IGameModel LoadGameFromXML()
         {
             XDocument source = XDocument.Load(Path.Combine(Directory.GetCurrentDirectory(),"Saves", $"SaveFile.xml"));
@@ -323,14 +335,23 @@ namespace FarFromFreedom.Repository
             return result;
         }
 
+        /// <summary>
+        /// Saves the Main Characters current highscore.
+        /// </summary>
+        /// <param name="userName"> The player's name that will be displayed in the highscores menu. </param>
+        /// <param name="score"> The player's current score. </param>
         public void SaveHighScore(string userName, int score)
         {
             XElement SaveFile;
             bool added = false;
+
+            // The new score element that will be inserted.
             XElement newScore = new XElement("Score",
                                             new XElement("Name", userName),
                                             new XElement("Point", score)
                                         );
+
+            //Checks weather the directory and the file exists,
             if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore")))
             {
                 Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Highscore"));
@@ -351,17 +372,27 @@ namespace FarFromFreedom.Repository
 
             }
 
-
+            XElement last = new XElement("");
+            last = null;
+            // Goes through the score elements and inserts it to keep the decreasing scores.
             foreach (XElement xscore in SaveFile.Element("Highscores").Elements("Score"))
             {
+                last = xscore;
                 if (int.Parse(xscore.Element("Point").Value)<score)
                 {
                     xscore.AddBeforeSelf(newScore);
                     added = true;
+                    last = null;
                     break;
                 }
             }
-            if (!added)
+
+            if (!added && last != null)
+            {
+                last.AddAfterSelf(newScore);
+
+            }
+            else if (!added && last == null)
             {
                 SaveFile.Element("Highscores").Add(newScore);
             }
@@ -369,6 +400,39 @@ namespace FarFromFreedom.Repository
             StreamWriter sw = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
             SaveFile.Save(sw);
             sw.Close();
+        }
+
+        /// <summary>
+        /// Loads the highscores if there is any.
+        /// </summary>
+        /// <returns> A dictionary</returns>
+        public Dictionary<string, int> LoadHighscores()
+        {
+            XElement xml;
+            Dictionary<string, int> highscores = new Dictionary<string, int>();
+            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore")))
+            {
+                return highscores;
+            }
+            else
+            {
+                if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml")))
+                {
+                    StreamReader sr = new StreamReader(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
+                    xml = XElement.Load(sr);
+                    sr.Close();
+                }
+                else
+                {
+                    return highscores;
+                }
+            }
+
+            foreach (XElement score in xml.Elements("Score"))
+            {
+                highscores.Add(score.Element("Name").Value, int.Parse(score.Element("Point").Value));
+            }
+            return highscores;
         }
     } 
 }

@@ -33,6 +33,15 @@ namespace FarFromFreedom
         {
             if (e != null)
             {
+                if (menuModel.IsHighscoreList)
+                {
+                    if (e.Key == Key.Escape)
+                    {
+                        menuModel.IsHighscoreList = !menuModel.IsHighscoreList;
+                        return 1;
+                    }
+                    return-1;
+                }
                 switch (e.Key)
                 {
 

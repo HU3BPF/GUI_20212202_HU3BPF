@@ -77,7 +77,20 @@ namespace FarFromFreedom
                 win.KeyDown += TestButtons;
                 win.KeyDown += this.MainCharacterShoot;
                 win.KeyDown += MusicPlayer;
+                win.KeyDown += EscapePress;
                 initializeChecker = true;
+            }
+        }
+
+        private void EscapePress(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                this.bulletTimer.Stop();
+                this.gameTimer.Stop();
+                this.counterTimer = 0;
+                string userName = "Teszt";
+                this.logic.GameSave();
             }
         }
 

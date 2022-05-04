@@ -9,6 +9,7 @@ namespace FarFromFreedom.Model
     public interface IMenuModel : IModel
     {
         bool IsWelcomePage { get; set; }
+        bool IsHighscoreList { get; set; }
         bool CanContiue { get; set; }
         int NewGameWidth { get; }
         int NewGameHeight { get; }
@@ -19,14 +20,16 @@ namespace FarFromFreedom.Model
         int OptionsWidth { get; }
         int OptionsHeight { get; }
         double OptionsOpacity { get; set; }
-        int StatsWidth { get; }
-        int StatsHeight { get; }
-        double StatsOpacity { get; set; }
+        int HighscoreWidth { get; }
+        int HighscoreHeight { get; }
+        double HighscoreOpacity { get; set; }
         int ExitGameWidth { get; }
         int ExitGameHeight { get; }
         double ExitGameOpacity { get; set; }
         int SelectedIndex { get; set; }
         public void ResetParams();
+
+        Dictionary<string, int> GetHighscores { get; set; }
 
     }
 }

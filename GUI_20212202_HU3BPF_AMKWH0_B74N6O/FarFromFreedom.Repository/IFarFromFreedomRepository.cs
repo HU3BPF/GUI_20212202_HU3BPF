@@ -10,7 +10,7 @@ namespace FarFromFreedom.Repository
         static IFarFromFreedomRepository Instance() { return Instance(); }
         IGameModel LoadGame(string fileName);
         IGameModel LoadGameFromXML();
-
+        Dictionary<string, int> LoadHighscores();
         void SaveHighScore(string userName, int score);
         void SaveGame(IGameModel gameModel, string filename);
         void SaveGameToXml(IMainCharacter mc, int level, int roomid, List<int> clearedRoomIDs);

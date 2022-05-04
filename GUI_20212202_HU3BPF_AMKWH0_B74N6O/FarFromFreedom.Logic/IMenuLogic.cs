@@ -26,5 +26,7 @@ namespace FarFromFreedom.Logic
         /// Arra figyelv, hogy ha a Continue gombra lépnénk, akkor kihagyja ha nem lehet betölteni játékot.
         /// </summary>
         public void DescSelectedIndex();
+
+        public void LoadHighscores();
     }
 }
