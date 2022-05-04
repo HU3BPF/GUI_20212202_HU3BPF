@@ -47,6 +47,8 @@ namespace FarFromFreedom
                 MediaPlayer sound = new MediaPlayer();
                 sound.Open(new Uri(Path.Combine("StoryVideo", "music.mp3"), UriKind.Relative));
                 this.player = sound;
+                sound.Volume = 0.4;
+
                 sound.Play();
 
                 gameTimer = new DispatcherTimer();
@@ -105,6 +107,10 @@ namespace FarFromFreedom
             if (e.Key == Key.H)
             {
                 MessageBox.Show("X: " + this.model.Character.Area.Rect.X + "\nY: " + this.model.Character.Area.Rect.Y);
+            }
+            if (e.Key == Key.T)
+            {
+                logic?.GameSave();
             }
         }
 

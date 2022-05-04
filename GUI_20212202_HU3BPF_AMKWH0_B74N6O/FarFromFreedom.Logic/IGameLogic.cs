@@ -19,6 +19,7 @@ namespace FarFromFreedom.Logic
         bool GameEnd();
         IGameModel GameLoad(string fileName);
         void GameSave(string fileName);
+        void GameSave();
         void HighscoreUp(double highscore);
         void ItemPicked();
         void levelUp();

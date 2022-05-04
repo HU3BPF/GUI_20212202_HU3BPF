@@ -15,6 +15,7 @@ namespace FarFromFreedom.Model.Characters
         double Highscore { get; }
         bool CharacterMoved { get; set; }
         RectangleGeometry Area   { get; set; }
+        Vector Speed { get; }
         DirectionAnimationHelper DirectionHelper { get; }
         void CurrentHealthUp(double currentHealth);
         void CurrentHealthDown(double currentHealth);

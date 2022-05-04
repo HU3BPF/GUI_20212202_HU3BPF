@@ -174,6 +174,21 @@ namespace FarFromFreedom.Logic
             this.farFromFreedomRepository.SaveGame(gameModel, fileName);
         }
 
+        public void GameSave()
+        {
+            List<int> cleard_rooms = new List<int>();
+            var rooms = this.farFromFreedomRepository.GameModelMap[this.gameModel.Level - 1].GetEnumerator();
+            do
+            {
+                if (rooms.Current.Value != null && (rooms.Current.Value.Enemies == null || rooms.Current.Value.Enemies.Count == 0))
+                {
+                    cleard_rooms.Add(rooms.Current.Value.RoomID);
+                }
+            } while (rooms.MoveNext());
+
+            this.farFromFreedomRepository.SaveGameToXml(this.gameModel.Character, this.gameModel.Level, this.gameModel.RoomID, cleard_rooms);
+        }
+
         public bool GameEnd()
         {
             IMainCharacter character = gameModel.Character;

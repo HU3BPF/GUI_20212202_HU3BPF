@@ -50,6 +50,46 @@ namespace FarFromFreedom.Repository
             return gameModel;
         }
 
+        public void SaveGameToXml(IMainCharacter mc, int level, int roomid, List<int> clearedRoomIDs)
+        {
+            XElement clearedRooms = new XElement("Cleared_Rooms");
+            foreach (int ID in clearedRoomIDs)
+            {
+                clearedRooms.Add(new XElement("Room", ID));
+            }
+            XElement SaveFile = new XElement("SaveFile",
+                                new XElement("Position",
+                                    new XElement("Level", level),
+                                    new XElement("RoomID", roomid)
+                                ),
+                                clearedRooms,
+                                new XElement("MainCharacter",
+                                    new XElement("Name", mc.Name),
+                                    new XElement("Description", mc.Description),
+                                    new XElement("Helth", mc.Health),
+                                    new XElement("CurrentHealth", mc.CurrentHealth),
+                                    new XElement("Speed_X", mc.Speed.X),
+                                    new XElement("Speed_Y", mc.Speed.Y),
+                                    new XElement("Coin", mc.Coin),
+                                    new XElement("Highscore", mc.Highscore),
+                                    new XElement("Power", mc.Power),
+                                    new XElement("Area",
+                                        new XElement("X", mc.Area.Rect.X),
+                                        new XElement("Y", mc.Area.Rect.Y),
+                                        new XElement("Width", mc.Area.Rect.Width),
+                                        new XElement("Height", mc.Area.Rect.Height)
+                                    )
+                                )
+                            );
+            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Saves")))
+            {
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Saves"));
+            }
+            StreamWriter sw = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Saves", "SaveFile.xml"));
+            SaveFile.Save(sw);
+            sw.Close();
+
+        }
         public void SaveGame(IGameModel gameModel, string filename)
         {
             List<JsonConverter> jsonConverter = new List<JsonConverter>();
@@ -248,6 +288,87 @@ namespace FarFromFreedom.Repository
             }
 
             return newGameModelMap;
+        }
+
+        public IGameModel LoadGameFromXML()
+        {
+            XDocument source = XDocument.Load(Path.Combine(Directory.GetCurrentDirectory(),"Saves", $"SaveFile.xml"));
+            int level = int.Parse(source.Element("SaveFile").Element("Position").Element("Level").Value);
+            int roomID = int.Parse(source.Element("SaveFile").Element("Position").Element("RoomID").Value);
+            foreach (XElement room in source.Element("SaveFile").Element("Cleared_Rooms").Elements("Room"))
+            {
+                this.gameModelMap[level - 1][int.Parse(room.Value)].Enemies.Clear();
+            }
+            string name = source.Element("SaveFile").Element("MainCharacter").Element("Name").Value;
+            string description = source.Element("SaveFile").Element("MainCharacter").Element("Description").Value;
+            int helth = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Helth").Value);
+            int currentHealth = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("CurrentHealth").Value);
+            Vector speed = new Vector(
+                                    double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Speed_X").Value),
+                                    double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Speed_Y").Value)
+                                    );
+            int coin = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Coin").Value);
+            int highscore = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Highscore").Value);
+            int power = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Power").Value);
+            Rect area = new Rect(
+                                double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Area").Element("X").Value),
+                                double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Area").Element("Y").Value),
+                                double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Area").Element("Width").Value),
+                                double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Area").Element("Height").Value)
+                                );
+            IGameModel result = this.gameModelMap[level - 1][roomID];
+            result.Character = new MainCharacter(
+                name, description, helth, currentHealth, speed, coin, highscore, power, area
+                );
+            return result;
+        }
+
+        public void SaveHighScore(string userName, int score)
+        {
+            XElement SaveFile;
+            bool added = false;
+            XElement newScore = new XElement("Score",
+                                            new XElement("Name", userName),
+                                            new XElement("Point", score)
+                                        );
+            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore")))
+            {
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Highscore"));
+                SaveFile = new XElement("Highscore");
+            }
+            else
+            {
+                if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml")))
+                {
+                    StreamReader sr = new StreamReader(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
+                    SaveFile = XElement.Load(sr);
+                    sr.Close();
+                }
+                else
+                {
+                    SaveFile = new XElement("Highscore");
+                }
+
+            }
+
+
+            foreach (XElement xscore in SaveFile.Element("Highscores").Elements("Score"))
+            {
+                if (int.Parse(xscore.Element("Point").Value)<score)
+                {
+                    xscore.AddBeforeSelf(newScore);
+                    added = true;
+                    break;
+                }
+            }
+            if (!added)
+            {
+                SaveFile.Element("Highscores").Add(newScore);
+            }
+
+            StreamWriter sw = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
+            SaveFile.Save(sw);
+            sw.Close();
         }
     } 
 }

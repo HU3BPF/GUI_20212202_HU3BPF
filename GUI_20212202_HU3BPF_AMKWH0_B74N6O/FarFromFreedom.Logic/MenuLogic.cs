@@ -3,6 +3,7 @@ using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,15 @@ namespace FarFromFreedom.Logic
     public class MenuLogic : IMenuLogic
     {
         IMenuModel model;
+        IFarFromFreedomRepository repository;
+        IGameModel prevGameModel;
 
         public MenuLogic(IMenuModel model)
         {
             this.model = model;
+            this.repository = FarFromFreedomRepository.Instance();
             this.CheckForSave();
+
         }
 
         /// <summary>
@@ -25,11 +30,21 @@ namespace FarFromFreedom.Logic
         /// </summary>
         private void CheckForSave()
         {
-            //Itt kellene megoldani azt, hogy ha van folytatható játék akkor 
-            if (true)
+            if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Saves", "SaveFile.xml")))
             {
-                this.model.CanContiue = true;
-                this.model.ContinueOpacity = 0.8;
+                try
+                {
+                    this.prevGameModel = this.repository.LoadGameFromXML();
+
+
+                    this.model.CanContiue = true;
+                    this.model.ContinueOpacity = 0.8;
+                }
+                catch (Exception)
+                {
+                    this.model.CanContiue = false;
+                    this.model.ContinueOpacity = 0.4;
+                }
             }
         }
 
@@ -102,6 +117,8 @@ namespace FarFromFreedom.Logic
                     IGameModel game = repo.GameModelMap[0][1];
                     game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(604, 312, 70, 100));
                     return game;
+                case 1:
+                    return this.prevGameModel;
                 case 3:
                     return null;
                 default:

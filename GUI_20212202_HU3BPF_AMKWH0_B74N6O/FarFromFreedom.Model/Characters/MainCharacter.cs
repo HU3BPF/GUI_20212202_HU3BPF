@@ -17,6 +17,24 @@ namespace FarFromFreedom.Model.Characters
             this.coin = coin;
             this.SpeedSetter = new Vector(6, 6);
         }
+        
+        public MainCharacter()
+        {
+            
+        }
+
+        public MainCharacter(string name, string description, int helth, int currentHealth, Vector speed, int coin, int highscore, int power, Rect area) : base(area)
+        {
+            this.name = name;
+            this.description = description;
+            this.health = helth;
+            this.currentHealth = currentHealth;
+            this.SpeedSetter = speed;
+            this.coin = coin;
+            this.highscore = highscore;
+            this.power = power;
+            this.RepositionByEnteringAnotherRoom(area);
+        }
 
         private string name;
         private string description;
