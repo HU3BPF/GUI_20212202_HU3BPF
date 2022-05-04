@@ -2,7 +2,9 @@
 using FarFromFreedom.Model;
 using FarFromFreedom.Renderer;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -22,6 +24,10 @@ namespace FarFromFreedom
         bool initializeChecker = false;
         private MediaPlayer player;
         bool playing = true;
+        List<Key> pressedKeys = new List<Key>();
+        List<Key> keysThatMatters = new List<Key>()
+            { Key.W, Key.S, Key.A, Key.D, Key.Up, Key.Down,Key.Right,
+            Key.Left, Key.Space, Key.Enter, Key.P, Key.Escape, Key.H, Key.T };
 
         public void Dispose()
         {
@@ -67,37 +73,62 @@ namespace FarFromFreedom
                 gameTimer.Tick += DoorGenerator;
                 gameTimer.Tick += TearDestroyer;
                 gameTimer.Tick += DoorEnter;
-                
+
+                gameTimer.Tick += this.MainCharacterMove;
+                gameTimer.Tick += TestButtons;
+                gameTimer.Tick += this.MainCharacterShoot;
+                gameTimer.Tick += MusicPlayer;
+                gameTimer.Tick += EscapePress;
+
                 bulletTimer.Tick += BulletTimer;
 
                 gameTimer.Start();
                 bulletTimer.Start();
 
-                win.KeyDown += this.MainCharacterMove;
-                win.KeyDown += TestButtons;
-                win.KeyDown += this.MainCharacterShoot;
-                win.KeyDown += MusicPlayer;
-                win.KeyDown += EscapePress;
+                //win.KeyDown += this.MainCharacterMove;
+                //win.KeyDown += TestButtons;
+                //win.KeyDown += this.MainCharacterShoot;
+                //win.KeyDown += MusicPlayer;
+                //win.KeyDown += EscapePress;
+                win.KeyDown += PutKeyToList;
+                win.KeyUp += RemoveKeyFromList;
                 initializeChecker = true;
             }
         }
 
-        private void EscapePress(object sender, KeyEventArgs e)
+        private void RemoveKeyFromList(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape)
+            if (this.keysThatMatters.Contains(e.Key) && this.pressedKeys.Contains(e.Key))
             {
-                this.bulletTimer.Stop();
-                this.gameTimer.Stop();
-                this.counterTimer = 0;
-                string userName = "Teszt";
-                this.logic.GameSave();
+                this.pressedKeys.Remove(e.Key);
             }
         }
 
-        private void MusicPlayer(object sender, KeyEventArgs e)
+        private void PutKeyToList(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.P)
+            if (this.keysThatMatters.Contains(e.Key) && !this.pressedKeys.Contains(e.Key))
             {
+                this.pressedKeys.Add(e.Key);
+            }
+        }
+
+        private void EscapePress(object? sender, EventArgs e)
+        {
+            //if (e.Key == Key.Escape)
+            //{
+            //    this.bulletTimer.Stop();
+            //    this.gameTimer.Stop();
+            //    this.counterTimer = 0;
+            //    string userName = "Teszt";
+            //    this.logic.GameSave();
+            //}
+        }
+
+        private void MusicPlayer(object? sender, EventArgs e)
+        {
+            if (this.pressedKeys.Contains(Key.P)) 
+            {
+                this.pressedKeys.Remove(Key.P);
                 if (playing)
                 {
                     player.Pause();
@@ -115,15 +146,17 @@ namespace FarFromFreedom
             logic?.DisposeOutOFBoundsTears();
         }
 
-        private void TestButtons(object sender, KeyEventArgs e)
+        private void TestButtons(object? sender, EventArgs e)
         {
-            if (e.Key == Key.H)
+            if (this.pressedKeys.Contains(Key.H))
             {
+                this.pressedKeys.Remove(Key.H);
                 MessageBox.Show("X: " + this.model.Character.Area.Rect.X + "\nY: " + this.model.Character.Area.Rect.Y);
             }
-            if (e.Key == Key.T)
+            if (this.pressedKeys.Contains(Key.T))
             {
-                logic?.GameSave();
+                this.pressedKeys.Remove(Key.T);
+                logic.GameSave();
             }
         }
 
@@ -143,22 +176,36 @@ namespace FarFromFreedom
             logic?.GenerateDoors();
         }
 
-        private async void MainCharacterMove(object sender, KeyEventArgs e)
+        private async void MainCharacterMove(object? sender, EventArgs e)
         {
-            if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Left || e.Key == Key.Right)
+            if (this.pressedKeys.Contains(Key.Up))
             {
-                logic?.PLayerMove(e.Key);
+                logic?.PLayerMove(Key.Up);
+            }
+            else if (this.pressedKeys.Contains(Key.Down))
+            {
+                logic?.PLayerMove(Key.Down);
+            }
+            if (this.pressedKeys.Contains(Key.Left))
+            {
+                logic?.PLayerMove(Key.Left);
+            } 
+            else if (this.pressedKeys.Contains(Key.Right))
+            {
+                logic?.PLayerMove(Key.Right);
             }
         }
 
-        private async void MainCharacterShoot(object sender, KeyEventArgs e)
+        private async void MainCharacterShoot(object? sender, EventArgs e)
         {
-            if (e.Key == Key.W || e.Key == Key.S || e.Key == Key.A || e.Key == Key.D)
+            int w = this.pressedKeys.Contains(Key.W) ? this.pressedKeys.IndexOf(Key.W) : 99999;
+            int a = this.pressedKeys.Contains(Key.A) ? this.pressedKeys.IndexOf(Key.A) : 99999;
+            int s = this.pressedKeys.Contains(Key.S) ? this.pressedKeys.IndexOf(Key.S) : 99999;
+            int d = this.pressedKeys.Contains(Key.D) ? this.pressedKeys.IndexOf(Key.D) : 99999;
+            int min = (new int[4] { w, a, s, d }).Min();
+            if (counterTimer >= 2 && min != 99999)
             {
-                if (counterTimer >= 2)
-                {
-                    counterTimer = (int)logic?.PlayerShoot(e.Key, counterTimer);
-                }
+                counterTimer = (int)logic?.PlayerShoot(this.pressedKeys[min], counterTimer);
             }
         }
 
@@ -231,4 +278,19 @@ namespace FarFromFreedom
             this.logic?.EnemyMove();
         }
     }
+    /*TODO:
+     * 
+     * Nincseneke valamiért enemy-k az eslő pár szobában ┗( T﹏T )┛
+     * 
+        boss room trapdoor -> placehodler image, spawn a szoba közepe, felé
+        xml ek frissítése (2,3)
+        levelek átvitele 
+
+        paralel 
+
+        esc: 
+	        megállnak a timerek és az input handle kicsit más lesz 
+	        előjön az image
+	        lehet választania continue és a save and exit között 
+*/
 }

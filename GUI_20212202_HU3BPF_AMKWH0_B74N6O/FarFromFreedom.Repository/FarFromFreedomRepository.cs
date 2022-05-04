@@ -30,7 +30,7 @@ namespace FarFromFreedom.Repository
         }
         private FarFromFreedomRepository(int levels)
         {
-            this.LoadLevel(levels);
+            //this.LoadLevel(levels);
             for (int i = 1; i <= levels; i++)
             {
                 this.LoadLevel(i);
