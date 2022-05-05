@@ -280,7 +280,6 @@ namespace FarFromFreedom
     }
     /*TODO:
      * 
-     * Nincseneke valamiért enemy-k az eslő pár szobában ┗( T﹏T )┛
      * 
         boss room trapdoor -> placehodler image, spawn a szoba közepe, felé
         xml ek frissítése (2,3)

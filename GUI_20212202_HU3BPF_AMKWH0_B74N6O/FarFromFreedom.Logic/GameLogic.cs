@@ -5,6 +5,7 @@ using FarFromFreedom.Renderer;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -516,25 +517,30 @@ namespace FarFromFreedom.Logic
             double a60percent = 175 * 0.6;
             double vystart = (1290.0 - w60percent) / 2.0;
             double hxstart = (730.0 - a60percent) / 2.0;
+            int level = this.gameModel.Level;
             //178,195 fl
             //175,175 jb
             if (this.gameModel.Enemies.Count == 0 && this.gameModel.Doors?.Count ==0)
             {
                 if (this.gameModel.UpperNeighbour != -1)
                 {
-                    this.gameModel.Doors.Add(new Door(1, 1, this.gameModel.UpperNeighbour, new Rect(vystart, 15, w60percent, h60percent)));
+                    this.gameModel.Doors.Add(new Door(level, 1, this.gameModel.UpperNeighbour, new Rect(vystart, 15, w60percent, h60percent)));
                 }
                 if (this.gameModel.RightNeighbour != -1)
                 {
-                    this.gameModel.Doors.Add(new Door(1, 2, this.gameModel.RightNeighbour, new Rect(1275 - a60percent, hxstart, a60percent, a60percent)));
+                    this.gameModel.Doors.Add(new Door(level, 2, this.gameModel.RightNeighbour, new Rect(1275 - a60percent, hxstart, a60percent, a60percent)));
                 }
                 if (this.gameModel.LowerNeighbour != -1)
                 {
-                    this.gameModel.Doors.Add(new Door(1, 3, this.gameModel.LowerNeighbour, new Rect(vystart, 715 - h60percent, w60percent, h60percent)));
+                    this.gameModel.Doors.Add(new Door(level, 3, this.gameModel.LowerNeighbour, new Rect(vystart, 715 - h60percent, w60percent, h60percent)));
                 }
                 if (this.gameModel.LeftNeighbour != -1)
                 {
-                    this.gameModel.Doors.Add(new Door(1, 4, this.gameModel.LeftNeighbour, new Rect(15, hxstart, a60percent, a60percent)));
+                    this.gameModel.Doors.Add(new Door(level, 4, this.gameModel.LeftNeighbour, new Rect(15, hxstart, a60percent, a60percent)));
+                }
+                if (!this.farFromFreedomRepository.GameModelMap[this.gameModel.Level-1].Where(x => x.Value.RoomID > this.gameModel.RoomID).Any())
+                {
+                    this.gameModel.Doors.Add(new Door(level, 5, 999, new Rect(860, 220, 80,80)));
                 }
             }
         }
@@ -546,6 +552,20 @@ namespace FarFromFreedom.Logic
 
             this.farFromFreedomRepository.GameModelMap[currentLevel - 1][currentRoomID] = this.gameModel;
             IMainCharacter mc = this.gameModel.Character;
+
+            if (roomid == 999)
+            {
+                if (this.gameModel.Level == 3)
+                {
+                    this.Win();
+
+                }
+                mc.Area.Rect = new Rect(604, 312, mc.Area.Rect.Width, mc.Area.Rect.Height);
+                mc.Area = new RectangleGeometry(new Rect(604, 312, mc.Area.Rect.Width, mc.Area.Rect.Height));
+                this.gameModel = farFromFreedomRepository.GameModelMap[this.gameModel.Level].First().Value;
+                this.gameModel.Character = mc;
+                return this.gameModel;
+            }
 
             if (roomid == this.gameModel.UpperNeighbour)
             {
@@ -573,9 +593,14 @@ namespace FarFromFreedom.Logic
             }
 
 
-            this.gameModel = farFromFreedomRepository.GameModelMap[0][roomid];
+            this.gameModel = farFromFreedomRepository.GameModelMap[this.gameModel.Level-1][roomid];
             this.gameModel.Character = mc;
             return this.gameModel;
+        }
+
+        public void Win()
+        {
+            throw new NotImplementedException();
         }
     }
 }

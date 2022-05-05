@@ -9,6 +9,8 @@
 		</Neighbours>
 		<Enemies>
 		</Enemies>
+		<Objects>
+		</Objects>
 	</Room>
 	<Room ID="2" Type="Item">
 		<Neighbours>
@@ -19,6 +21,8 @@
 		</Neighbours>
 		<Enemies>
 		</Enemies>
+		<Objects>
+		</Objects>
 	</Room>
 	<Room ID="3" Type="Neutral">
 		<Neighbours>
@@ -45,8 +49,8 @@
 			<RightNeighbour ID="5"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Cat" X="400" Y="400"/>
-			<Enemy Type="ZombieRunB" X="1000" Y="600"/>
+			<Enemy Type="Cat" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="ZombieRunB" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
@@ -63,8 +67,8 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Cat" X="400" Y="400"/>
-			<Enemy Type="ZombieWalkCripple" X="1000" Y="600"/>
+			<Enemy Type="Cat" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="ZombieWalkCripple" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
@@ -81,8 +85,8 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="ZombieRunB" X="400" Y="400"/>
-			<Enemy Type="ZombieWalkCripple" X="1000" Y="600"/>
+			<Enemy Type="ZombieRunB" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="ZombieWalkCripple" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
@@ -100,8 +104,8 @@
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="ZombieRunB" X="400" Y="400"/>
-			<Enemy Type="Cat" X="1000" Y="600"/>
+			<Enemy Type="ZombieRunB" X="400" Y="400" Width="40" Height="40"/>
+			<Enemy Type="Cat" X="1000" Y="600" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
@@ -118,11 +122,11 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="ZombieRunB" X="200" Y="200" />
-			<Enemy Type="Cat" X="140" Y="800" />
-			<Enemy Type="ZombieRunB" X="640" Y="100" />
-			<Enemy Type="ZombieWalkCripple" X="230" Y="610" />
-			<Enemy Type="ZombieWalkCripple" X="730" Y="421" />
+			<Enemy Type="ZombieRunB" X="200" Y="200" Width="40" Height="40"/>
+			<Enemy Type="Cat" X="140" Y="800" Width="40" Height="40"/>
+			<Enemy Type="ZombieRunB" X="640" Y="100" Width="40" Height="40"/>
+			<Enemy Type="ZombieWalkCripple" X="230" Y="610" Width="40" Height="40"/>
+			<Enemy Type="ZombieWalkCripple" X="730" Y="421" Width="40" Height="40"/>
 		</Enemies>
 		<Objects>
 			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>

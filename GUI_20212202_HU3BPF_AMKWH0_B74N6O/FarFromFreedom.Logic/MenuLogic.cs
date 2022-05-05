@@ -34,8 +34,8 @@ namespace FarFromFreedom.Logic
             {
                 try
                 {
-                    this.prevGameModel = this.repository.LoadGameFromXML();
-
+                    this.prevGameModel = this.repository.LoadGameFromXML(true);
+                    
 
                     this.model.CanContiue = true;
                     this.model.ContinueOpacity = 0.8;
@@ -118,7 +118,7 @@ namespace FarFromFreedom.Logic
                     game.Character = new MainCharacter("Dobby", "alma", 100, 100, 3, 12, new Rect(604, 312, 70, 100));
                     return game;
                 case 1:
-                    return this.prevGameModel;
+                    return this.repository.LoadGameFromXML(false);
                 case 2:
                     this.LoadHighscores();
                     return this.model;

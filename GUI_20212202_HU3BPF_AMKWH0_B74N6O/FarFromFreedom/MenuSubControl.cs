@@ -86,7 +86,14 @@ namespace FarFromFreedom
             {
                 if (gameModel.Level == 1 && gameModel.RoomID == 1 && gameModel.Character.Highscore == 0)
                 {
+                    Window original = Window.GetWindow(control);
+                    original.WindowStartupLocation = WindowStartupLocation.Manual;
                     Intro introWindow = new Intro();
+                    introWindow.WindowStartupLocation = WindowStartupLocation.Manual;
+                    introWindow.Left = original.Left;
+                    introWindow.Top = original.Top;
+                    introWindow.Width = original.Width;
+                    introWindow.Height = original.Height;
                     introWindow.ShowDialog();
                 }
                 control.ChangeModel(gameModel);

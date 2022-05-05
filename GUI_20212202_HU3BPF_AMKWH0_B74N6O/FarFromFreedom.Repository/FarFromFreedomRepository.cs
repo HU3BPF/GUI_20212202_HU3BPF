@@ -24,7 +24,7 @@ namespace FarFromFreedom.Repository
         {
             if (instance == null)
             {
-                instance = new FarFromFreedomRepository(1);
+                instance = new FarFromFreedomRepository(3);
             }
             return instance;
         }
@@ -302,14 +302,17 @@ namespace FarFromFreedom.Repository
         /// Loads the save file.
         /// </summary>
         /// <returns> Game model. </returns>
-        public IGameModel LoadGameFromXML()
+        public IGameModel LoadGameFromXML(bool check)
         {
             XDocument source = XDocument.Load(Path.Combine(Directory.GetCurrentDirectory(),"Saves", $"SaveFile.xml"));
             int level = int.Parse(source.Element("SaveFile").Element("Position").Element("Level").Value);
             int roomID = int.Parse(source.Element("SaveFile").Element("Position").Element("RoomID").Value);
-            foreach (XElement room in source.Element("SaveFile").Element("Cleared_Rooms").Elements("Room"))
+            if (!check)
             {
-                this.gameModelMap[level - 1][int.Parse(room.Value)].Enemies.Clear();
+                foreach (XElement room in source.Element("SaveFile").Element("Cleared_Rooms").Elements("Room"))
+                {
+                    this.gameModelMap[level - 1][int.Parse(room.Value)].Enemies.Clear();
+                }
             }
             string name = source.Element("SaveFile").Element("MainCharacter").Element("Name").Value;
             string description = source.Element("SaveFile").Element("MainCharacter").Element("Description").Value;

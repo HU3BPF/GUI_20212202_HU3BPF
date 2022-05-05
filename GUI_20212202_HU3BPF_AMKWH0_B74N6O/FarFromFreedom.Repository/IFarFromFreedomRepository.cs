@@ -9,7 +9,7 @@ namespace FarFromFreedom.Repository
         List<Dictionary<int, IGameModel>> GameModelMap { get; }
         static IFarFromFreedomRepository Instance() { return Instance(); }
         IGameModel LoadGame(string fileName);
-        IGameModel LoadGameFromXML();
+        IGameModel LoadGameFromXML(bool check);
         Dictionary<string, int> LoadHighscores();
         void SaveHighScore(string userName, int score);
         void SaveGame(IGameModel gameModel, string filename);
