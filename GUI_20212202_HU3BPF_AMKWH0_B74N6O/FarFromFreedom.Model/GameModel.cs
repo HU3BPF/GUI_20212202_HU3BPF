@@ -19,6 +19,7 @@ namespace FarFromFreedom.Model
         private int level;
         private int roomID;
         private List<Door> doors;
+        private PauseModel? pauseModel;
 
 
 
@@ -71,6 +72,7 @@ namespace FarFromFreedom.Model
         public List<Door> Doors { get => doors; set => doors = value; }
         public int Level { get => level; set => level = value; }
         public int RoomID { get => roomID; set => roomID = value; }
+        public PauseModel? PauseModel { get => pauseModel; set => pauseModel = value; }
 
         public void Init(List<IEnemy> enemies, List<IItem> items)
         {

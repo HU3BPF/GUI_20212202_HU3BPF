@@ -18,6 +18,8 @@ namespace FarFromFreedom.Model
         int RoomID { get; set; }
         int Level { get; set; }
 
+        public PauseModel? PauseModel { get; set; }
+
         void Init(List<IEnemy> enemies, List<IItem> Items);
     }
 }

@@ -31,6 +31,10 @@ namespace FarFromFreedom.Logic
         int DoorIntersect();
         IGameModel ChangeRoom(int roomid);
         void DisposeOutOFBoundsTears();
+
+        void Pause(bool pause);
+
+
         void Win();
     }
 }

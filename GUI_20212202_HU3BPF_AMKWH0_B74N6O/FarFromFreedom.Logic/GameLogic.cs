@@ -602,5 +602,20 @@ namespace FarFromFreedom.Logic
         {
             throw new NotImplementedException();
         }
+
+        public void Pause(bool pause)
+        {
+            if (pause)
+            {
+                this.gameModel.PauseModel = new PauseModel()
+                {
+                    IsDead = false,
+                };
+            }
+            else
+            {
+                this.gameModel.PauseModel = null;
+            }
+        }
     }
 }

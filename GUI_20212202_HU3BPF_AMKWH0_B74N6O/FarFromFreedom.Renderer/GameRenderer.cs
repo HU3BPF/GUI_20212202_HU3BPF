@@ -40,8 +40,30 @@ namespace FarFromFreedom.Renderer
             this.DrawMainCharacter(drawingGroup);
 
             this.DrawInterface(drawingGroup);
+
+            if (this.model.PauseModel != null)
+            {
+                this.DrawPauseMenu(drawingGroup);
+            }
             
             return drawingGroup;
+        }
+
+        private void DrawPauseMenu(DrawingGroup drawingGroup)
+        {
+            double f_w = 1290;
+            double f_h = 730;
+            double w = 1200;
+            double h = 1000;
+            double x = (f_w - (w * 0.8)) / 2;
+            double y = (f_h - (h * 0.8)) / 2;
+
+            if (!this.model.PauseModel.IsDead)
+            {
+                drawingGroup.Children.Add(GetDrawing(backGroundBrushes["PauseMenu"], new RectangleGeometry(new Rect(x, y, w, h))));
+                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(5, 250, 10, 10))));
+                drawingGroup.Children.Add(this.GetDrawing(SaveHighScore,new RectangleGeometry(new Rect(5, 250, 10, 10))));
+            }
         }
 
         private void DrawInterface(DrawingGroup drawingGroup)
@@ -210,6 +232,25 @@ namespace FarFromFreedom.Renderer
             GeometryDrawing drawing = new GeometryDrawing(brush, null, rectangleGeometry);
             return drawing;
         }
+        private Brush Continue
+        {
+            get
+            {
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
+                brush.Opacity = this.model.PauseModel.ContinueOpacity;
+                return brush;
+            }
+        }
+        private Brush SaveHighScore
+        {
+            get
+            {
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
+                brush.Opacity = this.model.PauseModel.SaveOpacity;
+                return brush;
+            }
+        }
 
+        private static ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
     }
 }

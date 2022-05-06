@@ -114,14 +114,11 @@ namespace FarFromFreedom
 
         private void EscapePress(object? sender, EventArgs e)
         {
-            //if (e.Key == Key.Escape)
-            //{
-            //    this.bulletTimer.Stop();
-            //    this.gameTimer.Stop();
-            //    this.counterTimer = 0;
-            //    string userName = "Teszt";
-            //    this.logic.GameSave();
-            //}
+            if (this.pressedKeys.Contains(Key.Escape))
+            {
+                this.logic?.Pause(this.model.PauseModel == null ? true : false);
+                this.pressedKeys.Remove(Key.Escape);
+            }
         }
 
         private void MusicPlayer(object? sender, EventArgs e)
@@ -279,13 +276,7 @@ namespace FarFromFreedom
         }
     }
     /*TODO:
-     * 
-     * 
-        boss room trapdoor -> placehodler image, spawn a szoba közepe, felé
-        xml ek frissítése (2,3)
-        levelek átvitele 
-
-        paralel 
+     * ajtók irányának fixálása?
 
         esc: 
 	        megállnak a timerek és az input handle kicsit más lesz 
