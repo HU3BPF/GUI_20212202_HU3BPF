@@ -22,6 +22,9 @@
 		<Enemies>
 		</Enemies>
 		<Objects>
+			<Object Type="bush3" X="493" Y="268" Width="50" Height="50"/>
+			<Object Type="stone4" X="417" Y="517" Width="60" Height="60"/>
+			<Object Type="bush4" X="930" Y="582" Width="60" Height="60"/>
 		</Objects>
 	</Room>
 	<Room ID="3" Type="Neutral">
@@ -34,11 +37,11 @@
 		<Enemies>
 		</Enemies>
 		<Objects>
-			<Object Type="tree2" X="500" Y="360" Width="50" Height="50"/>
-			<Object Type="tree3" X="700" Y="360" Width="50" Height="50"/>
-			<Object Type="tree3" X="640" Y="300" Width="50" Height="50"/>
-			<Object Type="tree3" X="640" Y="600" Width="50" Height="50"/>
-			<Object Type="tree1" X="640" Y="360" Width="50" Height="50"/>
+			<Object Type="tree2" X="1036" Y="510" Width="60" Height="70"/>
+			<Object Type="board" X="759" Y="115" Width="50" Height="50"/>
+			<Object Type="bush1" X="893" Y="492" Width="50" Height="50"/>
+			<Object Type="stone3" X="453" Y="482" Width="50" Height="50"/>
+			<Object Type="tree1" X="337" Y="234" Width="60" Height="70"/>
 		</Objects>
 	</Room>
 	<Room ID="4" Type="Enemy">
