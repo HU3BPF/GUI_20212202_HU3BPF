@@ -21,9 +21,6 @@ namespace FarFromFreedom
         IModel model;
         //public IGameLogic gameLogic = new GameLogic();
         public IGameRenderer renderer;
-        private DispatcherTimer gameTimer;
-        private DispatcherTimer bulletTimer;
-        private int counterTimer = 0;
         private MenuSubControl menuSubControl = new MenuSubControl();
         private GameSubControl gameSubControl = new GameSubControl();
 

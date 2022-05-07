@@ -23,11 +23,11 @@ namespace FarFromFreedom.Model.Characters
             
         }
 
-        public MainCharacter(string name, string description, int helth, int currentHealth, Vector speed, int coin, int highscore, int power, Rect area) : base(area)
+        public MainCharacter(string name, string description, int health, int currentHealth, Vector speed, int coin, int highscore, int power, Rect area) : base(area)
         {
             this.name = name;
             this.description = description;
-            this.health = helth;
+            this.health = health;
             this.currentHealth = currentHealth;
             this.SpeedSetter = speed;
             this.coin = coin;

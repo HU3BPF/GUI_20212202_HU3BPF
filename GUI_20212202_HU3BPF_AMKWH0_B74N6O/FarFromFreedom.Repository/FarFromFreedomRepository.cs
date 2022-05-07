@@ -73,7 +73,7 @@ namespace FarFromFreedom.Repository
                                 new XElement("MainCharacter",
                                     new XElement("Name", mc.Name),
                                     new XElement("Description", mc.Description),
-                                    new XElement("Helth", mc.Health),
+                                    new XElement("Health", mc.Health),
                                     new XElement("CurrentHealth", mc.CurrentHealth),
                                     new XElement("Speed_X", mc.Speed.X),
                                     new XElement("Speed_Y", mc.Speed.Y),
@@ -316,7 +316,7 @@ namespace FarFromFreedom.Repository
             }
             string name = source.Element("SaveFile").Element("MainCharacter").Element("Name").Value;
             string description = source.Element("SaveFile").Element("MainCharacter").Element("Description").Value;
-            int helth = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Helth").Value);
+            int health = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Health").Value);
             int currentHealth = int.Parse(source.Element("SaveFile").Element("MainCharacter").Element("CurrentHealth").Value);
             Vector speed = new Vector(
                                     double.Parse(source.Element("SaveFile").Element("MainCharacter").Element("Speed_X").Value),
@@ -333,7 +333,7 @@ namespace FarFromFreedom.Repository
                                 );
             IGameModel result = this.gameModelMap[level - 1][roomID];
             result.Character = new MainCharacter(
-                name, description, helth, currentHealth, speed, coin, highscore, power, area
+                name, description, health, currentHealth, speed, coin, highscore, power, area
                 );
             return result;
         }

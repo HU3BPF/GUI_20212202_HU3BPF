@@ -1,10 +1,4 @@
-﻿using FarFromFreedom.Model;
-using FarFromFreedom.Model.Characters;
-using FarFromFreedom.Model.Characters.Enemies;
-using FarFromFreedom.Model.Items;
-using FarFromFreedom.Pages;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 
 namespace FarFromFreedom
 {
@@ -13,13 +7,10 @@ namespace FarFromFreedom
     /// </summary>
     public partial class MainWindow : Window
     {
-        GameControl gameControl;
-        BaseControl control;
 
         public MainWindow()
         {
             InitializeComponent();
-
         }
     }
 }

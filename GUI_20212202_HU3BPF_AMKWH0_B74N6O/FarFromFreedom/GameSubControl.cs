@@ -1,6 +1,5 @@
 ﻿using FarFromFreedom.Logic;
 using FarFromFreedom.Model;
-using FarFromFreedom.Renderer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +7,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace FarFromFreedom
@@ -16,14 +14,21 @@ namespace FarFromFreedom
     public class GameSubControl
     {
         IGameLogic? logic;
+        MediaPlayer sound = new MediaPlayer();
+        MediaPlayer mainSound = new MediaPlayer();
         public DispatcherTimer? gameTimer;
-        DispatcherTimer? bulletTimer;
+        DispatcherTimer? EventTimer;
+
+
         private int counterTimer = 0;
-        BaseControl baseControl;
-        IGameModel model;
-        bool initializeChecker = false;
+        private int counterHitTimer = 0;
+
+        private BaseControl? baseControl;
+        private IGameModel model;
+        private bool initializeChecker = false;
         private MediaPlayer player;
-        bool playing = true;
+        private bool playing = true;
+
         List<Key> pressedKeys = new List<Key>();
         List<Key> keysThatMatters = new List<Key>()
             { Key.W, Key.S, Key.A, Key.D, Key.Up, Key.Down,Key.Right,
@@ -34,8 +39,8 @@ namespace FarFromFreedom
             //this.logic = null;
             this.gameTimer?.Stop();
             this.gameTimer = null;
-            this.bulletTimer?.Stop();
-            this.bulletTimer = null;
+            this.EventTimer?.Stop();
+            this.EventTimer = null;
         }
 
         public void Init(IGameModel model, BaseControl baseControl)
@@ -50,40 +55,39 @@ namespace FarFromFreedom
             Window win = Window.GetWindow(baseControl);
             if (win != null && initializeChecker == false)
             {
-                MediaPlayer sound = new MediaPlayer();
-                sound.Open(new Uri(Path.Combine("StoryVideo", "music.mp3"), UriKind.Relative));
+                mainSound.Open(new Uri(Path.Combine("StoryVideo", "music.mp3"), UriKind.Relative));
                 this.player = sound;
-                sound.Volume = 0.4;
+                mainSound.Volume = 0.4;
 
-                sound.Play();
+                mainSound.Play();
 
                 gameTimer = new DispatcherTimer();
-                bulletTimer = new DispatcherTimer();
+                EventTimer = new DispatcherTimer();
 
                 gameTimer.Interval = TimeSpan.FromMilliseconds(30);
-                bulletTimer.Interval = TimeSpan.FromSeconds(0.5);
+                EventTimer.Interval = TimeSpan.FromSeconds(0.5);
 
-                gameTimer.Tick += EnemyMove;
-                gameTimer.Tick += EnemyHit;
-                gameTimer.Tick += BulletMove;
-                gameTimer.Tick += EnemyDamaged;
-                gameTimer.Tick += EnemyDestroy;
-                gameTimer.Tick += ItemPickedUp;
-                gameTimer.Tick += GameEnded;
-                gameTimer.Tick += DoorGenerator;
-                gameTimer.Tick += TearDestroyer;
-                gameTimer.Tick += DoorEnter;
+                gameTimer.Tick += this.EnemyMove;
+                gameTimer.Tick += this.EnemyHit;
+                gameTimer.Tick += this.BulletMove;
+                gameTimer.Tick += this.EnemyDamaged;
+                gameTimer.Tick += this.EnemyDestroy;
+                gameTimer.Tick += this.ItemPickedUp;
+                gameTimer.Tick += this.GameEnded;
+                gameTimer.Tick += this.DoorGenerator;
+                gameTimer.Tick += this.TearDestroyer;
+                gameTimer.Tick += this.DoorEnter;
 
                 gameTimer.Tick += this.MainCharacterMove;
-                gameTimer.Tick += TestButtons;
+                gameTimer.Tick += this.TestButtons;
                 gameTimer.Tick += this.MainCharacterShoot;
-                gameTimer.Tick += MusicPlayer;
-                gameTimer.Tick += EscapePress;
+                gameTimer.Tick += this.MusicPlayer;
+                gameTimer.Tick += this.EscapePress;
 
-                bulletTimer.Tick += BulletTimer;
+                EventTimer.Tick += EventCounterTimer;
 
                 gameTimer.Start();
-                bulletTimer.Start();
+                EventTimer.Start();
 
                 //win.KeyDown += this.MainCharacterMove;
                 //win.KeyDown += TestButtons;
@@ -173,7 +177,7 @@ namespace FarFromFreedom
             logic?.GenerateDoors();
         }
 
-        private async void MainCharacterMove(object? sender, EventArgs e)
+        private void MainCharacterMove(object? sender, EventArgs e)
         {
             if (this.pressedKeys.Contains(Key.Up))
             {
@@ -193,7 +197,7 @@ namespace FarFromFreedom
             }
         }
 
-        private async void MainCharacterShoot(object? sender, EventArgs e)
+        private void MainCharacterShoot(object? sender, EventArgs e)
         {
             int w = this.pressedKeys.Contains(Key.W) ? this.pressedKeys.IndexOf(Key.W) : 99999;
             int a = this.pressedKeys.Contains(Key.A) ? this.pressedKeys.IndexOf(Key.A) : 99999;
@@ -218,59 +222,62 @@ namespace FarFromFreedom
             }
         }
 
-        private async void EnemyDestroy(object sender, EventArgs e)
+        private void EnemyDestroy(object sender, EventArgs e)
         {
             this.logic?.EnemyDestroy();
         }
 
-        private async void BulletTimer(object sender, EventArgs e)
+        private void EventCounterTimer(object sender, EventArgs e)
         {
             this.counterTimer++;
+            this.counterHitTimer++;
         }
 
-        private async void EnemyDamaged(object sender, EventArgs e)
+        private void EnemyDamaged(object sender, EventArgs e)
         {
             this.logic?.EnemyDamaged();
         }
 
-        private async void ItemPickedUp(object sender, EventArgs e)
+        private void ItemPickedUp(object sender, EventArgs e)
         {
             this.logic?.ItemPicked();
         }
 
-        private async void EnemyHit(object sender, EventArgs e)
+        private void EnemyHit(object sender, EventArgs e)
         {
-            if (this.logic.EnemyHit())
+            if (counterHitTimer >= 2)
             {
-                Random r = new Random();
-                MediaPlayer sound = new MediaPlayer();
-                sound.Open(new Uri(Path.Combine("StoryVideo", $"Hurt_grunt_{r.Next(0,3)}.wav"), UriKind.Relative));
-                sound.Play();
+                if (this.logic.EnemyHit())
+                {
+                    Random r = new Random();
+                    sound.Open(new Uri(Path.Combine("StoryVideo", $"Hurt_grunt_{r.Next(0, 3)}.wav"), UriKind.Relative));
+                    sound.Play();
+                    counterHitTimer = 0;
+                }
             }
-            
         }
 
-        private async void BulletMove(object sender, EventArgs e)
+        private void BulletMove(object sender, EventArgs e)
         {
             this.logic?.BulletMove();
         }
 
-        private async void GameEnded(object sender, EventArgs e)
+        private void GameEnded(object sender, EventArgs e)
         {
             if ((bool)this.logic?.GameEnd())
             {
                 var w = Application.Current.Windows[0];
                 w.Hide();
 
-                MediaPlayer sound = new MediaPlayer();
                 sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
                 sound.Play();
                 MessageBox.Show("Game ended.");
+                player.Pause();
                 gameTimer.Stop();
             }
         }
 
-        private async void EnemyMove(object sender, EventArgs e)
+        private void EnemyMove(object sender, EventArgs e)
         {
             this.logic?.EnemyMove();
         }
