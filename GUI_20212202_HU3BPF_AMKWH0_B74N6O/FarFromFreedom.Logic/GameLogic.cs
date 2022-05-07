@@ -39,51 +39,81 @@ namespace FarFromFreedom.Logic
         public void EnemyMove()
         {
             MainCharacter character = (MainCharacter)gameModel.Character;
+            List<RoomDecorationItem> roomDecorationItems = new List<RoomDecorationItem>();
             Enemy enemy;
             Queue<Enemy> queue = new Queue<Enemy>();
             foreach (Enemy enemyAdd in gameModel.Enemies)
             {
                 queue.Enqueue(enemyAdd);
             }
+            foreach (var item in gameModel.Items)
+            {
+                if (item.Description == "RoomItem")
+                {
+                    roomDecorationItems.Add((RoomDecorationItem)item);
+                }
+            }
 
             while (queue.Count > 0)
             {
                 enemy = queue.Dequeue();
+                Direction direction = new Direction();
+                bool enemyItemIsCollision = false;
 
                 double x = character.Area.Rect.X - enemy.Area.Rect.X;
                 double y = character.Area.Rect.Y - enemy.Area.Rect.Y;
+
                 if (x > 0 && y > 0)
                 {
-                    enemy.MoveUpRight();
+                    direction = Direction.UpRight;
                 }
                 else if (x > 0 && y == 0)
                 {
-                    enemy.MoveRight();
+                    direction = Direction.Right;
                 }
                 else if (x == 0 && y < 0)
                 {
-                    enemy.MoveUp();
+                    direction = Direction.Up;
                 }
                 else if (x < 0 && y > 0)
                 {
-                    enemy.MoveUpLeft();
+                    direction = Direction.UpLeft;
                 }
                 else if (x < 0 && y == 0)
                 {
-                    enemy.MoveLeft();
+                    direction = Direction.Left;
                 }
                 else if (x < 0 && y < 0)
                 {
-                    enemy.MoveDownLeft();
+                    direction = Direction.DownLeft;
                 }
                 else if (x == 0 && y > 0)
                 {
-                    enemy.MoveDown();
+                    direction = Direction.Down;
                 }
                 else if (x > 0 && y < 0)
                 {
-                    enemy.MoveDownRight();
+                    direction = Direction.DownRight;
                 }
+                else
+                {
+                    continue;
+                }
+
+                foreach (var item in roomDecorationItems)
+                {
+                    if (EnemyItemInspect(item, enemy, direction))
+                    {
+                        enemyItemIsCollision = true;
+                        continue;
+                    }
+                }
+                if (enemyItemIsCollision)
+                {
+                    continue;
+                }
+
+                EnemyMover(enemy, direction);
 
             }
         }
@@ -441,6 +471,90 @@ namespace FarFromFreedom.Logic
                 return true;
             }
             return false;
+        }
+
+        private bool EnemyItemInspect(IItem item, Enemy enemy, Direction direction)
+        {
+            if (item.IsCollision(enemy))
+            {
+                if (item.Area.Rect.Left <= enemy.Area.Rect.Left && Direction.Left == direction)
+                {
+                    enemy.MoveUpRight();
+                    return true;
+                }
+                else if (item.Area.Rect.Right >= enemy.Area.Rect.Right && Direction.Right == direction)
+                {
+                    enemy.MoveUpLeft();
+                    return true;
+                }
+                else if (item.Area.Rect.Top <= enemy.Area.Rect.Top && Direction.Up == direction)
+                {
+                    enemy.MoveDown();
+                    return true;
+                }
+                else if (item.Area.Rect.Bottom >= enemy.Area.Rect.Bottom && Direction.Down == direction)
+                {
+                    enemy.MoveUp();
+                    return true;
+                }
+                else if (item.Area.Rect.BottomRight.X >= enemy.Area.Rect.BottomRight.X && item.Area.Rect.BottomRight.Y >= enemy.Area.Rect.BottomRight.Y && Direction.DownRight == direction)
+                {
+                    enemy.MoveDown();
+                    return true;
+                }
+                else if (item.Area.Rect.BottomLeft.X <= enemy.Area.Rect.BottomLeft.X && item.Area.Rect.BottomLeft.Y >= enemy.Area.Rect.BottomLeft.Y &&  Direction.DownLeft == direction)
+                {
+                    enemy.MoveDown();
+                    return true;
+                }
+                else if (item.Area.Rect.TopRight.X >= enemy.Area.Rect.TopRight.X && item.Area.Rect.TopRight.Y <= enemy.Area.Rect.TopRight.Y && Direction.UpRight == direction)
+                {
+                    enemy.MoveUp();
+                    return true;
+                }
+                else if (item.Area.Rect.TopLeft.X <= enemy.Area.Rect.TopLeft.X && item.Area.Rect.TopLeft.Y <= enemy.Area.Rect.TopLeft.Y && Direction.UpLeft == direction)
+                {
+                    enemy.MoveUp();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void EnemyMover(Enemy enemy, Direction direction)
+        {
+            if (direction == Direction.Up)
+            {
+                enemy.MoveUp();
+            }
+            else if (direction == Direction.UpLeft)
+            {
+                enemy.MoveUpLeft();
+            }
+            else if (direction == Direction.UpRight)
+            {
+                enemy.MoveUpRight();
+            }
+            else if (direction == Direction.Down)
+            {
+                enemy.MoveDown();
+            }
+            else if (direction == Direction.DownLeft)
+            {
+                enemy.MoveDownLeft();
+            }
+            else if (direction == Direction.DownRight)
+            {
+                enemy.MoveDownRight();
+            }
+            else if (direction == Direction.Right)
+            {
+                enemy.MoveRight();
+            }
+            else if (direction == Direction.Left)
+            {
+                enemy.MoveLeft();
+            }
         }
 
         private bool ItemInspect(IItem item, Key key)
