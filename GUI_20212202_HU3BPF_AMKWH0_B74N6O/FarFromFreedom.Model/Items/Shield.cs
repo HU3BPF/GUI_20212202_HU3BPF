@@ -14,7 +14,7 @@ namespace FarFromFreedom.Model.Items
 
         public string Description => "Shield";
 
-        public int Armor => 3;
+        public int Armor => 1;
 
         public RectangleGeometry Area => new RectangleGeometry(area);
 

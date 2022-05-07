@@ -26,6 +26,7 @@ namespace FarFromFreedom.Model.Characters
         void CoinUp(int coin);
         void CoinDown(int coin);
         void HighscoreUp(double Highscore);
+        void SpeedUp(double speed);
         void RepositionByEnteringAnotherRoom(Rect rect);
     }
 }

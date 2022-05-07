@@ -2,6 +2,7 @@
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Model.Characters.Enemies;
 using FarFromFreedom.Model.Helpers;
+using FarFromFreedom.Model.Items;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -166,21 +167,14 @@ namespace FarFromFreedom.Repository
 
             foreach (XElement obj in room.Element("Objects").Elements("Object"))
             {
-                IItem tmp;
                 int x, y, width, height;
                 x = int.Parse(obj.Attribute("X").Value);
                 y = int.Parse(obj.Attribute("Y").Value);
                 width = int.Parse(obj.Attribute("Width").Value);
                 height = int.Parse(obj.Attribute("Height").Value);
-
-                switch (obj.Attribute("Type").Value)
-                {
-                    //case "Plyaelem":
-                    //    tmp = new Pályaelem(x, y, width, height);
-                    //    break;
-                    default:
-                        break;
-                }
+                Rect rect = new Rect(x, y, width, height);
+                IItem tmp = new RoomDecorationItem(obj.Attribute("Type").Value, rect);
+                result.Add(tmp);
             }
 
 

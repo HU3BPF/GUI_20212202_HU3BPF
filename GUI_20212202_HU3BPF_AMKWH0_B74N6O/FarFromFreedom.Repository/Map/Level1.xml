@@ -34,11 +34,11 @@
 		<Enemies>
 		</Enemies>
 		<Objects>
-			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Fire" X="700" Y="360" Width="40" Height="40"/>
-			<Object Type="Fire" X="640" Y="300" Width="40" Height="40"/>
-			<Object Type="Fire" X="640" Y="600" Width="40" Height="40"/>
-			<Object Type="Chest" X="640" Y="360" Width="40" Height="40"/>
+			<Object Type="tree2" X="500" Y="360" Width="50" Height="50"/>
+			<Object Type="tree3" X="700" Y="360" Width="50" Height="50"/>
+			<Object Type="tree3" X="640" Y="300" Width="50" Height="50"/>
+			<Object Type="tree3" X="640" Y="600" Width="50" Height="50"/>
+			<Object Type="tree1" X="640" Y="360" Width="50" Height="50"/>
 		</Objects>
 	</Room>
 	<Room ID="4" Type="Enemy">
@@ -53,10 +53,10 @@
 			<Enemy Type="Pug" X="1000" Y="600" Width="121" Height="80"/>
 		</Enemies>
 		<Objects>
-			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Rock" X="700" Y="360" Width="40" Height="40"/>
-			<Object Type="Rock" X="640" Y="300" Width="40" Height="40"/>
-			<Object Type="Fire" X="640" Y="600" Width="40" Height="40"/>
+			<Object Type="tree3" X="500" Y="360" Width="70" Height="70"/>
+			<Object Type="tree2" X="700" Y="360" Width="70" Height="70"/>
+			<Object Type="tree1" X="640" Y="300" Width="70" Height="70"/>
+			<Object Type="fireplace" X="640" Y="600" Width="70" Height="70"/>
 		</Objects>
 	</Room>
 	<Room ID="5" Type="Enemy">
@@ -71,10 +71,10 @@
 			<Enemy Type="Mushroom" X="1000" Y="600" Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
-			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Rock" X="100" Y="700" Width="40" Height="40"/>
-			<Object Type="Rock" X="400" Y="230" Width="40" Height="40"/>
-			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>			
+			<Object Type="bush1" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="bush2" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="bush3" X="400" Y="230" Width="40" Height="40"/>
+			<Object Type="bush4" X="300" Y="130" Width="40" Height="40"/>			
 		</Objects>
 	</Room>
 	<Room ID="6" Type="Enemy">
@@ -89,11 +89,11 @@
 			<Enemy Type="Mushroom" X="1000" Y="600"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
-			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Fire" X="100" Y="700" Width="40" Height="40"/>
-			<Object Type="Fire" X="400" Y="230" Width="40" Height="40"/>
-			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
-			<Object Type="Rock" X="210" Y="540" Width="40" Height="40"/>
+			<Object Type="bush4" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="bush4" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="bush4" X="400" Y="230" Width="40" Height="40"/>
+			<Object Type="bush4" X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="bush4" X="210" Y="540" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="7" Type="Enemy">
@@ -108,10 +108,10 @@
 			<Enemy Type="Wasp" X="1000" Y="600"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
-			<Object Type="Fire" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Rock" X="210" Y="430" Width="40" Height="40"/>
-			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
-			<Object Type="Rock" X="400" Y="530" Width="40" Height="40"/>
+			<Object Type="board" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="palmtree" X="210" Y="430" Width="40" Height="40"/>
+			<Object Type="palmtree" X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="palmtree" X="400" Y="530" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 	<Room ID="8" Type="Enemy">
@@ -128,10 +128,10 @@
 			<Enemy Type="Wasp" X="340" Y="450"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
-			<Object Type="Rock" X="500" Y="360" Width="40" Height="40"/>
-			<Object Type="Rock" X="100" Y="700" Width="40" Height="40"/>
-			<Object Type="Rock" X="210" Y="430" Width="40" Height="40"/>
-			<Object Type="Rock" X="300" Y="130" Width="40" Height="40"/>
+			<Object Type="palmtree" X="500" Y="360" Width="40" Height="40"/>
+			<Object Type="palmtree" X="100" Y="700" Width="40" Height="40"/>
+			<Object Type="palmtree" X="210" Y="430" Width="40" Height="40"/>
+			<Object Type="palmtree" X="300" Y="130" Width="40" Height="40"/>
 		</Objects>
 	</Room>
 </Level1>

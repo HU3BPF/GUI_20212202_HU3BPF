@@ -14,7 +14,7 @@ namespace FarFromFreedom.Model.Items
 
         public string Description => "Lot of coin";
 
-        public int Value => 3;
+        public int Value => 10;
 
         public RectangleGeometry Area => new RectangleGeometry(area);
 

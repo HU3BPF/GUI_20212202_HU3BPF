@@ -1,7 +1,6 @@
 ﻿using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Model.Items;
-using FarFromFreedom.Renderer;
 using FarFromFreedom.Repository;
 using System;
 using System.Collections.Generic;
@@ -50,11 +49,6 @@ namespace FarFromFreedom.Logic
             while (queue.Count > 0)
             {
                 enemy = queue.Dequeue();
-
-                if (EnemyWallInspect(enemy))
-                {
-                    return;
-                }
 
                 double x = character.Area.Rect.X - enemy.Area.Rect.X;
                 double y = character.Area.Rect.Y - enemy.Area.Rect.Y;
@@ -207,7 +201,7 @@ namespace FarFromFreedom.Logic
             foreach (IItem item in gameModel.Items)
             {
                 bool isCollision = item.IsCollision((MainCharacter)gameModel.Character);
-                if (isCollision)
+                if (isCollision && item.Description != "RoomItem")
                 {
                     ItemPickerHelper(item);
                     itemPicked = item;
@@ -221,6 +215,15 @@ namespace FarFromFreedom.Logic
 
         public void PLayerMove(Key key)
         {
+
+            foreach (var item in gameModel.Items)
+            {
+                if (item.Description == "RoomItem" && ItemInspect((RoomDecorationItem)item, key))
+                {
+                    return;
+                }
+            }
+
             if (MainCharacterMoveChecker(key, ((MainCharacter)gameModel.Character).Area.Rect))
             {
                 return;
@@ -362,17 +365,17 @@ namespace FarFromFreedom.Logic
             else if (item.GetType() == typeof(Bootle))
             {
                 Bootle bootle = (Bootle)item;
-                gameModel.Character.PowerUp(bootle.Power);
+                gameModel.Character.SpeedUp(bootle.speed);
             }
             else if (item.GetType() == typeof(Coin))
             {
                 Coin coin = (Coin)item;
-                gameModel.Character.CoinUp(coin.Value);
+                gameModel.Character.HighscoreUp(coin.Value);
             }
             else if (item.GetType() == typeof(Money))
             {
                 Money money = (Money)item;
-                gameModel.Character.CoinUp(money.Value);
+                gameModel.Character.HighscoreUp(money.Value);
             }
             else if (item.GetType() == typeof(Hearth))
             {
@@ -440,36 +443,61 @@ namespace FarFromFreedom.Logic
             return false;
         }
 
+        private bool ItemInspect(IItem item, Key key)
+        {
+            if (item.IsCollision((MainCharacter)gameModel.Character))
+            {
+                if (item.Area.Rect.Left <= gameModel.Character.Area.Rect.Left && Key.Left == key)
+                {
+                    return true;
+                }
+                else if (item.Area.Rect.Right >= gameModel.Character.Area.Rect.Right && Key.Right == key)
+                {
+                    return true;
+                }
+                else if (item.Area.Rect.Top <= gameModel.Character.Area.Rect.Top && Key.Up == key)
+                {
+                    return true;
+                }
+                else if (item.Area.Rect.Bottom >= gameModel.Character.Area.Rect.Bottom && Key.Down == key)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void ItemAdder(IGameModel gameModel, Rect react)
         {
             Random r = new Random();
-            int randomNumber = r.Next(0, 100);
+            int randomNumber = r.Next(0, 7);
 
             switch (randomNumber)
             {
                 case 0:
-                    gameModel.Items.Add(new Bootle(new Rect(react.Location, new Size(50,50))));
+                    gameModel.Items.Add(new Bootle(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 10:
+                case 1:
                     gameModel.Items.Add(new Coin(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 20:
+                case 2:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 30:
+                case 3:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 40:
+                case 4:
                     gameModel.Items.Add(new Money(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 50:
+                case 5:
                     gameModel.Items.Add(new Shield(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 60:
+                case 6:
                     gameModel.Items.Add(new Star(new Rect(react.Location, new Size(50, 50))));
                     return;
             }
         }
+
         private void RoomLooder() => gameModel = farFromFreedomRepository.GameModelMap[currentLevel][currentRoom];
 
         public int DoorIntersect()

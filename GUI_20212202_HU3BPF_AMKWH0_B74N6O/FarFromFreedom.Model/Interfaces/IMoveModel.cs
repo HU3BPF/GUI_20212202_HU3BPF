@@ -14,5 +14,7 @@ namespace FarFromFreedom.Model
         public void MoveDownRight();
         public void MoveUpLeft();
         public void MoveDownLeft();
+        public void SpeedUp(double speed);
+        public void SpeedDown(double speed);
     }
 }

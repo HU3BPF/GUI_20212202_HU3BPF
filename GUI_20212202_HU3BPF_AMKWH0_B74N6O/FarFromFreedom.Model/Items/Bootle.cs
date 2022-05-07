@@ -14,7 +14,7 @@ namespace FarFromFreedom.Model.Items
 
         public string Description => "Add Power";
 
-        public int Power => 3;
+        public double speed => 0.2;
 
         public RectangleGeometry Area => new RectangleGeometry(area);
 
