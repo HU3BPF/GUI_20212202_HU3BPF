@@ -242,7 +242,7 @@ namespace FarFromFreedom.Renderer
         {
             get
             {
-                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "continue.png"));
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "Resume.png"));
                 brush.Opacity = this.model.PauseModel.ContinueOpacity;
                 return brush;
             }
@@ -251,7 +251,7 @@ namespace FarFromFreedom.Renderer
         {
             get
             {
-                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "ExitGame.png"));
                 brush.Opacity = this.model.PauseModel.SaveOpacity;
                 return brush;
             }
