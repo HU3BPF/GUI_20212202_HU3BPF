@@ -442,5 +442,10 @@ namespace FarFromFreedom.Repository
             }
             return highscores;
         }
+
+        public void ResetGameModels()
+        {
+            instance = new FarFromFreedomRepository(3);
+        }
     } 
 }

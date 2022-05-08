@@ -64,8 +64,8 @@ namespace FarFromFreedom.Renderer
             if (!this.model.PauseModel.IsDead)
             {
                 drawingGroup.Children.Add(GetDrawing(backGroundBrushes["PauseMenu"], new RectangleGeometry(new Rect(x, y, w, h))));
-                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(350, 480, 150, 100))));
-                drawingGroup.Children.Add(this.GetDrawing(ExitMenu,new RectangleGeometry(new Rect(730, 480, 150, 100))));
+                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(430, 520, 150, 30))));
+                drawingGroup.Children.Add(this.GetDrawing(ExitMenu,new RectangleGeometry(new Rect(690, 520, 150, 30))));
             }
             else
             {

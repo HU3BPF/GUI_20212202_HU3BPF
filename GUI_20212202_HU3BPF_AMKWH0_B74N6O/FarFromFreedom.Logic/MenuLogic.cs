@@ -114,6 +114,7 @@ namespace FarFromFreedom.Logic
             {
                 case 0:
                     IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
+                    repo.ResetGameModels();
                     IGameModel game = repo.GameModelMap[0][1];
                     game.Character = new MainCharacter("gobby", "alma", 6, 6, 1, 0, new Rect(604, 312, 70, 100));
                     return game;

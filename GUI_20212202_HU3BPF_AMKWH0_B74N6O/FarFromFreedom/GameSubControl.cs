@@ -147,6 +147,8 @@ namespace FarFromFreedom
             {
                 this.model.PauseModel = null;
                 this.pressedKeys.Remove(Key.Escape);
+                this.gameTimer.Start();
+                this.EventTimer.Start();
             }
             else if (pressedKeys.Contains(Key.Enter))
             {
@@ -163,6 +165,8 @@ namespace FarFromFreedom
                     this.mainSound.Stop();
                     this.logic.GameSave();
                     this.initializeChecker = false;
+                    SaveHighscore saveWin = new SaveHighscore(this.logic);
+                    saveWin.ShowDialog();
                     this.baseControl.ChangeModel(new MenuModel());
                 }
             }

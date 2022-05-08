@@ -11,6 +11,8 @@ namespace FarFromFreedom.Repository
         IGameModel LoadGame(string fileName);
         IGameModel LoadGameFromXML(bool check);
         Dictionary<string, int> LoadHighscores();
+
+        void ResetGameModels();
         void SaveHighScore(string userName, int score);
         void SaveGame(IGameModel gameModel, string filename);
         void SaveGameToXml(IMainCharacter mc, int level, int roomid, List<int> clearedRoomIDs);
