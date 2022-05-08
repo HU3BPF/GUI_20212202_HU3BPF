@@ -100,9 +100,7 @@ namespace FarFromFreedom.Logic
                     continue;
                 }
 
-
-                EnemyMover(enemy, direction);
-
+            EnemyMover(enemy, direction);
             }
         }
 
