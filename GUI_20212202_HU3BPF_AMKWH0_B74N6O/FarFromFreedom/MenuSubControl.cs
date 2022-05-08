@@ -91,6 +91,8 @@ namespace FarFromFreedom
                     introWindow.Height = original.Height;
                     introWindow.ShowDialog();
                 }
+                gameModel.PauseModel = null;
+                gameModel.Won = false;
                 control.ChangeModel(gameModel);
             }
             

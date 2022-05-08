@@ -45,6 +45,11 @@ namespace FarFromFreedom
             this.pauseTimer = null;
         }
 
+        public void LogicNull()
+        {
+            this.logic = null;
+        }
+
         public void Init(IGameModel model, BaseControl baseControl)
         {
             if (logic is null)
@@ -113,19 +118,45 @@ namespace FarFromFreedom
             {
                 this.sound.Stop();
                 this.mainSound.Stop();
+                this.EventTimer.Stop();
+                this.gameTimer.Stop();
                 this.pauseTimer.Start();
                 this.model.Won = true;
 
-                this.initializeChecker = false;
-                this.baseControl.ChangeModel(new MenuModel());
             }
         }
 
         private void PauseMenuInputHandler(object? sender, EventArgs e)
         {
+            if (this.model.Won)
+            {
+                if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space))
+                {
+                    this.pressedKeys.Remove(Key.Enter);
+                    this.pressedKeys.Remove(Key.Space);
+                    FarFromFreedom.SaveHighscore saveWin = new SaveHighscore(this.logic);
+
+                    Window original = Window.GetWindow(this.baseControl);
+                    original.WindowStartupLocation = WindowStartupLocation.Manual;
+
+                    saveWin.Width = 200;
+                    saveWin.Height = 200;
+                    saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                    saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
+                    saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
+                    saveWin.ShowDialog();
+                    this.model.Won = false;
+                    this.model.PauseModel = null;
+
+                    this.initializeChecker = false;
+                    this.baseControl.ChangeModel(new MenuModel());
+                }
+                return;
+            }
+
             if (this.model.PauseModel == null) { return; }
 
-            if (this.model.PauseModel.IsDead || this.logic.Won)
+            if (this.model.PauseModel.IsDead)
             {
                 if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space) )
                 {
@@ -142,11 +173,13 @@ namespace FarFromFreedom
                     saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
                     saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
                     saveWin.ShowDialog();
-
+                    this.model.PauseModel.IsDead = false;
+                    this.model.PauseModel = null;
+                    this.model.Won = false;
                     this.initializeChecker = false;
                     this.baseControl.ChangeModel(new MenuModel());
-                    return;
                 }
+                return;
             }
 
             if (this.pressedKeys.Contains(Key.Down))

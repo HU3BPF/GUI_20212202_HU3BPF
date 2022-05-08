@@ -87,9 +87,11 @@ namespace FarFromFreedom
 
         public void ChangeModel(IModel model)
         {
+            bool prevModelWasMenu = false;
             if (this.model is IMenuModel)
             {
                 this.menuSubControl.Dispose();
+                prevModelWasMenu = true;
             }
             else if (this.model is IGameModel gameModel && !(model is IGameModel))
             {
@@ -105,6 +107,10 @@ namespace FarFromFreedom
             }
             else if (this.model is IGameModel gameModel)
             {
+                if (prevModelWasMenu)
+                {
+                    this.gameSubControl.LogicNull();
+                }
                 if (gameModel.Level == 1 && gameModel.RoomID == 1 & gameModel.Character.Highscore == 0)
                 {
                     this.renderer = new GameRenderer(gameModel);
