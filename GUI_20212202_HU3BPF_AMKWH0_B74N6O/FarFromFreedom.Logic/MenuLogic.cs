@@ -2,11 +2,7 @@
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Repository;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace FarFromFreedom.Logic
@@ -35,7 +31,7 @@ namespace FarFromFreedom.Logic
                 try
                 {
                     this.prevGameModel = this.repository.LoadGameFromXML(true);
-                    
+
 
                     this.model.CanContiue = true;
                     this.model.ContinueOpacity = 0.8;
@@ -55,7 +51,7 @@ namespace FarFromFreedom.Logic
             {
                 this.SetIndexesOpacity(this.model.SelectedIndex, 0.8);
 
-                if (this.model.SelectedIndex-1 == 1 && !this.model.CanContiue)
+                if (this.model.SelectedIndex - 1 == 1 && !this.model.CanContiue)
                 {
                     this.model.SelectedIndex -= 2;
                 }

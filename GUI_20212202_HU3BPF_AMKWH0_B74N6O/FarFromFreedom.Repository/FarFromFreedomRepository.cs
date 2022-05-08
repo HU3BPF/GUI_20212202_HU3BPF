@@ -14,9 +14,6 @@ namespace FarFromFreedom.Repository
 {
     public class FarFromFreedomRepository : IFarFromFreedomRepository
     {
-        //Az adott pályának a száma és a hozzá tartozó értéke.
-        //Lista azért van mert minden level 1 lista elem és benne tartozó értékek leszenk megjelölve számmal.
-        //Így vissza is tudunk menni 1 levelen egy pályára.
         public List<Dictionary<int, IGameModel>> GameModelMap => gameModelMap;
 
         private List<Dictionary<int, IGameModel>> gameModelMap = new List<Dictionary<int, IGameModel>>();
@@ -31,7 +28,6 @@ namespace FarFromFreedom.Repository
         }
         private FarFromFreedomRepository(int levels)
         {
-            //this.LoadLevel(levels);
             for (int i = 1; i <= levels; i++)
             {
                 this.LoadLevel(i);
@@ -51,13 +47,6 @@ namespace FarFromFreedom.Repository
             return gameModel;
         }
 
-        /// <summary>
-        /// Saves the current main character, and its position.
-        /// </summary>
-        /// <param name="mc"> Main character class. </param>
-        /// <param name="level"> Current level. </param>
-        /// <param name="roomid"> Current room ID. </param>
-        /// <param name="clearedRoomIDs"> List of roomids that has no enemies. </param>
         public void SaveGameToXml(IMainCharacter mc, int level, int roomid, List<int> clearedRoomIDs)
         {
             XElement clearedRooms = new XElement("Cleared_Rooms");
@@ -121,12 +110,11 @@ namespace FarFromFreedom.Repository
         private void LoadLevel(int lvl)
         {
             Dictionary<int, IGameModel> newGameModelMap = new Dictionary<int, IGameModel>();
-            //string json = File.ReadAllText($"Level{lvl}.xml");
 
             XDocument source = XDocument.Load(Path.Combine("Map", $"Level{lvl}.xml"));
             int key;
             GameModel tmpModel;
-            
+
             foreach (XElement room in source.Element($"Level{lvl}").Elements("Room"))
             {
                 key = int.Parse(room.Attribute("ID").Value);
@@ -142,25 +130,8 @@ namespace FarFromFreedom.Repository
             }
             this.GameModelMap.Add(newGameModelMap);
 
-            //List<GameModel> gameModel = JsonConvert.DeserializeObject<List<GameModel>>(json, new JsonSerializerSettings
-            //{
-            //    TypeNameHandling = TypeNameHandling.All,
-            //    TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
-            //    ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-            //});
-
-            //for (int i = 0; i < gameModel.Count; i++)
-            //{
-            //    newGameModelMap.Add(i, gameModel[i]);
-            //}
 
         }
-
-        /// <summary>
-        /// Loads the items in the room.
-        /// </summary>
-        /// <param name="room"> The room's xelemnt. </param>
-        /// <returns> List of items. </returns>
         private List<IItem> GetItems(XElement room)
         {
             List<IItem> result = new List<IItem>();
@@ -181,11 +152,6 @@ namespace FarFromFreedom.Repository
             return result;
         }
 
-        /// <summary>
-        /// Loads the enemies from the room.
-        /// </summary>
-        /// <param name="room"> The room's xelemet. </param>
-        /// <returns> List of enemies. </returns>
         private List<IEnemy> GetEnemies(XElement room)
         {
             List<IEnemy> result = new List<IEnemy>();
@@ -240,11 +206,6 @@ namespace FarFromFreedom.Repository
             return result;
         }
 
-        /// <summary>
-        /// Loads a rooms neighbours.
-        /// </summary>
-        /// <param name="room"> The room's xelement. </param>
-        /// <returns> Int array that represents the neighbours' ids. </returns>
         private int[] GetNeighbours(XElement room)
         {
             int[] result = new int[4];
@@ -292,13 +253,9 @@ namespace FarFromFreedom.Repository
             return newGameModelMap;
         }
 
-        /// <summary>
-        /// Loads the save file.
-        /// </summary>
-        /// <returns> Game model. </returns>
         public IGameModel LoadGameFromXML(bool check)
         {
-            XDocument source = XDocument.Load(Path.Combine(Directory.GetCurrentDirectory(),"Saves", $"SaveFile.xml"));
+            XDocument source = XDocument.Load(Path.Combine(Directory.GetCurrentDirectory(), "Saves", $"SaveFile.xml"));
             int level = int.Parse(source.Element("SaveFile").Element("Position").Element("Level").Value);
             int roomID = int.Parse(source.Element("SaveFile").Element("Position").Element("RoomID").Value);
             if (!check)
@@ -332,23 +289,16 @@ namespace FarFromFreedom.Repository
             return result;
         }
 
-        /// <summary>
-        /// Saves the Main Characters current highscore.
-        /// </summary>
-        /// <param name="userName"> The player's name that will be displayed in the highscores menu. </param>
-        /// <param name="score"> The player's current score. </param>
         public void SaveHighScore(string userName, int score)
         {
             XElement SaveFile;
             bool added = false;
 
-            // The new score element that will be inserted.
             XElement newScore = new XElement("Score",
                                             new XElement("Name", userName),
                                             new XElement("Point", score)
                                         );
 
-            //Checks weather the directory and the file exists,
             if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore")))
             {
                 Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Highscore"));
@@ -368,7 +318,7 @@ namespace FarFromFreedom.Repository
                 }
                 else
                 {
-                    SaveFile = new XElement("Highscores",newScore);
+                    SaveFile = new XElement("Highscores", newScore);
                     StreamWriter sw_ = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
                     SaveFile.Save(sw_);
                     sw_.Close();
@@ -379,7 +329,6 @@ namespace FarFromFreedom.Repository
             int actScore;
             XElement last = new XElement("Nulll");
             last = null;
-            // Goes through the score elements and inserts it to keep the decreasing scores.
             foreach (XElement xscore in SaveFile.Elements("Score"))
             {
                 last = xscore;
@@ -391,7 +340,7 @@ namespace FarFromFreedom.Repository
                         added = true;
                         last = null;
                         break;
-                    }                    
+                    }
                 }
             }
 
@@ -410,10 +359,6 @@ namespace FarFromFreedom.Repository
             sw.Close();
         }
 
-        /// <summary>
-        /// Loads the highscores if there is any.
-        /// </summary>
-        /// <returns> A dictionary</returns>
         public Dictionary<string, int> LoadHighscores()
         {
             XElement xml;
@@ -443,8 +388,8 @@ namespace FarFromFreedom.Repository
                 {
                     actName = actName + " ";
                 }
-                highscores.Add(actName, int.Parse(score.Element("Point").Value));                
-                
+                highscores.Add(actName, int.Parse(score.Element("Point").Value));
+
             }
             return highscores;
         }
@@ -453,5 +398,5 @@ namespace FarFromFreedom.Repository
         {
             instance = new FarFromFreedomRepository(3);
         }
-    } 
+    }
 }

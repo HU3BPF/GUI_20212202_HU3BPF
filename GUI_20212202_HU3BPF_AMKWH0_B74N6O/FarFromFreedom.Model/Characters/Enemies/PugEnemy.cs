@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters.Enemies
 {

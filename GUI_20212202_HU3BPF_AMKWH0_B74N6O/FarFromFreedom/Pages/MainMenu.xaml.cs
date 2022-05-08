@@ -1,6 +1,4 @@
-﻿using FarFromFreedom.Logic;
-using FarFromFreedom.Model;
-using FarFromFreedom.Repository;
+﻿using FarFromFreedom.Repository;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,7 +25,7 @@ namespace FarFromFreedom.Pages
         public void createMenu()
         {
             double top_margin = 100;
-            double vertical_dif = (windowHeigth - (5 * border_height) - (2 * top_margin) ) / 6;
+            double vertical_dif = (windowHeigth - (5 * border_height) - (2 * top_margin)) / 6;
             double side_margin = (windowWidth - border_width) / 2;
             BitmapImage bmp = new BitmapImage(new Uri(System.IO.Path.Combine("MenuImages", "bg.png"), UriKind.RelativeOrAbsolute));
             ImageBrush ib = new ImageBrush(bmp);
@@ -158,7 +156,7 @@ namespace FarFromFreedom.Pages
                         break;
                     default:
                         break;
-                } 
+                }
             }
         }
 
@@ -178,10 +176,10 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Options":
                     this.SelectIndex(3);
-                    
+
                     return;
                 case "ExitGame":
-                    this.SelectIndex(4);                    
+                    this.SelectIndex(4);
                     return;
                 default:
                     return;
@@ -268,7 +266,7 @@ namespace FarFromFreedom.Pages
                     actual.Opacity = 0.8;
                 }
             }
-            
+
         }
     }
 }

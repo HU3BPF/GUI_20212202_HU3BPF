@@ -102,7 +102,7 @@ namespace FarFromFreedom.Logic
                     continue;
                 }
 
-            EnemyMover(enemy, direction);
+                EnemyMover(enemy, direction);
             }
         }
 
@@ -280,7 +280,7 @@ namespace FarFromFreedom.Logic
             y += h / 4;
             if (Key.W == key)
             {
-                Bullet bullet = new Bullet(new Rect(x,y, 20,20), Direction.Up);
+                Bullet bullet = new Bullet(new Rect(x, y, 20, 20), Direction.Up);
                 gameModel.Character.DirectionHelper.DirectionChanger(Direction.Up);
                 gameModel.Bullets.Add(bullet);
                 return 0;
@@ -490,7 +490,7 @@ namespace FarFromFreedom.Logic
                     enemy.MoveDown();
                     return true;
                 }
-                else if (item.Area.Rect.BottomLeft.X <= enemy.Area.Rect.BottomLeft.X && item.Area.Rect.BottomLeft.Y >= enemy.Area.Rect.BottomLeft.Y &&  Direction.DownLeft == direction)
+                else if (item.Area.Rect.BottomLeft.X <= enemy.Area.Rect.BottomLeft.X && item.Area.Rect.BottomLeft.Y >= enemy.Area.Rect.BottomLeft.Y && Direction.DownLeft == direction)
                 {
                     enemy.MoveDown();
                     return true;
@@ -625,7 +625,7 @@ namespace FarFromFreedom.Logic
             List<Bullet> removables = new List<Bullet>();
             foreach (Bullet tear in this.gameModel.Bullets)
             {
-                
+
                 if (tear.Area.Rect.Left <= 105)
                 {
                     removables.Add(tear);
@@ -656,7 +656,7 @@ namespace FarFromFreedom.Logic
             int level = this.gameModel.Level;
             //178,195 fl
             //175,175 jb
-            if (this.gameModel.Enemies.Count == 0 && this.gameModel.Doors?.Count ==0)
+            if (this.gameModel.Enemies.Count == 0 && this.gameModel.Doors?.Count == 0)
             {
                 if (this.gameModel.UpperNeighbour != -1)
                 {
@@ -674,9 +674,9 @@ namespace FarFromFreedom.Logic
                 {
                     this.gameModel.Doors.Add(new Door(level, 4, this.gameModel.LeftNeighbour, new Rect(15, hxstart, a60percent, a60percent)));
                 }
-                if (!this.farFromFreedomRepository.GameModelMap[this.gameModel.Level-1].Where(x => x.Value.RoomID > this.gameModel.RoomID).Any())
+                if (!this.farFromFreedomRepository.GameModelMap[this.gameModel.Level - 1].Where(x => x.Value.RoomID > this.gameModel.RoomID).Any())
                 {
-                    this.gameModel.Doors.Add(new Door(level, 5, 999, new Rect(860, 220, 80,80)));
+                    this.gameModel.Doors.Add(new Door(level, 5, 999, new Rect(860, 220, 80, 80)));
                 }
             }
         }
@@ -729,7 +729,7 @@ namespace FarFromFreedom.Logic
             }
 
 
-            this.gameModel = farFromFreedomRepository.GameModelMap[this.gameModel.Level-1][roomid];
+            this.gameModel = farFromFreedomRepository.GameModelMap[this.gameModel.Level - 1][roomid];
             this.gameModel.Character = mc;
             return this.gameModel;
         }

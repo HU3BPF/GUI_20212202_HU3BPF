@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FarFromFreedom.Model
 {
@@ -79,7 +75,7 @@ namespace FarFromFreedom.Model
 
         public void ResetParams()
         {
-            
+
             NewGameOpacity = 1;
             if (CanContiue)
             {
@@ -88,9 +84,9 @@ namespace FarFromFreedom.Model
             else
             {
                 ContinueOpacity = 0.4;
-            }           
-            OptionsOpacity = 0.8;           
-            HighscoreOpacity = 0.8;            
+            }
+            OptionsOpacity = 0.8;
+            HighscoreOpacity = 0.8;
             ExitGameOpacity = 0.8;
             SelectedIndex = 0;
         }

@@ -1,7 +1,5 @@
 ﻿using FarFromFreedom.Model.Helpers;
-using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 
@@ -23,7 +21,7 @@ namespace FarFromFreedom.Model
 
         protected Rect areaRect { set => this.area = value; }
 
-        private Vector speed = new Vector(4,4);
+        private Vector speed = new Vector(4, 4);
 
         protected Vector SpeedSetter { set => this.speed = value; }
 

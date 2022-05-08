@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Windows;
-using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
 {
@@ -17,10 +16,10 @@ namespace FarFromFreedom.Model.Characters
             this.coin = coin;
             this.SpeedSetter = new Vector(6, 6);
         }
-        
+
         public MainCharacter()
         {
-            
+
         }
 
         public MainCharacter(string name, string description, int health, int currentHealth, Vector speed, int coin, int highscore, int power, Rect area) : base(area)
@@ -62,7 +61,7 @@ namespace FarFromFreedom.Model.Characters
         public DirectionAnimationHelper DirectionHelper => directionHelper;
 
         public bool CharacterMoved { get; set; } = false;
-        
+
 
         public void PowerUp(double power)
         {

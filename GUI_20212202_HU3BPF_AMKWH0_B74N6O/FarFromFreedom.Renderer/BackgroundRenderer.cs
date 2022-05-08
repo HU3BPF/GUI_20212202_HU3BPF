@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -46,12 +43,12 @@ namespace FarFromFreedom.Renderer
             Dictionary<string, Brush> initGameDrawings = new Dictionary<string, Brush>();
 
             initGameDrawings.Add("Level1Start_base", Level1Start_base);
-            initGameDrawings.Add("Level1_base",Level1_base);
-            initGameDrawings.Add("Level1door1",Level1door_1);
-            initGameDrawings.Add("Level1door2",Level1door_2);
-            initGameDrawings.Add("Level1door3",Level1door_3);
-            initGameDrawings.Add("Level1door4",Level1door_4);
-            initGameDrawings.Add("Level1door5",Level1door_5);
+            initGameDrawings.Add("Level1_base", Level1_base);
+            initGameDrawings.Add("Level1door1", Level1door_1);
+            initGameDrawings.Add("Level1door2", Level1door_2);
+            initGameDrawings.Add("Level1door3", Level1door_3);
+            initGameDrawings.Add("Level1door4", Level1door_4);
+            initGameDrawings.Add("Level1door5", Level1door_5);
             initGameDrawings.Add("Level2_base", Level2_base);
             initGameDrawings.Add("Level2door1", Level2door_1);
             initGameDrawings.Add("Level2door2", Level2door_2);

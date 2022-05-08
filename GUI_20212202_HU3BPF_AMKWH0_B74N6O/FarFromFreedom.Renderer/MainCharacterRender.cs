@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -67,7 +64,7 @@ namespace FarFromFreedom.Renderer
                 gobbyLeft.Add(GetBrushes(Path.Combine(path, $"gobbyLeft{i}.png")));
                 gobbyRight.Add(GetBrushes(Path.Combine(path, $"gobbyRight{i}.png")));
             }
-            
+
         }
 
         private ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));

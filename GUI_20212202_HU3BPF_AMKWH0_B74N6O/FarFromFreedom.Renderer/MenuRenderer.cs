@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -25,7 +22,7 @@ namespace FarFromFreedom.Renderer
         private Dictionary<string, Brush> GameBrushes;
         IMenuModel model;
 
-        
+
         public MenuRenderer(IMenuModel model)
         {
             this.model = model;
@@ -35,7 +32,7 @@ namespace FarFromFreedom.Renderer
         public DrawingGroup BuildDrawing()
         {
             DrawingGroup drawingGroup = new DrawingGroup();
-            
+
             if (this.model.IsWelcomePage)
             {
                 // Itt csak a képet töltjük be
@@ -43,7 +40,7 @@ namespace FarFromFreedom.Renderer
                 //drawingGroup.Children.Add(GetDrawing(itemBrush, item.Area));
             }
             else
-            { 
+            {
                 if (this.model.IsHighscoreList)
                 {
                     drawingGroup.Children.Add(this.GetDrawing(_highscoreListBrush, new RectangleGeometry(new Rect(0, 0, 1290, 730))));
@@ -70,7 +67,7 @@ namespace FarFromFreedom.Renderer
                           1);
 
                         drawingGroup.Children.Add(new GeometryDrawing(Brushes.SaddleBrown, new Pen(Brushes.SaddleBrown, 2),
-                            formattedText.BuildGeometry(new Point(x,y))));
+                            formattedText.BuildGeometry(new Point(x, y))));
 
                         x += spacing_x;
 
@@ -88,7 +85,7 @@ namespace FarFromFreedom.Renderer
                         y += spacing_y;
                         x -= spacing_x;
                         i++;
-                        if (i>max)
+                        if (i > max)
                         {
                             break;
                         }

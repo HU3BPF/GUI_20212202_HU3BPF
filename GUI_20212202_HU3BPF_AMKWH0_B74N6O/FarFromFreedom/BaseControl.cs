@@ -57,7 +57,7 @@ namespace FarFromFreedom
 
         private void TesztPointWriter(object sender, MouseButtonEventArgs e)
         {
-            Point p =Mouse.GetPosition(this);
+            Point p = Mouse.GetPosition(this);
             MessageBox.Show($"X: {p.X}\nY: {p.Y}");
         }
 
@@ -77,7 +77,7 @@ namespace FarFromFreedom
                 {
                     InvalidateVisual();
                 }
-                
+
             }
             else if (this.model is IGameModel gameModel)
             {

@@ -1,12 +1,11 @@
 ﻿using FarFromFreedom.Model;
+using FarFromFreedom.Model.Characters;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
-using System;
-using System.Windows.Media.Animation;
-using System.Collections.Generic;
-using FarFromFreedom.Model.Characters;
 
 namespace FarFromFreedom.Renderer
 {
@@ -50,7 +49,7 @@ namespace FarFromFreedom.Renderer
             {
                 this.DrawWinMenu(drawingGroup);
             }
-            
+
             return drawingGroup;
         }
 
@@ -69,18 +68,18 @@ namespace FarFromFreedom.Renderer
             if (!this.model.PauseModel.IsDead)
             {
                 drawingGroup.Children.Add(GetDrawing(backGroundBrushes["PauseMenu"], new RectangleGeometry(new Rect(x, y, w, h))));
-                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(475, 430, 350, 60))));
-                drawingGroup.Children.Add(this.GetDrawing(ExitMenu,new RectangleGeometry(new Rect(475, 530, 350, 60))));
+                drawingGroup.Children.Add(this.GetDrawing(Continue, new RectangleGeometry(new Rect(475, 430, 350, 60))));
+                drawingGroup.Children.Add(this.GetDrawing(ExitMenu, new RectangleGeometry(new Rect(475, 530, 350, 60))));
             }
             else
             {
-              drawingGroup.Children.Add(GetDrawing(backGroundBrushes["DeathImage"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+                drawingGroup.Children.Add(GetDrawing(backGroundBrushes["DeathImage"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
             }
         }
 
         private void DrawWinMenu(DrawingGroup drawingGroup)
         {
-           drawingGroup.Children.Add(GetDrawing(backGroundBrushes["FinalMenu"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+            drawingGroup.Children.Add(GetDrawing(backGroundBrushes["FinalMenu"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
         }
 
         private void DrawInterface(DrawingGroup drawingGroup)
@@ -96,8 +95,8 @@ namespace FarFromFreedom.Renderer
 
             double x = 20.0;
             double y = 20.0;
-            double w = 69.0*0.60;
-            double h = 62.0*0.60;
+            double w = 69.0 * 0.60;
+            double h = 62.0 * 0.60;
             double spacing = 10.0;
 
             //w69 h62 
@@ -123,7 +122,7 @@ namespace FarFromFreedom.Renderer
               30,
               Brushes.Black,
               1);
-            GeometryDrawing highscore = new GeometryDrawing(null, new Pen(Brushes.SandyBrown, 2), formattedText.BuildGeometry(new Point(1192 - 24 - (hs.Length*13), 20)));
+            GeometryDrawing highscore = new GeometryDrawing(null, new Pen(Brushes.SandyBrown, 2), formattedText.BuildGeometry(new Point(1192 - 24 - (hs.Length * 13), 20)));
 
             drawingGroup.Children.Add(highscore);
 
@@ -195,7 +194,7 @@ namespace FarFromFreedom.Renderer
                 Brush itemBrush = GameBrushes.GetValueOrDefault("TearsBrush");
                 if (itemBrush != null)
                 {
-                    
+
                     drawingGroup.Children.Add(GetDrawing(itemBrush, bulletArea));
 
                 }
@@ -249,7 +248,7 @@ namespace FarFromFreedom.Renderer
                     drawingGroup.Children.Add(GetDrawing(backGroundBrushes[door.Description], door.Area));
                 }
             }
-            
+
         }
 
         public void GameModelChanged(IModel model) => this.model = (model as IGameModel);

@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace FarFromFreedom.Model.Characters
+﻿namespace FarFromFreedom.Model.Characters
 {
     public interface IEnemy
     {

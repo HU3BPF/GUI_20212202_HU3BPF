@@ -1,8 +1,5 @@
 ﻿using FarFromFreedom.Model.Characters;
-using FarFromFreedom.Model.Items;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace FarFromFreedom.Model
 {

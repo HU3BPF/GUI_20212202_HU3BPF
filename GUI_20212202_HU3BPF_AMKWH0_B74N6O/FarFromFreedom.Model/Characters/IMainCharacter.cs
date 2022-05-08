@@ -1,5 +1,4 @@
-﻿using FarFromFreedom.Model.Items;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace FarFromFreedom.Model.Characters
@@ -14,7 +13,7 @@ namespace FarFromFreedom.Model.Characters
         int Coin { get; }
         double Highscore { get; }
         bool CharacterMoved { get; set; }
-        RectangleGeometry Area   { get; set; }
+        RectangleGeometry Area { get; set; }
         Vector Speed { get; }
         DirectionAnimationHelper DirectionHelper { get; }
         void CurrentHealthUp(double currentHealth);

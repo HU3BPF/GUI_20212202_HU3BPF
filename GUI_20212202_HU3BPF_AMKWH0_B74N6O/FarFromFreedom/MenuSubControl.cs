@@ -2,11 +2,8 @@
 using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
 using FarFromFreedom.Repository;
-using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace FarFromFreedom
 {
@@ -35,7 +32,7 @@ namespace FarFromFreedom
                         menuModel.IsHighscoreList = !menuModel.IsHighscoreList;
                         return 1;
                     }
-                    return-1;
+                    return -1;
                 }
                 switch (e.Key)
                 {
@@ -95,8 +92,8 @@ namespace FarFromFreedom
                 gameModel.Won = false;
                 control.ChangeModel(gameModel);
             }
-            
-            
+
+
         }
 
         private void NewGame(BaseControl control)
@@ -115,11 +112,11 @@ namespace FarFromFreedom
             IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
             IGameModel game = repo.GameModelMap[0][1];
             game.Character = new MainCharacter("Gobby", "alma", 6, 6, 1, 0, new Rect(400, 200, 100, 100));
-            
+
             control.ChangeModel(game);
 
         }
 
-        
+
     }
 }

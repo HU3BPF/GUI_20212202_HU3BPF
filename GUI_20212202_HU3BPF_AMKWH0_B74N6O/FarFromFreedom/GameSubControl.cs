@@ -58,7 +58,7 @@ namespace FarFromFreedom
             }
             this.model = model;
             this.model.PauseModel = null;
-            
+
             this.baseControl = baseControl;
             Window win = Window.GetWindow(baseControl);
             if (win != null && initializeChecker == false)
@@ -158,7 +158,7 @@ namespace FarFromFreedom
 
             if (this.model.PauseModel.IsDead)
             {
-                if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space) )
+                if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space))
                 {
                     this.pressedKeys.Remove(Key.Enter);
                     this.pressedKeys.Remove(Key.Space);
@@ -166,7 +166,7 @@ namespace FarFromFreedom
 
                     Window original = Window.GetWindow(this.baseControl);
                     original.WindowStartupLocation = WindowStartupLocation.Manual;
-                    
+
                     saveWin.Width = 200;
                     saveWin.Height = 200;
                     saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
@@ -201,7 +201,8 @@ namespace FarFromFreedom
                     this.model.PauseModel.ContinueOpacity = 1;
                 }
                 this.pressedKeys.Remove(Key.Up);
-            }else if (pressedKeys.Contains(Key.Escape))
+            }
+            else if (pressedKeys.Contains(Key.Escape))
             {
                 this.model.PauseModel = null;
                 this.pressedKeys.Remove(Key.Escape);
@@ -278,7 +279,7 @@ namespace FarFromFreedom
                     this.pauseTimer.Stop();
                     this.gameTimer?.Start();
                 }
-                
+
                 this.logic?.Pause(toPause);
                 this.pressedKeys.Remove(Key.Escape);
             }
@@ -286,7 +287,7 @@ namespace FarFromFreedom
 
         private void MusicPlayer(object? sender, EventArgs e)
         {
-            if (this.pressedKeys.Contains(Key.P)) 
+            if (this.pressedKeys.Contains(Key.P))
             {
                 this.pressedKeys.Remove(Key.P);
                 if (playing)
@@ -349,7 +350,7 @@ namespace FarFromFreedom
             if (this.pressedKeys.Contains(Key.Left))
             {
                 logic?.PLayerMove(Key.Left);
-            } 
+            }
             else if (this.pressedKeys.Contains(Key.Right))
             {
                 logic?.PLayerMove(Key.Right);
@@ -445,7 +446,7 @@ namespace FarFromFreedom
                     sound.Play();
                 }
                 mainSound.Pause();
-               
+
             }
         }
 

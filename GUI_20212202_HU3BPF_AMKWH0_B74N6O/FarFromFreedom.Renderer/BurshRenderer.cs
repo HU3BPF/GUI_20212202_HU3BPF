@@ -9,7 +9,7 @@ namespace FarFromFreedom.Renderer
     internal static class BurshRenderer
     {
         //Items
-        private static  Brush bagBrush = GetBrushes(Path.Combine("Images", "items", "bag.png"));
+        private static Brush bagBrush = GetBrushes(Path.Combine("Images", "items", "bag.png"));
         private static Brush bombBrush = GetBrushes(Path.Combine("Images", "items", "bomb.png"));
         private static Brush bottleBrush = GetBrushes(Path.Combine("Images", "items", "bottle.png"));
         private static Brush coinBrush = GetBrushes(Path.Combine("Images", "items", "coin.png"));

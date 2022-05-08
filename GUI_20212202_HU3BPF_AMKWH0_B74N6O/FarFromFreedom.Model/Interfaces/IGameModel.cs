@@ -12,8 +12,8 @@ namespace FarFromFreedom.Model
         List<Door> Doors { get; set; }
 
         int UpperNeighbour { get; set; }
-        int LowerNeighbour { get; set; } 
-        int RightNeighbour { get; set; } 
+        int LowerNeighbour { get; set; }
+        int RightNeighbour { get; set; }
         int LeftNeighbour { get; set; }
         int RoomID { get; set; }
         int Level { get; set; }
