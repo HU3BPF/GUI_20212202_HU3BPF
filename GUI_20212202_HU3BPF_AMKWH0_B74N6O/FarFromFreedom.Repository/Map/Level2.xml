@@ -31,7 +31,7 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Flying" X="357" Y="350" Width="80" Height="80"/>
+			<Enemy Type="Monster" X="877" Y="287" Width="86" Height="83"/>
 		</Enemies>
 		<Objects>
 			<Object Type="tree3" X="957" Y="122" Width="70" Height="95"/>
@@ -77,9 +77,9 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Bat" X="818" Y="184" Width="80" Height="80"/>
-			<Enemy Type="Flying" X="695" Y="512" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="877" Y="287" Width="80" Height="80"/>
+			<Enemy Type="Bat" X="818" Y="184" Width="55" Height="50"/>
+			<Enemy Type="Flying" X="695" Y="512" Width="60" Height="60"/>
+			<Enemy Type="Monster" X="877" Y="287" Width="86" Height="83"/>
 		</Enemies>
 		<Objects>
 			<Object Type="tree4" X="957" Y="122" Width="70" Height="95"/>
@@ -104,8 +104,8 @@
 			<RightNeighbour ID="6"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Bat" X="508" Y="173" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="226" Y="447" Width="80" Height="80"/>
+			<Enemy Type="Bat" X="508" Y="173" Width="55" Height="50"/>
+			<Enemy Type="Monster" X="226" Y="447" Width="86" Height="83"/>
 		</Enemies>
 		<Objects>
 			<Object Type="tree3" X="1036" Y="510" Width="70" Height="95"/>
@@ -127,10 +127,10 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Flying" X="976" Y="185" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="369" Y="543" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="884" Y="527" Width="80" Height="80"/>
-			<Enemy Type="Bat" X="1076" Y="303" Width="80" Height="80"/>
+			<Enemy Type="Flying" X="976" Y="185" Width="60" Height="60"/>
+			<Enemy Type="Monster" X="369" Y="543" Width="86" Height="83"/>
+			<Enemy Type="Monster" X="884" Y="527" Width="86" Height="83"/>
+			<Enemy Type="Bat" X="1076" Y="303" Width="55" Height="50"/>
 		</Enemies>
 		<Objects>
 			<Object Type="cactus" X="539" Y="536" Width="60" Height="65"/>
@@ -154,8 +154,8 @@
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Flying" X="297" Y="235" Width="80" Height="80"/>
-			<Enemy Type="Bat" X="913" Y="172" Width="80" Height="80"/>
+			<Enemy Type="Flying" X="297" Y="235" Width="60" Height="60"/>
+			<Enemy Type="Bat" X="913" Y="172" Width="55" Height="50"/>
 		</Enemies>
 		<Objects>
 			<Object Type="cactus" X="352" Y="549" Width="55" Height="60"/>
@@ -177,10 +177,10 @@
 			<RightNeighbour/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Flying" X="1049" Y="335" Width="80" Height="80"/>
-			<Enemy Type="Bat" X="690" Y="498" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="288" Y="168" Width="80" Height="80"/>
-			<Enemy Type="Monster" X="938" Y="469" Width="80" Height="80"/>
+			<Enemy Type="Flying" X="1049" Y="335" Width="60" Height="60"/>
+			<Enemy Type="Bat" X="690" Y="498" Width="55" Height="50"/>
+			<Enemy Type="Monster" X="288" Y="168" Width="86" Height="83"/>
+			<Enemy Type="Monster" X="938" Y="469" Width="86" Height="83"/>
 		</Enemies>
 		<Objects>
 			<Object Type="tree3" X="957" Y="122" Width="70" Height="95"/>

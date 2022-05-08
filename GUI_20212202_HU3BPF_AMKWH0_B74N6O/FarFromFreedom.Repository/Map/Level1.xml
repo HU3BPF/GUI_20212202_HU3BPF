@@ -68,7 +68,7 @@
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Wasp" X="336" Y="250" Width="80" Height="80"/>
-			<Enemy Type="Pug" X="980" Y="419" Width="121" Height="80"/>
+			<Enemy Type="Pug" X="980" Y="419" Width="80" Height="50"/>
 		</Enemies>
 		<Objects>
 			<Object Type="bush1" X="1005" Y="532" Width="70" Height="55"/>
@@ -119,7 +119,7 @@
 			<RightNeighbour ID="7"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Pug" X="220" Y="358"  Width="121" Height="80"/>
+			<Enemy Type="Pug" X="220" Y="358"  Width="80" Height="50"/>
 			<Enemy Type="Mushroom" X="768" Y="239"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
@@ -143,7 +143,7 @@
 			<RightNeighbour ID="8"/>
 		</Neighbours>
 		<Enemies>
-			<Enemy Type="Pug" X="621" Y="233"  Width="121" Height="80"/>
+			<Enemy Type="Pug" X="621" Y="233"  Width="80" Height="50"/>
 			<Enemy Type="Wasp" X="542" Y="481"  Width="80" Height="80"/>
 		</Enemies>
 		<Objects>
@@ -171,7 +171,7 @@
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="Wasp" X="661" Y="136"  Width="80" Height="80"/>
-			<Enemy Type="Pug" X="973" Y="323"  Width="121" Height="80"/>
+			<Enemy Type="Pug" X="973" Y="323"  Width="80" Height="50"/>
 			<Enemy Type="Mushroom" X="289" Y="180"  Width="80" Height="80"/>
 			<Enemy Type="Wasp" X="586" Y="532"  Width="80" Height="80"/>
 		</Enemies>
