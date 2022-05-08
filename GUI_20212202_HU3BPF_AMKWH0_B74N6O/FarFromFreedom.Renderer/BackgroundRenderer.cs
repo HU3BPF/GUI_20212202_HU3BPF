@@ -35,6 +35,7 @@ namespace FarFromFreedom.Renderer
 
         private static Brush PauseMenu = GetBrushes(Path.Combine("Images", "levels", "PausedMenu.png"));
         private static Brush DeathImage = GetBrushes(Path.Combine("Images", "levels", "DiedPicture.png"));
+        private static Brush FinalMenu = GetBrushes(Path.Combine("Images", "levels", "finalMenu.png"));
 
         private static Brush Level2 = GetBrushes(Path.Combine("Images", "background", "Level2.jpg"));
         private static Brush Level3 = GetBrushes(Path.Combine("Images", "background", "Level3.jpg"));
@@ -65,6 +66,7 @@ namespace FarFromFreedom.Renderer
             initGameDrawings.Add("Level3door5", Level3door_5);
             initGameDrawings.Add("PauseMenu", PauseMenu);
             initGameDrawings.Add("DeathImage", DeathImage);
+            initGameDrawings.Add("FinalMenu", FinalMenu);
 
 
             //initGameDrawings.Add("Level1", Leve1);

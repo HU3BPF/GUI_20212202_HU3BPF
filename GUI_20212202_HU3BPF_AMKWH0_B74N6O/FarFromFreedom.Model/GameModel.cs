@@ -73,6 +73,7 @@ namespace FarFromFreedom.Model
         public int Level { get => level; set => level = value; }
         public int RoomID { get => roomID; set => roomID = value; }
         public PauseModel? PauseModel { get => pauseModel; set => pauseModel = value; }
+        public bool Won { get; set; } = false;
 
         public void Init(List<IEnemy> enemies, List<IItem> items)
         {

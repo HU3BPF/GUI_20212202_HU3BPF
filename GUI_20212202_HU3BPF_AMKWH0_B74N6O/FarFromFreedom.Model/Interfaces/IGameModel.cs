@@ -17,6 +17,7 @@ namespace FarFromFreedom.Model
         int LeftNeighbour { get; set; }
         int RoomID { get; set; }
         int Level { get; set; }
+        bool Won { get; set; }
 
         public PauseModel? PauseModel { get; set; }
 
