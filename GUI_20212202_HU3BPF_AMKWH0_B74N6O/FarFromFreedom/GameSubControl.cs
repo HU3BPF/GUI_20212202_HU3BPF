@@ -113,16 +113,8 @@ namespace FarFromFreedom
             {
                 this.sound.Stop();
                 this.mainSound.Stop();
+                this.pauseTimer.Start();
                 this.model.Won = true;
-                Window original = Window.GetWindow(this.baseControl);
-                original.WindowStartupLocation = WindowStartupLocation.Manual;
-                FarFromFreedom.SaveHighscore saveWin = new SaveHighscore(this.logic);
-                saveWin.Width = 200;
-                saveWin.Height = 200;
-                saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
-                saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
-                saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
-                saveWin.ShowDialog();
 
                 this.initializeChecker = false;
                 this.baseControl.ChangeModel(new MenuModel());
@@ -133,7 +125,7 @@ namespace FarFromFreedom
         {
             if (this.model.PauseModel == null) { return; }
 
-            if (this.model.PauseModel.IsDead)
+            if (this.model.PauseModel.IsDead || this.logic.Won)
             {
                 if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space) )
                 {

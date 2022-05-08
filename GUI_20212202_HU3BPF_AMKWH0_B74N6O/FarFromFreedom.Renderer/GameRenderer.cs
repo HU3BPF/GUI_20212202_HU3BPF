@@ -185,10 +185,18 @@ namespace FarFromFreedom.Renderer
         {
             foreach (var bullet in model.Bullets)
             {
+                RectangleGeometry bulletArea = new RectangleGeometry(new Rect(
+                    bullet.Area.Rect.X,
+                    bullet.Area.Rect.Y,
+                    bullet.Area.Rect.Width * (1 + (this.model.Character.Power / 5)),
+                    bullet.Area.Rect.Height * (1 + (this.model.Character.Power / 5))
+                    ));
+
                 Brush itemBrush = GameBrushes.GetValueOrDefault("TearsBrush");
                 if (itemBrush != null)
                 {
-                    drawingGroup.Children.Add(GetDrawing(itemBrush, bullet.Area));
+                    
+                    drawingGroup.Children.Add(GetDrawing(itemBrush, bulletArea));
 
                 }
             }
