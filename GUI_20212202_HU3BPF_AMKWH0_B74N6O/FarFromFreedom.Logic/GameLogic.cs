@@ -100,19 +100,6 @@ namespace FarFromFreedom.Logic
                     continue;
                 }
 
-                foreach (var item in roomDecorationItems)
-                {
-                    if (EnemyItemInspect(item, enemy, direction))
-                    {
-                        enemyItemIsCollision = true;
-                        continue;
-                    }
-                }
-                if (enemyItemIsCollision)
-                {
-                    continue;
-                }
-
                 EnemyMover(enemy, direction);
 
             }
@@ -584,29 +571,29 @@ namespace FarFromFreedom.Logic
         private void ItemAdder(IGameModel gameModel, Rect react)
         {
             Random r = new Random();
-            int randomNumber = r.Next(0, 7);
+            int randomNumber = r.Next(0, 61);
 
             switch (randomNumber)
             {
                 case 0:
                     gameModel.Items.Add(new Bootle(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 1:
+                case 10:
                     gameModel.Items.Add(new Coin(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 2:
+                case 20:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 3:
+                case 30:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 4:
+                case 40:
                     gameModel.Items.Add(new Money(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 5:
+                case 50:
                     gameModel.Items.Add(new Shield(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 6:
+                case 60:
                     gameModel.Items.Add(new Star(new Rect(react.Location, new Size(50, 50))));
                     return;
             }
