@@ -111,6 +111,8 @@ namespace FarFromFreedom
         {
             if (this.logic.Won)
             {
+                this.sound.Stop();
+                this.mainSound.Stop();
                 SaveHighscore saveWin = new SaveHighscore(this.logic);
                 saveWin.ShowDialog();
                 this.initializeChecker = false;
