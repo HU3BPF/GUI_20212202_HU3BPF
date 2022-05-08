@@ -45,6 +45,11 @@ namespace FarFromFreedom.Renderer
             {
                 this.DrawPauseMenu(drawingGroup);
             }
+
+            if (this.model.Won)
+            {
+                this.DrawWinMenu(drawingGroup);
+            }
             
             return drawingGroup;
         }
@@ -71,6 +76,11 @@ namespace FarFromFreedom.Renderer
             {
               drawingGroup.Children.Add(GetDrawing(backGroundBrushes["DeathImage"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
             }
+        }
+
+        private void DrawWinMenu(DrawingGroup drawingGroup)
+        {
+           drawingGroup.Children.Add(GetDrawing(backGroundBrushes["FinalMenu"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
         }
 
         private void DrawInterface(DrawingGroup drawingGroup)

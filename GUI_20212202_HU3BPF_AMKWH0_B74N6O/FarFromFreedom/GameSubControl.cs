@@ -113,6 +113,7 @@ namespace FarFromFreedom
             {
                 this.sound.Stop();
                 this.mainSound.Stop();
+                this.model.Won = true;
                 SaveHighscore saveWin = new SaveHighscore(this.logic);
                 saveWin.ShowDialog();
                 this.initializeChecker = false;
