@@ -177,7 +177,12 @@
     <None Remove="Images\items\star.png" />
     <None Remove="Images\items\tears.png" />
     <None Remove="Images\items\time.png" />
+    <None Remove="Images\levels\finalMenu.png" />
+    <None Remove="Images\MainMenu\DiedExit.png" />
+    <None Remove="Images\MainMenu\DiedRestart.png" />
     <None Remove="Images\MainMenu\exit game.png" />
+    <None Remove="Images\MainMenu\ExitGame.png" />
+    <None Remove="Images\MainMenu\Resume.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -682,7 +687,22 @@
     <Content Include="Images\items\time.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\levels\finalMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MainMenu\DiedExit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MainMenu\DiedRestart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\MainMenu\exit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MainMenu\ExitGame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MainMenu\Resume.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
