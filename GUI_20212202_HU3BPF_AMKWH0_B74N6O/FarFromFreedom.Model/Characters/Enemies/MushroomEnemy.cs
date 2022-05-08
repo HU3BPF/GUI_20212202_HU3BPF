@@ -28,8 +28,8 @@ namespace FarFromFreedom.Model.Characters.Enemies
 
         private readonly string name = "mushroomEnemy";
         private readonly string description = "mushroomEnemy";
-        private readonly double health = 2;
-        private readonly double currentHealth = 2;
-        private readonly double power = 2;
+        private readonly double health = 1;
+        private readonly double currentHealth = 1;
+        private readonly double power = 1;
     }
 }

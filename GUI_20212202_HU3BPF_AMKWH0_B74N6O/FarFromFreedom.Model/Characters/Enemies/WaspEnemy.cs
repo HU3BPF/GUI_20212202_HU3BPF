@@ -33,8 +33,8 @@ namespace FarFromFreedom.Model.Characters.Enemies
 
         private readonly string name = "waspEnemy";
         private readonly string description = "waspEnemy";
-        private readonly double health = 2;
-        private readonly double currentHealth = 2;
-        private readonly double power = 2;
+        private readonly double health = 1;
+        private readonly double currentHealth = 1;
+        private readonly double power = 1;
     }
 }

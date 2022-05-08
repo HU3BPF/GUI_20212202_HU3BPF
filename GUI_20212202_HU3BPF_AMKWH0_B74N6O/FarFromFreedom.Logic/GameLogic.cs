@@ -395,7 +395,7 @@ namespace FarFromFreedom.Logic
                 Money money = (Money)item;
                 gameModel.Character.HighscoreUp(money.Value);
             }
-            else if (item.GetType() == typeof(Hearth))
+            else if (item.GetType() == typeof(Shield))
             {
                 Shield shield = (Shield)item;
                 gameModel.Character.HealthUp(shield.Armor);
@@ -572,29 +572,35 @@ namespace FarFromFreedom.Logic
         private void ItemAdder(IGameModel gameModel, Rect react)
         {
             Random r = new Random();
-            int randomNumber = r.Next(0, 61);
+            int randomNumber = r.Next(0, 18);
 
             switch (randomNumber)
             {
                 case 0:
                     gameModel.Items.Add(new Bootle(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 10:
+                case 1:
                     gameModel.Items.Add(new Coin(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 20:
+                case 2:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 30:
+                case 3:
                     gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 40:
+                case 4:
+                    gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 5:
+                    gameModel.Items.Add(new Hearth(new Rect(react.Location, new Size(50, 50))));
+                    return;
+                case 6:
                     gameModel.Items.Add(new Money(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 50:
+                case 7:
                     gameModel.Items.Add(new Shield(new Rect(react.Location, new Size(50, 50))));
                     return;
-                case 60:
+                case 8:
                     gameModel.Items.Add(new Star(new Rect(react.Location, new Size(50, 50))));
                     return;
             }

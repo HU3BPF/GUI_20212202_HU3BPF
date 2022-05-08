@@ -115,7 +115,7 @@ namespace FarFromFreedom.Logic
                 case 0:
                     IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
                     IGameModel game = repo.GameModelMap[0][1];
-                    game.Character = new MainCharacter("gobby", "alma", 40, 40, 3, 0, new Rect(604, 312, 70, 100));
+                    game.Character = new MainCharacter("gobby", "alma", 6, 6, 1, 0, new Rect(604, 312, 70, 100));
                     return game;
                 case 1:
                     return this.repository.LoadGameFromXML(false);

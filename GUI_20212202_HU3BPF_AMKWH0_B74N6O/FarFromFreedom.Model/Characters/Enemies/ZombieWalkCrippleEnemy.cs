@@ -26,9 +26,9 @@ namespace FarFromFreedom.Model.Characters.Enemies
 
         private readonly string name = "zombieWalkCrippleEnemy";
         private readonly string description = "ZombieWalkCrippleEnemy";
-        private readonly double health = 2;
-        private readonly double currentHealth = 2;
-        private readonly double power = 2;
+        private readonly double health = 4;
+        private readonly double currentHealth = 4;
+        private readonly double power = 1;
 
         public override int level => 3;
         public override double Highscore => 30;

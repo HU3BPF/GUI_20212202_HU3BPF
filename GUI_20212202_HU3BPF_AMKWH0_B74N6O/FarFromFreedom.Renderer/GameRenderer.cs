@@ -74,8 +74,8 @@ namespace FarFromFreedom.Renderer
             Brush heartBrush = GameBrushes.GetValueOrDefault("Heart");
             Brush emptyHeartBrush = GameBrushes.GetValueOrDefault("EmptyHeart");
 
-            double currentHearts = (this.model.Character.CurrentHealth / 10);
-            double emptyCurrentHearts = ((this.model.Character.Health) - (this.model.Character.CurrentHealth)) / 10;
+            double currentHearts = (this.model.Character.CurrentHealth);
+            double emptyCurrentHearts = ((this.model.Character.Health) - (this.model.Character.CurrentHealth));
 
             int hearts = (int)Math.Ceiling(currentHearts);
             int emptyhears = (int)Math.Floor(emptyCurrentHearts);

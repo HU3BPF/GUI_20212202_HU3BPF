@@ -12,7 +12,7 @@ namespace FarFromFreedom.Model.Items
 
         public string Name => "Star";
         public string Description => "Super Power";
-        public double Power => 2;
+        public double Power => 1;
 
         public RectangleGeometry Area => new RectangleGeometry(area);
 

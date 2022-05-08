@@ -157,6 +157,8 @@ namespace FarFromFreedom
                 }
                 else
                 {
+                    this.sound.Stop();
+                    this.mainSound.Stop();
                     this.SaveHighscore();
                 }
             }
