@@ -36,36 +36,6 @@
     <None Remove="Images\background\Level3.png" />
     <None Remove="Images\background\MainMenu.png" />
     <None Remove="Images\background\Start.jpg" />
-    <None Remove="Images\Dobby\dobbyback1.jpg" />
-    <None Remove="Images\Dobby\dobbyBack1.png" />
-    <None Remove="Images\Dobby\dobbyback2.jpg" />
-    <None Remove="Images\Dobby\dobbyBack2.png" />
-    <None Remove="Images\Dobby\dobbyback3.jpg" />
-    <None Remove="Images\Dobby\dobbyBack3.png" />
-    <None Remove="Images\Dobby\dobbyback4.jpg" />
-    <None Remove="Images\Dobby\dobbyBack4.png" />
-    <None Remove="Images\Dobby\dobbyback5.png" />
-    <None Remove="Images\Dobby\dobbyback6.png" />
-    <None Remove="Images\Dobby\dobbyFront1.jpg" />
-    <None Remove="Images\Dobby\dobbyFront1.png" />
-    <None Remove="Images\Dobby\dobbyFront2.jpg" />
-    <None Remove="Images\Dobby\dobbyFront2.png" />
-    <None Remove="Images\Dobby\dobbyFront3.jpg" />
-    <None Remove="Images\Dobby\dobbyFront3.png" />
-    <None Remove="Images\Dobby\dobbyFront4.jpg" />
-    <None Remove="Images\Dobby\dobbyFront4.png" />
-    <None Remove="Images\Dobby\dobbyLeft1.jpg" />
-    <None Remove="Images\Dobby\dobbyLeft1.png" />
-    <None Remove="Images\Dobby\dobbyLeft2.jpg" />
-    <None Remove="Images\Dobby\dobbyLeft2.png" />
-    <None Remove="Images\Dobby\dobbyLeft3.jpg" />
-    <None Remove="Images\Dobby\dobbyLeft3.png" />
-    <None Remove="Images\Dobby\dobbyLeft4.jpg" />
-    <None Remove="Images\Dobby\dobbyLeft4.png" />
-    <None Remove="Images\Dobby\dobbyRight1.png" />
-    <None Remove="Images\Dobby\dobbyRight2.png" />
-    <None Remove="Images\Dobby\dobbyRight3.png" />
-    <None Remove="Images\Dobby\dobbyRight4.png" />
     <None Remove="Images\enemies\level1\mushroomEnemy\mushroomEnemy0.png" />
     <None Remove="Images\enemies\level1\mushroomEnemy\mushroomEnemy1.png" />
     <None Remove="Images\enemies\level1\mushroomEnemy\mushroomEnemy2.png" />
@@ -180,6 +150,22 @@
     <None Remove="Images\enemies\level3\zombieWalkCrippleEnemy\zombieWalkCrippleEnemy7.png" />
     <None Remove="Images\enemies\level3\zombieWalkCrippleEnemy\zombieWalkCrippleEnemy8.png" />
     <None Remove="Images\enemies\level3\zombieWalkCrippleEnemy\zombieWalkCrippleEnemy9.png" />
+    <None Remove="Images\Gobby\gobbyBack1.png" />
+    <None Remove="Images\Gobby\gobbyBack2.png" />
+    <None Remove="Images\Gobby\gobbyBack3.png" />
+    <None Remove="Images\Gobby\gobbyBack4.png" />
+    <None Remove="Images\Gobby\gobbyFront1.png" />
+    <None Remove="Images\Gobby\gobbyFront2.png" />
+    <None Remove="Images\Gobby\gobbyFront3.png" />
+    <None Remove="Images\Gobby\gobbyFront4.png" />
+    <None Remove="Images\Gobby\gobbyLeft1.png" />
+    <None Remove="Images\Gobby\gobbyLeft2.png" />
+    <None Remove="Images\Gobby\gobbyLeft3.png" />
+    <None Remove="Images\Gobby\gobbyLeft4.png" />
+    <None Remove="Images\Gobby\gobbyRight1.png" />
+    <None Remove="Images\Gobby\gobbyRight2.png" />
+    <None Remove="Images\Gobby\gobbyRight3.png" />
+    <None Remove="Images\Gobby\gobbyRight4.png" />
     <None Remove="Images\items\bag.png" />
     <None Remove="Images\items\bomb.png" />
     <None Remove="Images\items\bottle.png" />
@@ -278,52 +264,52 @@
     <Content Include="Images\background\Level3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyBack1.png">
+    <Content Include="Images\Gobby\gobbyBack1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyBack2.png">
+    <Content Include="Images\Gobby\gobbyBack2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyBack3.png">
+    <Content Include="Images\Gobby\gobbyBack3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyBack4.png">
+    <Content Include="Images\Gobby\gobbyBack4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyFront1.png">
+    <Content Include="Images\Gobby\gobbyFront1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyFront2.png">
+    <Content Include="Images\Gobby\gobbyFront2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyFront3.png">
+    <Content Include="Images\Gobby\gobbyFront3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyFront4.png">
+    <Content Include="Images\Gobby\gobbyFront4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyLeft1.png">
+    <Content Include="Images\Gobby\gobbyLeft1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyLeft2.png">
+    <Content Include="Images\Gobby\gobbyLeft2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyLeft3.png">
+    <Content Include="Images\Gobby\gobbyLeft3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyLeft4.png">
+    <Content Include="Images\Gobby\gobbyLeft4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyRight1.png">
+    <Content Include="Images\Gobby\gobbyRight1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyRight2.png">
+    <Content Include="Images\Gobby\gobbyRight2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyRight3.png">
+    <Content Include="Images\Gobby\gobbyRight3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Dobby\dobbyRight4.png">
+    <Content Include="Images\Gobby\gobbyRight4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\enemies\level1\mushroomEnemy\mushroomEnemy0.png">

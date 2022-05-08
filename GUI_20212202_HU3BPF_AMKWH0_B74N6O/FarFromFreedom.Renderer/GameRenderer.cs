@@ -118,41 +118,41 @@ namespace FarFromFreedom.Renderer
                 {
                     if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyFront[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyFront[mainCharacterRenderer.Counter], mainCharacter.Area));
                     }
                     else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyRight[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyRight[mainCharacterRenderer.Counter], mainCharacter.Area));
                     }
                     else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyLeft[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyLeft[mainCharacterRenderer.Counter], mainCharacter.Area));
                     }
                     else
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyBack[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyBack[mainCharacterRenderer.Counter], mainCharacter.Area));
                     }
                 }
                 else
                 {
                     if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Down)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyFront[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyFront[mainCharacterRenderer.Counter], mainCharacter.Area));
                         mainCharacterRenderer.counterUp();
                     }
                     else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Right)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyRight[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyRight[mainCharacterRenderer.Counter], mainCharacter.Area));
                         mainCharacterRenderer.counterUp();
                     }
                     else if (model.Character.DirectionHelper.Direction == Model.Items.Direction.Left)
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyLeft[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyLeft[mainCharacterRenderer.Counter], mainCharacter.Area));
                         mainCharacterRenderer.counterUp();
                     }
                     else
                     {
-                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.dobbyBack[mainCharacterRenderer.Counter], mainCharacter.Area));
+                        drawingGroup.Children.Add(GetDrawing(mainCharacterRenderer.gobbyBack[mainCharacterRenderer.Counter], mainCharacter.Area));
                         mainCharacterRenderer.counterUp();
                     }
                 }

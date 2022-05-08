@@ -180,11 +180,11 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Continue":
                     this.SelectIndex(1);
-                    this.gameControl.gameLogic.GameSave("dobby");
+                    this.gameControl.gameLogic.GameSave("gobby");
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    IGameModel model = gameControl.gameLogic.GameLoad("dobby_2022.4.18_12H46M");
+                    IGameModel model = gameControl.gameLogic.GameLoad("gobby_2022.4.18_12H46M");
                     GameLogic logic = new GameLogic(model);
                     
                     this.gameControl.gameLogic = logic;

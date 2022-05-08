@@ -100,6 +100,20 @@ namespace FarFromFreedom.Logic
                     continue;
                 }
 
+
+                foreach (var item in roomDecorationItems)
+                {
+                    if (EnemyItemInspect(item, enemy, direction))
+                    {
+                        enemyItemIsCollision = true;
+                        continue;
+                    }
+                }
+                if (enemyItemIsCollision)
+                {
+                    continue;
+                }
+
                 EnemyMover(enemy, direction);
 
             }

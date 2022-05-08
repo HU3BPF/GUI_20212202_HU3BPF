@@ -15,24 +15,24 @@ namespace FarFromFreedom.Renderer
         public MainCharacterRender(IMainCharacter character)
         {
             this.character = character;
-            dobbyBack = new List<Brush>();
-            dobbyFront = new List<Brush>();
-            dobbyLeft = new List<Brush>();
-            dobbyRight = new List<Brush>();
-            string path = Path.Combine("Images", "Dobby");
+            gobbyBack = new List<Brush>();
+            gobbyFront = new List<Brush>();
+            gobbyLeft = new List<Brush>();
+            gobbyRight = new List<Brush>();
+            string path = Path.Combine("Images", "gobby");
             int files = Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length;
             for (int i = 1; i <= 4; i++)
             {
-                dobbyBack.Add(GetBrushes(Path.Combine(path, $"dobbyBack{i}.png")));
-                dobbyFront.Add(GetBrushes(Path.Combine(path, $"dobbyFront{i}.png")));
-                dobbyLeft.Add(GetBrushes(Path.Combine(path, $"dobbyLeft{i}.png")));
-                dobbyRight.Add(GetBrushes(Path.Combine(path, $"dobbyRight{i}.png")));
+                gobbyBack.Add(GetBrushes(Path.Combine(path, $"gobbyBack{i}.png")));
+                gobbyFront.Add(GetBrushes(Path.Combine(path, $"gobbyFront{i}.png")));
+                gobbyLeft.Add(GetBrushes(Path.Combine(path, $"gobbyLeft{i}.png")));
+                gobbyRight.Add(GetBrushes(Path.Combine(path, $"gobbyRight{i}.png")));
             }
         }
-        public List<Brush> dobbyBack { get; set; }
-        public List<Brush> dobbyFront { get; set; }
-        public List<Brush> dobbyLeft { get; set; }
-        public List<Brush> dobbyRight { get; set; }
+        public List<Brush> gobbyBack { get; set; }
+        public List<Brush> gobbyFront { get; set; }
+        public List<Brush> gobbyLeft { get; set; }
+        public List<Brush> gobbyRight { get; set; }
 
         private IMainCharacter character;
 
@@ -54,18 +54,18 @@ namespace FarFromFreedom.Renderer
         }
         public MainCharacterRender()
         {
-            dobbyBack = new List<Brush>();
-            dobbyFront = new List<Brush>();
-            dobbyLeft = new List<Brush>();
-            dobbyRight = new List<Brush>();
-            string path = Path.Combine("Images", "Dobby");
+            gobbyBack = new List<Brush>();
+            gobbyFront = new List<Brush>();
+            gobbyLeft = new List<Brush>();
+            gobbyRight = new List<Brush>();
+            string path = Path.Combine("Images", "gobby");
             int files = Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length;
             for (int i = 1; i <= 4; i++)
             {
-                dobbyBack.Add(GetBrushes(Path.Combine(path, $"dobbyBack{i}.png")));
-                dobbyFront.Add(GetBrushes(Path.Combine(path, $"dobbyFront{i}.png")));
-                dobbyLeft.Add(GetBrushes(Path.Combine(path, $"dobbyLeft{i}.png")));
-                dobbyRight.Add(GetBrushes(Path.Combine(path, $"dobbyRight{i}.png")));
+                gobbyBack.Add(GetBrushes(Path.Combine(path, $"gobbyBack{i}.png")));
+                gobbyFront.Add(GetBrushes(Path.Combine(path, $"gobbyFront{i}.png")));
+                gobbyLeft.Add(GetBrushes(Path.Combine(path, $"gobbyLeft{i}.png")));
+                gobbyRight.Add(GetBrushes(Path.Combine(path, $"gobbyRight{i}.png")));
             }
             
         }
