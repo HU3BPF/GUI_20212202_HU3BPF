@@ -363,6 +363,8 @@ namespace FarFromFreedom
         {
             if ((bool)this.logic?.GameEnd())
             {
+                this.model.PauseModel = new PauseModel();
+                this.model.PauseModel.IsDead = true;
                 if (playing)
                 {
                     sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));

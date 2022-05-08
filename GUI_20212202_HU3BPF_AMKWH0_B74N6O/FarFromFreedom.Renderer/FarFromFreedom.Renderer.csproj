@@ -702,7 +702,7 @@
     <None Update="Images\items\emptyheart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Images\levels\DiedPictures1.png">
+    <None Update="Images\levels\DiedPicture.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\levels\Level1\Level1door1_small.jpg">

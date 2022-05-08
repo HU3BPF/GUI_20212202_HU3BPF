@@ -34,7 +34,7 @@ namespace FarFromFreedom.Renderer
         private static Brush Level3door_5 = GetBrushes(Path.Combine("Images", "levels", "Level3", "Level3door5_small.png"));
 
         private static Brush PauseMenu = GetBrushes(Path.Combine("Images", "levels", "PausedMenu.png"));
-        private static Brush DeathImage = GetBrushes(Path.Combine("Images", "levels", "DiedPictures1.png"));
+        private static Brush DeathImage = GetBrushes(Path.Combine("Images", "levels", "DiedPicture.png"));
 
         private static Brush Level2 = GetBrushes(Path.Combine("Images", "background", "Level2.jpg"));
         private static Brush Level3 = GetBrushes(Path.Combine("Images", "background", "Level3.jpg"));

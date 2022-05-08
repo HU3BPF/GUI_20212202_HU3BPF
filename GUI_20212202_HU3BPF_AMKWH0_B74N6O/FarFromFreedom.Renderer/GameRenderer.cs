@@ -67,6 +67,10 @@ namespace FarFromFreedom.Renderer
                 drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(350, 480, 150, 100))));
                 drawingGroup.Children.Add(this.GetDrawing(ExitMenu,new RectangleGeometry(new Rect(730, 480, 150, 100))));
             }
+            else
+            {
+              drawingGroup.Children.Add(GetDrawing(backGroundBrushes["DeathImage"], new RectangleGeometry(new Rect(0, 0, 1290, 730))));
+            }
         }
 
         private void DrawInterface(DrawingGroup drawingGroup)
