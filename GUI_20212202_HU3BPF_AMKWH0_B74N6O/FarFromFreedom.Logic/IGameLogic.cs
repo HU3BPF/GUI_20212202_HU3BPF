@@ -9,6 +9,7 @@ namespace FarFromFreedom.Logic
     {
         int CurrentLevel { get; }
         int CurrentRoom { get; }
+        bool Won { get; }
 
         void BulletMove();
         void EnemyDamaged();
@@ -36,5 +37,6 @@ namespace FarFromFreedom.Logic
 
 
         void Win();
+        void SaveHighscore(string pname);
     }
 }

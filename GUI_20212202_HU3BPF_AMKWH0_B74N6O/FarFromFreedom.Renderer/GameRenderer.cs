@@ -53,16 +53,19 @@ namespace FarFromFreedom.Renderer
         {
             double f_w = 1290;
             double f_h = 730;
-            double w = 1200;
-            double h = 1000;
-            double x = (f_w - (w * 0.8)) / 2;
-            double y = (f_h - (h * 0.8)) / 2;
+            double w = 1200 * 0.7;
+            double h = 1000 * 0.7;
+            double x = (f_w - w) / 2;
+            double y = (f_h - h) / 2;
+
+            Brush menu = backGroundBrushes["PauseMenu"];
+            menu.Opacity = 1;
 
             if (!this.model.PauseModel.IsDead)
             {
                 drawingGroup.Children.Add(GetDrawing(backGroundBrushes["PauseMenu"], new RectangleGeometry(new Rect(x, y, w, h))));
-                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(5, 250, 10, 10))));
-                drawingGroup.Children.Add(this.GetDrawing(SaveHighScore,new RectangleGeometry(new Rect(5, 250, 10, 10))));
+                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(350, 480, 100, 100))));
+                drawingGroup.Children.Add(this.GetDrawing(SaveHighScore,new RectangleGeometry(new Rect(730, 480, 100, 100))));
             }
         }
 
@@ -236,7 +239,7 @@ namespace FarFromFreedom.Renderer
         {
             get
             {
-                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "continue.png"));
                 brush.Opacity = this.model.PauseModel.ContinueOpacity;
                 return brush;
             }
@@ -245,7 +248,7 @@ namespace FarFromFreedom.Renderer
         {
             get
             {
-                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "savehighscore.png"));
                 brush.Opacity = this.model.PauseModel.SaveOpacity;
                 return brush;
             }
