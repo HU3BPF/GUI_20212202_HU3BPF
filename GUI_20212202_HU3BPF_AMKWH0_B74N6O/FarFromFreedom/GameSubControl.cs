@@ -26,7 +26,6 @@ namespace FarFromFreedom
         private BaseControl? baseControl;
         private IGameModel model;
         private bool initializeChecker = false;
-        private MediaPlayer player;
         private bool playing = true;
 
         List<Key> pressedKeys = new List<Key>();
@@ -56,7 +55,6 @@ namespace FarFromFreedom
             if (win != null && initializeChecker == false)
             {
                 mainSound.Open(new Uri(Path.Combine("StoryVideo", "music.mp3"), UriKind.Relative));
-                this.player = sound;
                 mainSound.Volume = 0.4;
 
                 mainSound.Play();
@@ -271,8 +269,8 @@ namespace FarFromFreedom
 
                 sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
                 sound.Play();
+                mainSound.Pause();
                 MessageBox.Show("Game ended.");
-                player.Pause();
                 gameTimer.Stop();
             }
         }
