@@ -15,7 +15,6 @@ namespace FarFromFreedom.Pages
     /// </summary>
     public partial class MainMenu : Window
     {
-        GameControl gameControl;
         IFarFromFreedomRepository repository = FarFromFreedomRepository.Instance();
         const double border_height = 105;
         const double border_width = 350;
@@ -23,13 +22,6 @@ namespace FarFromFreedom.Pages
         const double windowWidth = 800;
 
         int selected_index = 0;
-
-        public MainMenu(GameControl gameControl)
-        {
-            this.gameControl = gameControl;
-            createMenu();
-            InvalidateVisual();
-        }
 
 
         public void createMenu()
@@ -180,14 +172,9 @@ namespace FarFromFreedom.Pages
                     return;
                 case "Continue":
                     this.SelectIndex(1);
-                    this.gameControl.gameLogic.GameSave("gobby");
                     return;
                 case "Stats":
                     this.SelectIndex(2);
-                    IGameModel model = gameControl.gameLogic.GameLoad("gobby_2022.4.18_12H46M");
-                    GameLogic logic = new GameLogic(model);
-                    
-                    this.gameControl.gameLogic = logic;
                     return;
                 case "Options":
                     this.SelectIndex(3);
