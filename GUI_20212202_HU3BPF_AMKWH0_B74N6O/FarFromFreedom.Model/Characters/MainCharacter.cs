@@ -86,6 +86,10 @@ namespace FarFromFreedom.Model.Characters
 
         public void CurrentHealthUp(double currentHealth)
         {
+            if (this.currentHealth == health)
+            {
+                return;
+            }
             this.currentHealth += currentHealth;
         }
 

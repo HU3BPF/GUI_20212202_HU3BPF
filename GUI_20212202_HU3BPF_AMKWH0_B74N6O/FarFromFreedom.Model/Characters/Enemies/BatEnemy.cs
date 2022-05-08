@@ -31,6 +31,6 @@ namespace FarFromFreedom.Model.Characters.Enemies
         private readonly string description = "BatEnemy";
         private readonly double health = 2;
         private readonly double currentHealth = 2;
-        private readonly double power = 2;
+        private readonly double power = 1;
     }
 }
