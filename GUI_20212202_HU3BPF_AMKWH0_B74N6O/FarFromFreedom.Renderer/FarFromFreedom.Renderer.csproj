@@ -183,7 +183,6 @@
     <None Remove="Images\items\bag.png" />
     <None Remove="Images\items\bomb.png" />
     <None Remove="Images\items\bottle.png" />
-    <None Remove="Images\items\bottle2.png" />
     <None Remove="Images\items\coin.png" />
     <None Remove="Images\items\heart.png" />
     <None Remove="Images\items\heart2.png" />
@@ -672,7 +671,7 @@
     <Content Include="Images\items\bomb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\items\bottle2.png">
+    <Content Include="Images\items\bottle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\items\coin.png">
