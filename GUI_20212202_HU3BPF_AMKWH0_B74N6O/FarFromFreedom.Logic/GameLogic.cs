@@ -15,11 +15,13 @@ namespace FarFromFreedom.Logic
     {
         public int CurrentRoom => currentRoom;
         public int CurrentLevel => currentLevel;
+        public bool Won => this.won;
 
         private IGameModel gameModel;
         private IFarFromFreedomRepository farFromFreedomRepository;
         private int currentRoom = -1;
         private int currentLevel = 0;
+        private bool won = false;
 
         public GameLogic(IGameModel gameModel)
         {
@@ -686,7 +688,7 @@ namespace FarFromFreedom.Logic
                 if (this.gameModel.Level == 3)
                 {
                     this.Win();
-
+                    return this.gameModel;
                 }
                 mc.Area.Rect = new Rect(604, 312, mc.Area.Rect.Width, mc.Area.Rect.Height);
                 mc.Area = new RectangleGeometry(new Rect(604, 312, mc.Area.Rect.Width, mc.Area.Rect.Height));
@@ -728,9 +730,8 @@ namespace FarFromFreedom.Logic
 
         public void Win()
         {
-            throw new NotImplementedException();
+            this.won = true;
         }
-
         public void Pause(bool pause)
         {
             if (pause)
@@ -744,6 +745,11 @@ namespace FarFromFreedom.Logic
             {
                 this.gameModel.PauseModel = null;
             }
+        }
+
+        public void SaveHighscore(string pname)
+        {
+            this.farFromFreedomRepository.SaveHighScore(pname, (int)this.gameModel.Character.Highscore);
         }
     }
 }

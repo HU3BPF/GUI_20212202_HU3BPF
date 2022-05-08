@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FarFromFreedom"
         mc:Ignorable="d"
-        Title="Intro" Height="730" Width="1290">
+        Title="Intro" Height="730" Width="1290" ResizeMode="CanMinimize">
     <Grid>
         <MediaElement x:Name="videoPlayer" Stretch="None" />
     </Grid>

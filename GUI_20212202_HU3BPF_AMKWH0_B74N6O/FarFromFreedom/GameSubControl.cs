@@ -14,10 +14,11 @@ namespace FarFromFreedom
     public class GameSubControl
     {
         IGameLogic? logic;
-        private MediaPlayer sound = new MediaPlayer();
-        private MediaPlayer mainSound = new MediaPlayer();
+        MediaPlayer sound = new MediaPlayer();
+        MediaPlayer mainSound = new MediaPlayer();
         public DispatcherTimer? gameTimer;
-        private DispatcherTimer? EventTimer;
+        DispatcherTimer? EventTimer;
+        DispatcherTimer pauseTimer;
 
 
         private int counterTimer = 0;
@@ -40,6 +41,8 @@ namespace FarFromFreedom
             this.gameTimer = null;
             this.EventTimer?.Stop();
             this.EventTimer = null;
+            this.pauseTimer?.Stop();
+            this.pauseTimer = null;
         }
 
         public void Init(IGameModel model, BaseControl baseControl)
@@ -49,6 +52,7 @@ namespace FarFromFreedom
                 logic = new GameLogic(model);
             }
             this.model = model;
+            this.model.PauseModel = null;
             
             this.baseControl = baseControl;
             Window win = Window.GetWindow(baseControl);
@@ -61,9 +65,11 @@ namespace FarFromFreedom
 
                 gameTimer = new DispatcherTimer();
                 EventTimer = new DispatcherTimer();
+                this.pauseTimer = new DispatcherTimer();
 
                 gameTimer.Interval = TimeSpan.FromMilliseconds(30);
                 EventTimer.Interval = TimeSpan.FromSeconds(0.5);
+                pauseTimer.Interval = TimeSpan.FromMilliseconds(10);
 
                 gameTimer.Tick += this.EnemyMove;
                 gameTimer.Tick += this.EnemyHit;
@@ -81,8 +87,11 @@ namespace FarFromFreedom
                 gameTimer.Tick += this.MainCharacterShoot;
                 gameTimer.Tick += this.MusicPlayer;
                 gameTimer.Tick += this.EscapePress;
+                gameTimer.Tick += this.WonCheck;
 
                 EventTimer.Tick += EventCounterTimer;
+
+                pauseTimer.Tick += PauseMenuInputHandler;
 
                 gameTimer.Start();
                 EventTimer.Start();
@@ -96,6 +105,71 @@ namespace FarFromFreedom
                 win.KeyUp += RemoveKeyFromList;
                 initializeChecker = true;
             }
+        }
+
+        private void WonCheck(object? sender, EventArgs e)
+        {
+            if (this.logic.Won)
+            {
+                SaveHighscore saveWin = new SaveHighscore(this.logic);
+                saveWin.ShowDialog();
+                this.initializeChecker = false;
+                this.baseControl.ChangeModel(new MenuModel());
+            }
+        }
+
+        private void PauseMenuInputHandler(object? sender, EventArgs e)
+        {
+            if (this.model.PauseModel == null) { return; }
+
+            if (this.pressedKeys.Contains(Key.Right))
+            {
+                if (this.model.PauseModel?.SelectedIndex != 1)
+                {
+                    this.model.PauseModel.SelectedIndex = 1;
+                    this.model.PauseModel.SaveOpacity = 1;
+                    this.model.PauseModel.ContinueOpacity = 0.7;
+                }
+                this.pressedKeys.Remove(Key.Right);
+            }
+            else if (pressedKeys.Contains(Key.Left))
+            {
+                if (this.model.PauseModel?.SelectedIndex != 0)
+                {
+                    this.model.PauseModel.SelectedIndex = 0;
+                    this.model.PauseModel.SaveOpacity = 0.7;
+                    this.model.PauseModel.ContinueOpacity = 1;
+                }
+                this.pressedKeys.Remove(Key.Left);
+            }else if (pressedKeys.Contains(Key.Escape))
+            {
+                this.model.PauseModel = null;
+                this.pressedKeys.Remove(Key.Escape);
+            }
+            else if (pressedKeys.Contains(Key.Enter))
+            {
+                if (this.model.PauseModel?.SelectedIndex == 0)
+                {
+                    this.model.PauseModel = null;
+                    this.pressedKeys.Remove(Key.Escape);
+                    this.gameTimer.Start();
+                    this.EventTimer.Start();
+                }
+                else
+                {
+                    this.SaveHighscore();
+                }
+            }
+        }
+
+        private void SaveHighscore()
+        {
+            this.logic.GameSave();
+            SaveHighscore saveWin = new SaveHighscore(this.logic);
+            saveWin.ShowDialog();
+            this.initializeChecker = false;
+            this.baseControl.ChangeModel(new MenuModel());
+            //this.logic.SaveHighscore();
         }
 
         private void RemoveKeyFromList(object sender, KeyEventArgs e)
@@ -118,7 +192,19 @@ namespace FarFromFreedom
         {
             if (this.pressedKeys.Contains(Key.Escape))
             {
-                this.logic?.Pause(this.model.PauseModel == null ? true : false);
+                bool toPause = this.model.PauseModel == null ? true : false;
+                if (toPause)
+                {
+                    this.pauseTimer.Start();
+                    this.gameTimer?.Stop();
+                }
+                else
+                {
+                    this.pauseTimer.Stop();
+                    this.gameTimer?.Start();
+                }
+                
+                this.logic?.Pause(toPause);
                 this.pressedKeys.Remove(Key.Escape);
             }
         }
@@ -229,6 +315,10 @@ namespace FarFromFreedom
         {
             this.counterTimer++;
             this.counterHitTimer++;
+            if (this.model.PauseModel != null)
+            {
+                this.baseControl.InvalidateVisual();
+            }
         }
 
         private void EnemyDamaged(object sender, EventArgs e)

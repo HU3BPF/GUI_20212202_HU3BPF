@@ -104,10 +104,20 @@ namespace FarFromFreedom
                 this.menuSubControl.Init((IMenuModel)this.model);
             }
             else if (this.model is IGameModel gameModel)
-            { 
-                this.renderer = new GameRenderer((IGameModel)this.model);
-                this.gameSubControl.Init((IGameModel)this.model, this);
-                this.gameSubControl.gameTimer.Tick += GameTimer_ScreenRefresh;
+            {
+                if (gameModel.Level == 1 && gameModel.RoomID == 1 & gameModel.Character.Highscore == 0)
+                {
+                    this.renderer = new GameRenderer(gameModel);
+                    this.gameSubControl = new GameSubControl();
+                    this.gameSubControl.Init((IGameModel)this.model, this);
+                    this.gameSubControl.gameTimer.Tick += GameTimer_ScreenRefresh;
+                }
+                else
+                {
+                    this.renderer = new GameRenderer((IGameModel)this.model);
+                    this.gameSubControl.Init((IGameModel)this.model, this);
+                    this.gameSubControl.gameTimer.Tick += GameTimer_ScreenRefresh;
+                }
             }
 
             InvalidateVisual();

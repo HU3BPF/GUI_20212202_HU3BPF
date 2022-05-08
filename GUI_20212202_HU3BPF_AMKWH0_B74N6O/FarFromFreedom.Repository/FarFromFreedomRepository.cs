@@ -352,7 +352,11 @@ namespace FarFromFreedom.Repository
             if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Highscore")))
             {
                 Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "Highscore"));
-                SaveFile = new XElement("Highscore");
+                SaveFile = new XElement("Highscores", newScore);
+                StreamWriter sw__ = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
+                SaveFile.Save(sw__);
+                sw__.Close();
+                return;
             }
             else
             {
@@ -364,23 +368,30 @@ namespace FarFromFreedom.Repository
                 }
                 else
                 {
-                    SaveFile = new XElement("Highscore");
+                    SaveFile = new XElement("Highscores",newScore);
+                    StreamWriter sw_ = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), "Highscore", "Highscore.xml"));
+                    SaveFile.Save(sw_);
+                    sw_.Close();
+                    return;
                 }
 
             }
-
-            XElement last = new XElement("");
+            int actScore;
+            XElement last = new XElement("Nulll");
             last = null;
             // Goes through the score elements and inserts it to keep the decreasing scores.
-            foreach (XElement xscore in SaveFile.Element("Highscores").Elements("Score"))
+            foreach (XElement xscore in SaveFile.Elements("Score"))
             {
                 last = xscore;
-                if (int.Parse(xscore.Element("Point").Value)<score)
+                if (int.TryParse(xscore.Element("Point")?.Value, out actScore))
                 {
-                    xscore.AddBeforeSelf(newScore);
-                    added = true;
-                    last = null;
-                    break;
+                    if (actScore < score)
+                    {
+                        xscore.AddBeforeSelf(newScore);
+                        added = true;
+                        last = null;
+                        break;
+                    }                    
                 }
             }
 
