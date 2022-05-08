@@ -363,17 +363,16 @@ namespace FarFromFreedom
         {
             if ((bool)this.logic?.GameEnd())
             {
-                var w = Application.Current.Windows[0];
-                w.Hide();
-
                 if (playing)
                 {
                     sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
                     sound.Play();
                 }
                 mainSound.Pause();
-                MessageBox.Show("Game ended.");
-                gameTimer.Stop();
+                SaveHighscore saveWin = new SaveHighscore(this.logic);
+                saveWin.ShowDialog();
+                this.initializeChecker = false;
+                this.baseControl.ChangeModel(new MenuModel());
             }
         }
 
