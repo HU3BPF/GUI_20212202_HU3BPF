@@ -147,7 +147,7 @@
 		</Neighbours>
 		<Enemies>
 			<Enemy Type="ZombieRunB" X="1101" Y="161" Width="70" Height="90"/>
-			<Enemy Type="Cat" X="140" Y="362" Width="566" Height="60"/>
+			<Enemy Type="Cat" X="140" Y="362" Width="60" Height="60"/>
 			<Enemy Type="ZombieRunB" X="640" Y="100" Width="70" Height="90"/>
 			<Enemy Type="ZombieWalkCripple" X="840" Y="511" Width="80" Height="80"/>
 			<Enemy Type="ZombieWalkCripple" X="1076" Y="474" Width="80" Height="80"/>
