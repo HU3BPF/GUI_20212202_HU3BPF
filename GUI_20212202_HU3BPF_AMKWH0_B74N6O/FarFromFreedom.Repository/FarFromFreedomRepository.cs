@@ -216,7 +216,7 @@ namespace FarFromFreedom.Repository
                         tmp = new BatEnemy(rect);
                         break;
                     case "Flying":
-                        tmp = new PugEnemy(rect);
+                        tmp = new FlyingEnemy(rect);
                         break;
                     case "Monster":
                         tmp = new MonsterEnemy(rect);
