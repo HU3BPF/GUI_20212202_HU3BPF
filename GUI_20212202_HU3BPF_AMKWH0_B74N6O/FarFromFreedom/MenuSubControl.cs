@@ -103,7 +103,7 @@ namespace FarFromFreedom
             IGameModel game = repo.GameModelMap[0][1];
             Intro introWindow = new Intro();
             introWindow.ShowDialog();
-            game.Character = new MainCharacter("Gobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
+            game.Character = new MainCharacter("Gobby", "alma", 40, 40, 3, 0, new Rect(400, 200, 100, 100));
 
             control.ChangeModel(game);
         }
@@ -112,7 +112,7 @@ namespace FarFromFreedom
         {
             IFarFromFreedomRepository repo = FarFromFreedomRepository.Instance();
             IGameModel game = repo.GameModelMap[0][1];
-            game.Character = new MainCharacter("Gobby", "alma", 100, 100, 3, 12, new Rect(400, 200, 100, 100));
+            game.Character = new MainCharacter("Gobby", "alma", 40, 40, 3, 0, new Rect(400, 200, 100, 100));
             
             control.ChangeModel(game);
 

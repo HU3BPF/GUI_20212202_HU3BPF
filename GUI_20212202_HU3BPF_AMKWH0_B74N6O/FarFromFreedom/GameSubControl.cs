@@ -14,10 +14,10 @@ namespace FarFromFreedom
     public class GameSubControl
     {
         IGameLogic? logic;
-        MediaPlayer sound = new MediaPlayer();
-        MediaPlayer mainSound = new MediaPlayer();
+        private MediaPlayer sound = new MediaPlayer();
+        private MediaPlayer mainSound = new MediaPlayer();
         public DispatcherTimer? gameTimer;
-        DispatcherTimer? EventTimer;
+        private DispatcherTimer? EventTimer;
 
 
         private int counterTimer = 0;

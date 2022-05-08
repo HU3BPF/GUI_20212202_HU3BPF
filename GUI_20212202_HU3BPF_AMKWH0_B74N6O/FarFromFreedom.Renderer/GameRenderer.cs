@@ -71,8 +71,8 @@ namespace FarFromFreedom.Renderer
             Brush heartBrush = GameBrushes.GetValueOrDefault("Heart");
             Brush emptyHeartBrush = GameBrushes.GetValueOrDefault("EmptyHeart");
 
-            int hearts = (int)(this.model.Character.CurrentHealth / 10);
-            int emptyhears = 10 - hearts;
+            int hearts = (int)(this.model.Character.Health / 10);
+            int emptyhears = ((int)(this.model.Character.Health) - (int)(this.model.Character.CurrentHealth )) / 10;
 
             double x = 20.0;
             double y = 20.0;
@@ -100,10 +100,10 @@ namespace FarFromFreedom.Renderer
               System.Globalization.CultureInfo.CurrentCulture,
               FlowDirection.LeftToRight,
               new Typeface("Arial"),
-              20,
+              30,
               Brushes.Black,
               1);
-            GeometryDrawing highscore = new GeometryDrawing(null, new Pen(Brushes.SandyBrown, 2), formattedText.BuildGeometry(new Point(1290 - 10 - (hs.Length*13), 20)));
+            GeometryDrawing highscore = new GeometryDrawing(null, new Pen(Brushes.SandyBrown, 2), formattedText.BuildGeometry(new Point(1192 - 24 - (hs.Length*13), 20)));
 
             drawingGroup.Children.Add(highscore);
 
