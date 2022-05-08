@@ -177,6 +177,7 @@
     <None Remove="Images\items\star.png" />
     <None Remove="Images\items\tears.png" />
     <None Remove="Images\items\time.png" />
+    <None Remove="Images\MainMenu\exit game.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -681,6 +682,9 @@
     <Content Include="Images\items\time.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\MainMenu\exit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -765,9 +769,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\MainMenu\continue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\MainMenu\exit game.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\MainMenu\highscore.png">

@@ -64,8 +64,8 @@ namespace FarFromFreedom.Renderer
             if (!this.model.PauseModel.IsDead)
             {
                 drawingGroup.Children.Add(GetDrawing(backGroundBrushes["PauseMenu"], new RectangleGeometry(new Rect(x, y, w, h))));
-                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(350, 480, 100, 100))));
-                drawingGroup.Children.Add(this.GetDrawing(SaveHighScore,new RectangleGeometry(new Rect(730, 480, 100, 100))));
+                drawingGroup.Children.Add(this.GetDrawing(Continue,new RectangleGeometry(new Rect(350, 480, 150, 100))));
+                drawingGroup.Children.Add(this.GetDrawing(ExitMenu,new RectangleGeometry(new Rect(730, 480, 150, 100))));
             }
         }
 
@@ -247,11 +247,11 @@ namespace FarFromFreedom.Renderer
                 return brush;
             }
         }
-        private Brush SaveHighScore
+        private Brush ExitMenu
         {
             get
             {
-                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "savehighscore.png"));
+                Brush brush = GetBrushes(Path.Combine("Images", "MainMenu", "exit game.png"));
                 brush.Opacity = this.model.PauseModel.SaveOpacity;
                 return brush;
             }

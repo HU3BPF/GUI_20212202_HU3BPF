@@ -161,7 +161,9 @@ namespace FarFromFreedom
                 {
                     this.sound.Stop();
                     this.mainSound.Stop();
-                    this.SaveHighscore();
+                    this.logic.GameSave();
+                    this.initializeChecker = false;
+                    this.baseControl.ChangeModel(new MenuModel());
                 }
             }
         }
@@ -341,9 +343,12 @@ namespace FarFromFreedom
             {
                 if (this.logic.EnemyHit())
                 {
-                    Random r = new Random();
-                    sound.Open(new Uri(Path.Combine("StoryVideo", $"Hurt_grunt_{r.Next(0, 3)}.wav"), UriKind.Relative));
-                    sound.Play();
+                    if (playing)
+                    {
+                        Random r = new Random();
+                        sound.Open(new Uri(Path.Combine("StoryVideo", $"Hurt_grunt_{r.Next(0, 3)}.wav"), UriKind.Relative));
+                        sound.Play();
+                    }
                     counterHitTimer = 0;
                 }
             }
@@ -361,8 +366,11 @@ namespace FarFromFreedom
                 var w = Application.Current.Windows[0];
                 w.Hide();
 
-                sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
-                sound.Play();
+                if (playing)
+                {
+                    sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
+                    sound.Play();
+                }
                 mainSound.Pause();
                 MessageBox.Show("Game ended.");
                 gameTimer.Stop();
