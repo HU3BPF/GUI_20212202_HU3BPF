@@ -73,7 +73,7 @@
 		<Objects>
 			<Object Type="bush1" X="1005" Y="532" Width="70" Height="55"/>
 			<Object Type="bush1" X="1112" Y="509" Width="70" Height="55"/>
-			<Object Type="bush3" X="785" Y="115" Width="85" Height="50"/>
+			<Object Type="bush3" X="673" Y="122" Width="85" Height="50"/>
 			<Object Type="tree2" X="1130" Y="108" Width="60" Height="95"/>
 			<Object Type="tree2" X="131" Y="488" Width="60" Height="95"/>
 			<Object Type="tree1" X="155" Y="120" Width="75" Height="95"/>
