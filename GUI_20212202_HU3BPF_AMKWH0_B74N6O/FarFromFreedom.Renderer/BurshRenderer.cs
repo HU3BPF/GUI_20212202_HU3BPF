@@ -45,6 +45,7 @@ namespace FarFromFreedom.Renderer
         private static Brush tree2 = GetBrushes(Path.Combine("Images", "background", "items", "tree2.png"));
         private static Brush tree3 = GetBrushes(Path.Combine("Images", "background", "items", "tree3.png"));
         private static Brush tree4 = GetBrushes(Path.Combine("Images", "background", "items", "tree4.png"));
+        private static Brush well = GetBrushes(Path.Combine("Images", "background", "items", "well.png"));
 
         private static ImageBrush GetBrushes(string file) => new ImageBrush(new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)));
         internal static Dictionary<string, Brush> Init()
@@ -87,6 +88,7 @@ namespace FarFromFreedom.Renderer
             initGameDrawings.Add("tree2", tree2);
             initGameDrawings.Add("tree3", tree3);
             initGameDrawings.Add("tree4", tree4);
+            initGameDrawings.Add("well", well);
 
             return initGameDrawings;
         }
