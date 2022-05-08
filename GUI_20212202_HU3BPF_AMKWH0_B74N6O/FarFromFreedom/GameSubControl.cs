@@ -132,11 +132,11 @@ namespace FarFromFreedom
                 this.pressedKeys.Remove(Key.P);
                 if (playing)
                 {
-                    player.Pause();
+                    mainSound.Pause();
                 }
                 else
                 {
-                    player.Play();
+                    mainSound.Play();
                 }
                 playing = !playing;
             }

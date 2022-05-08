@@ -1,16 +1,12 @@
 ﻿using FarFromFreedom.Logic;
 using FarFromFreedom.Model;
 using FarFromFreedom.Model.Characters;
-using FarFromFreedom.Model.Characters.Enemies;
-using FarFromFreedom.Model.Items;
 using FarFromFreedom.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace FarFromFreedom
 {
@@ -21,7 +17,6 @@ namespace FarFromFreedom
         public void Init(IMenuModel model)
         {
             logic = new MenuLogic(model);
-            
         }
 
         public void Dispose()
