@@ -438,7 +438,13 @@ namespace FarFromFreedom.Repository
 
             foreach (XElement score in xml.Elements("Score"))
             {
-                highscores.Add(score.Element("Name").Value, int.Parse(score.Element("Point").Value));
+                string actName = score.Element("Name").Value;
+                while (highscores.ContainsKey(actName))
+                {
+                    actName = actName + " ";
+                }
+                highscores.Add(actName, int.Parse(score.Element("Point").Value));                
+                
             }
             return highscores;
         }

@@ -114,8 +114,16 @@ namespace FarFromFreedom
                 this.sound.Stop();
                 this.mainSound.Stop();
                 this.model.Won = true;
-                SaveHighscore saveWin = new SaveHighscore(this.logic);
+                Window original = Window.GetWindow(this.baseControl);
+                original.WindowStartupLocation = WindowStartupLocation.Manual;
+                FarFromFreedom.SaveHighscore saveWin = new SaveHighscore(this.logic);
+                saveWin.Width = 200;
+                saveWin.Height = 200;
+                saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
+                saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
                 saveWin.ShowDialog();
+
                 this.initializeChecker = false;
                 this.baseControl.ChangeModel(new MenuModel());
             }
@@ -125,7 +133,31 @@ namespace FarFromFreedom
         {
             if (this.model.PauseModel == null) { return; }
 
-            if (this.pressedKeys.Contains(Key.Right))
+            if (this.model.PauseModel.IsDead)
+            {
+                if (this.pressedKeys.Contains(Key.Enter) || this.pressedKeys.Contains(Key.Space) )
+                {
+                    this.pressedKeys.Remove(Key.Enter);
+                    this.pressedKeys.Remove(Key.Space);
+                    FarFromFreedom.SaveHighscore saveWin = new SaveHighscore(this.logic);
+
+                    Window original = Window.GetWindow(this.baseControl);
+                    original.WindowStartupLocation = WindowStartupLocation.Manual;
+                    
+                    saveWin.Width = 200;
+                    saveWin.Height = 200;
+                    saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
+                    saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
+                    saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
+                    saveWin.ShowDialog();
+
+                    this.initializeChecker = false;
+                    this.baseControl.ChangeModel(new MenuModel());
+                    return;
+                }
+            }
+
+            if (this.pressedKeys.Contains(Key.Down))
             {
                 if (this.model.PauseModel?.SelectedIndex != 1)
                 {
@@ -133,9 +165,9 @@ namespace FarFromFreedom
                     this.model.PauseModel.SaveOpacity = 1;
                     this.model.PauseModel.ContinueOpacity = 0.7;
                 }
-                this.pressedKeys.Remove(Key.Right);
+                this.pressedKeys.Remove(Key.Down);
             }
-            else if (pressedKeys.Contains(Key.Left))
+            else if (pressedKeys.Contains(Key.Up))
             {
                 if (this.model.PauseModel?.SelectedIndex != 0)
                 {
@@ -143,7 +175,7 @@ namespace FarFromFreedom
                     this.model.PauseModel.SaveOpacity = 0.7;
                     this.model.PauseModel.ContinueOpacity = 1;
                 }
-                this.pressedKeys.Remove(Key.Left);
+                this.pressedKeys.Remove(Key.Up);
             }else if (pressedKeys.Contains(Key.Escape))
             {
                 this.model.PauseModel = null;
@@ -166,8 +198,6 @@ namespace FarFromFreedom
                     this.mainSound.Stop();
                     this.logic.GameSave();
                     this.initializeChecker = false;
-                    SaveHighscore saveWin = new SaveHighscore(this.logic);
-                    saveWin.ShowDialog();
                     this.baseControl.ChangeModel(new MenuModel());
                 }
             }
@@ -177,7 +207,16 @@ namespace FarFromFreedom
         {
             this.logic.GameSave();
             SaveHighscore saveWin = new SaveHighscore(this.logic);
+            Window original = Window.GetWindow(this.baseControl);
+            original.WindowStartupLocation = WindowStartupLocation.Manual;
+
+            saveWin.Width = 200;
+            saveWin.Height = 200;
+            saveWin.WindowStartupLocation = WindowStartupLocation.Manual;
+            saveWin.Left = original.Left + (original.Width / 2) - (saveWin.Width / 2);
+            saveWin.Top = original.Top + (original.Height / 2) - (saveWin.Height / 2);
             saveWin.ShowDialog();
+
             this.initializeChecker = false;
             this.baseControl.ChangeModel(new MenuModel());
             //this.logic.SaveHighscore();
@@ -370,16 +409,18 @@ namespace FarFromFreedom
             {
                 this.model.PauseModel = new PauseModel();
                 this.model.PauseModel.IsDead = true;
+
+                this.gameTimer.Stop();
+                this.EventTimer.Stop();
+                this.pauseTimer.Start();
+
                 if (playing)
                 {
                     sound.Open(new Uri(Path.Combine("StoryVideo", "Gobby_dies_new.wav"), UriKind.Relative));
                     sound.Play();
                 }
                 mainSound.Pause();
-                SaveHighscore saveWin = new SaveHighscore(this.logic);
-                saveWin.ShowDialog();
-                this.initializeChecker = false;
-                this.baseControl.ChangeModel(new MenuModel());
+               
             }
         }
 
@@ -388,12 +429,4 @@ namespace FarFromFreedom
             this.logic?.EnemyMove();
         }
     }
-    /*TODO:
-     * ajtók irányának fixálása?
-
-        esc: 
-	        megállnak a timerek és az input handle kicsit más lesz 
-	        előjön az image
-	        lehet választania continue és a save and exit között 
-*/
 }
